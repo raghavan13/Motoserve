@@ -1,0 +1,2729 @@
+{
+  "carBrands": [
+    {
+      "id": "1",
+      "name": "Ariel"
+    },
+    {
+      "id": "2",
+      "name": "Ashok Leyland"
+    },
+    {
+      "id": "3",
+      "name": "Aston Martin"
+    },
+    {
+      "id": "4",
+      "name": "Audi"
+    },
+    {
+      "id": "5",
+      "name": "Bajaj"
+    },
+    {
+      "id": "6",
+      "name": "Bentley"
+    },
+    {
+      "id": "7",
+      "name": "BMW"
+    },
+    {
+      "id": "8",
+      "name": "Bugatti"
+    },
+    {
+      "id": "9",
+      "name": "Chevrolet"
+    },
+    {
+      "id": "10",
+      "name": "Datsun"
+    },
+    {
+      "id": "11",
+      "name": "Ferrai"
+    },
+    {
+      "id": "12",
+      "name": "Fiat"
+    },
+    {
+      "id": "13",
+      "name": "Force"
+    },
+    {
+      "id": "14",
+      "name": "Ford"
+    },
+    {
+      "id": "15",
+      "name": "HM"
+    },
+    {
+      "id": "16",
+      "name": "Honda"
+    },
+    {
+      "id": "17",
+      "name": "Hyundai"
+    },
+    {
+      "id": "18",
+      "name": "Icml"
+    },
+    {
+      "id": "19",
+      "name": "Isuzu"
+    },
+    {
+      "id": "20",
+      "name": "Jaguar"
+    },
+    {
+      "id": "21",
+      "name": "Jeep"
+    },
+    {
+      "id": "22",
+      "name": "Koenigsegg"
+    },
+    {
+      "id": "23",
+      "name": "Lamborghini"
+    },
+    {
+      "id": "24",
+      "name": "Land Rover"
+    },
+    {
+      "id": "25",
+      "name": "Lexus"
+    },
+    {
+      "id": "26",
+      "name": "Mahindra"
+    },
+    {
+      "id": "27",
+      "name": "Mahindra Reva"
+    },
+    {
+      "id": "28",
+      "name": "Maruti Suzuki"
+    },
+    {
+      "id": "29",
+      "name": "Maserati"
+    },
+    {
+      "id": "30",
+      "name": "Maybach"
+    },
+    {
+      "id": "31",
+      "name": "Mercedes Benz"
+    },
+    {
+      "id": "32",
+      "name": "Mini"
+    },
+    {
+      "id": "33",
+      "name": "Mitsubishi"
+    },
+    {
+      "id": "34",
+      "name": "Nissan"
+    },
+    {
+      "id": "35",
+      "name": "Porsche"
+    },
+    {
+      "id": "36",
+      "name": "Premier"
+    },
+    {
+      "id": "37",
+      "name": "Renault"
+    },
+    {
+      "id": "38",
+      "name": "Rolls Royce"
+    },
+    {
+      "id": "39",
+      "name": "Santro"
+    },
+    {
+      "id": "40",
+      "name": "Skoda"
+    },
+    {
+      "id": "41",
+      "name": "Ssangyong"
+    },
+    {
+      "id": "42",
+      "name": "Tata"
+    },
+    {
+      "id": "43",
+      "name": "Toyota"
+    },
+    {
+      "id": "44",
+      "name": "Toyota"
+    },
+    {
+      "id": "45",
+      "name": "Volkswagen"
+    },
+    {
+      "id": "46",
+      "name": "Volvo"
+    }
+  ],
+  "bikeBrands": [
+    {
+      "id": "1",
+      "name": "Ampere"
+    },
+    {
+      "id": "2",
+      "name": "Aprilia"
+    },
+    {
+      "id": "3",
+      "name": "Bajaj"
+    },
+    {
+      "id": "4",
+      "name": "Benelli"
+    },
+    {
+      "id": "5",
+      "name": "Big Dog"
+    },
+    {
+      "id": "6",
+      "name": "BMW"
+    },
+    {
+      "id": "7",
+      "name": "Ducati"
+    },
+    {
+      "id": "8",
+      "name": "Harley Davidson"
+    },
+    {
+      "id": "9",
+      "name": "Hero"
+    },
+    {
+      "id": "10",
+      "name": "Honda"
+    },
+    {
+      "id": "11",
+      "name": "Hyosung"
+    },
+    {
+      "id": "12",
+      "name": "Indian"
+    },
+    {
+      "id": "13",
+      "name": "Kawasaki"
+    },
+    {
+      "id": "14",
+      "name": "KTM"
+    },
+    {
+      "id": "15",
+      "name": "Mahindra"
+    },
+    {
+      "id": "16",
+      "name": "Moto Guzzi"
+    },
+    {
+      "id": "17",
+      "name": "MV Agusta"
+    },
+    {
+      "id": "18",
+      "name": "Royal Enfield"
+    },
+    {
+      "id": "19",
+      "name": "Suzuki"
+    },
+    {
+      "id": "20",
+      "name": "SWM"
+    },
+    {
+      "id": "21",
+      "name": "TVS"
+    },
+    {
+      "id": "22",
+      "name": "UM Motorcycles"
+    },
+    {
+      "id": "23",
+      "name": "Vespa"
+    },
+    {
+      "id": "24",
+      "name": "Yamaha"
+    }
+  ],
+  "services": [
+    {
+      "id": "1",
+      "name": "AC Service",
+      "type": "C"
+    },
+    {
+      "id": "2",
+      "name": "General Service",
+      "type": "B"
+    },
+    {
+      "id": "3",
+      "name": "Oil Change",
+      "type": "B"
+    },
+    {
+      "id": "4",
+      "name": "Painting",
+      "type": "C"
+    },
+    {
+      "id": "5",
+      "name": "Spa",
+      "type": "B"
+    },
+    {
+      "id": "6",
+      "name": "Wheel Alignment",
+      "type": "C"
+    }
+  ],
+  "days": [
+    {
+      "id": "1",
+      "day": "Sunday",
+      "isAvailable": "0",
+      "start": "0",
+      "end": "0"
+    },
+    {
+      "id": "2",
+      "day": "Monday",
+      "isAvailable": "0",
+      "start": "0",
+      "end": "0"
+    },
+    {
+      "id": "3",
+      "day": "Tuesday",
+      "isAvailable": "0",
+      "start": "0",
+      "end": "0"
+    },
+    {
+      "id": "4",
+      "day": "Wednesday",
+      "isAvailable": "0",
+      "start": "0",
+      "end": "0"
+    },
+    {
+      "id": "5",
+      "day": "Thursday",
+      "isAvailable": "0",
+      "start": "0",
+      "end": "0"
+    },
+    {
+      "id": "6",
+      "day": "Friday",
+      "isAvailable": "0",
+      "start": "0",
+      "end": "0"
+    },
+    {
+      "id": "7",
+      "day": "Saturday",
+      "isAvailable": "0",
+      "start": "0",
+      "end": "0"
+    }
+  ],
+  "carModels": {
+    "Maruti Suzuki": [
+      {
+        "id": "1",
+        "name": "Dzire"
+      },
+      {
+        "id": "2",
+        "name": "Swift"
+      },
+      {
+        "id": "3",
+        "name": "Balendo"
+      },
+      {
+        "id": "4",
+        "name": "Vitara Brezza"
+      },
+      {
+        "id": "5",
+        "name": "Alto800"
+      },
+      {
+        "id": "6",
+        "name": "Wagon R"
+      },
+      {
+        "id": "7",
+        "name": "Ciaz"
+      },
+      {
+        "id": "8",
+        "name": "Ertiga"
+      },
+      {
+        "id": "9",
+        "name": "Alto10"
+      },
+      {
+        "id": "10",
+        "name": "Celerio"
+      },
+      {
+        "id": "11",
+        "name": "S-cross"
+      },
+      {
+        "id": "12",
+        "name": "Lgnis"
+      },
+      {
+        "id": "13",
+        "name": "Eeco"
+      },
+      {
+        "id": "14",
+        "name": "Omni"
+      },
+      {
+        "id": "15",
+        "name": "Gypsy"
+      },
+      {
+        "id": "16",
+        "name": "Celerio X"
+      },
+      {
+        "id": "17",
+        "name": "Balendo"
+      },
+      {
+        "id": "18",
+        "name": "Ciaz S"
+      },
+      {
+        "id": "19",
+        "name": "Ertiga2018"
+      },
+      {
+        "id": "20",
+        "name": "Wagon"
+      },
+      {
+        "id": "21",
+        "name": "Jimny"
+      },
+      {
+        "id": "22",
+        "name": "Grand Vitara"
+      },
+      {
+        "id": "23",
+        "name": "Future-S"
+      },
+      {
+        "id": "24",
+        "name": "MR Wagon"
+      }
+    ],
+    "Tata": [
+      {
+        "id": "1",
+        "name": "Nexon "
+      },
+      {
+        "id": "2",
+        "name": "Tiago"
+      },
+      {
+        "id": "3",
+        "name": "Tigor"
+      },
+      {
+        "id": "4",
+        "name": "Hexa"
+      },
+      {
+        "id": "5",
+        "name": " Safari Storme"
+      },
+      {
+        "id": "6",
+        "name": "Tiago NRG"
+      },
+      {
+        "id": "7",
+        "name": "Zest"
+      },
+      {
+        "id": "8",
+        "name": "Nano"
+      },
+      {
+        "id": "9",
+        "name": "Sumo"
+      },
+      {
+        "id": "10",
+        "name": "Bolt"
+      },
+      {
+        "id": "11",
+        "name": "Harrier"
+      },
+      {
+        "id": "12",
+        "name": "Electric"
+      },
+      {
+        "id": "13",
+        "name": "Evision Electric"
+      },
+      {
+        "id": "14",
+        "name": "Tata 45x"
+      },
+      {
+        "id": "15",
+        "name": "Tigor EV"
+      }
+    ],
+    "Honda": [
+      {
+        "id": "1",
+        "name": "City "
+      },
+      {
+        "id": "2",
+        "name": "WRV"
+      },
+      {
+        "id": "3",
+        "name": "JAZZ"
+      },
+      {
+        "id": "4",
+        "name": "BRV"
+      },
+      {
+        "id": "5",
+        "name": "Civic"
+      },
+      {
+        "id": "6",
+        "name": "Brio"
+      },
+      {
+        "id": "7",
+        "name": "Accord"
+      },
+      {
+        "id": "8",
+        "name": "CR-V"
+      },
+      {
+        "id": "9",
+        "name": "Vezel"
+      }
+    ],
+    "Toyota": [
+      {
+        "id": "1",
+        "name": "Yaris"
+      },
+      {
+        "id": "2",
+        "name": "Crysta"
+      },
+      {
+        "id": "3",
+        "name": "Platinum Etios"
+      },
+      {
+        "id": "4",
+        "name": "Land Crusier"
+      },
+      {
+        "id": "5",
+        "name": "Etios Liva"
+      },
+      {
+        "id": "6",
+        "name": "Fotuner"
+      },
+      {
+        "id": "7",
+        "name": "Camry"
+      },
+      {
+        "id": "8",
+        "name": "EtiosCross"
+      },
+      {
+        "id": "9",
+        "name": "Corolla Altis"
+      },
+      {
+        "id": "10",
+        "name": "Land Crusier Prado"
+      },
+      {
+        "id": "11",
+        "name": "Prius"
+      }
+    ],
+    "Hyundai": [
+      {
+        "id": "1",
+        "name": "Elite i20"
+      },
+      {
+        "id": "2",
+        "name": "Creta"
+      },
+      {
+        "id": "3",
+        "name": "Verna"
+      },
+      {
+        "id": "4",
+        "name": "Grand i10"
+      },
+      {
+        "id": "5",
+        "name": "EON"
+      },
+      {
+        "id": "6",
+        "name": "Xcent"
+      },
+      {
+        "id": "7",
+        "name": "i20 Active"
+      },
+      {
+        "id": "8",
+        "name": "Elantra"
+      },
+      {
+        "id": "9",
+        "name": "Tucson"
+      },
+      {
+        "id": "10",
+        "name": "Grand i10 2019"
+      },
+      {
+        "id": "11",
+        "name": "Elantra 2019"
+      },
+      {
+        "id": "12",
+        "name": "Sonata"
+      },
+      {
+        "id": "13",
+        "name": "Santro 2018"
+      },
+      {
+        "id": "14",
+        "name": "Carlino"
+      },
+      {
+        "id": "15",
+        "name": "Kona Electric"
+      },
+      {
+        "id": "16",
+        "name": "i45"
+      },
+      {
+        "id": "16",
+        "name": "Ioniq"
+      }
+    ],
+    "Mahindra": [
+      {
+        "id": "1",
+        "name": "Mahindra Scorpio"
+      },
+      {
+        "id": "2",
+        "name": "Mahindra Marazzo"
+      },
+      {
+        "id": "3",
+        "name": "Mahindra XUV500"
+      },
+      {
+        "id": "4",
+        "name": "Mahindra Thar"
+      },
+      {
+        "id": "5",
+        "name": "Mahindra Bolero"
+      },
+      {
+        "id": "6",
+        "name": " Mahindra E Verito"
+      },
+      {
+        "id": "7",
+        "name": "Mahindra KUV100 NXT"
+      },
+      {
+        "id": "8",
+        "name": "Mahindra TUV 300 plus"
+      },
+      {
+        "id": "9",
+        "name": "Mahindra TUV 300"
+      },
+      {
+        "id": "10",
+        "name": "Mahindra Xylo"
+      },
+      {
+        "id": "11",
+        "name": "Mahindra e2o plus"
+      },
+      {
+        "id": "12",
+        "name": "Mahindra Supro"
+      },
+      {
+        "id": "13",
+        "name": " Mahindra Bolero Power Plus"
+      },
+      {
+        "id": "14",
+        "name": "Mahindra G4 Rexton"
+      },
+      {
+        "id": "15",
+        "name": "Mahindra Verito"
+      },
+      {
+        "id": "16",
+        "name": "Mahindra NuvoSport"
+      },
+      {
+        "id": "17",
+        "name": "Mahindra Verito Vibe"
+      },
+      {
+        "id": "18",
+        "name": "Mahindra XUV700"
+      },
+      {
+        "id": "19",
+        "name": " Mahindra S 201"
+      },
+      {
+        "id": "20",
+        "name": "Mahindra XUV Areo"
+      },
+      {
+        "id": "21",
+        "name": "Jimny"
+      },
+      {
+        "id": "22",
+        "name": "Mahindra eKUV100"
+      }
+    ],
+    "Skoda": [
+      {
+        "id": "1",
+        "name": "Octavia"
+      },
+      {
+        "id": "2",
+        "name": "Superb"
+      },
+      {
+        "id": "3",
+        "name": "Rapid"
+      },
+      {
+        "id": "4",
+        "name": "Kodiaq"
+      },
+      {
+        "id": "5",
+        "name": "OctaviaRs"
+      },
+      {
+        "id": "6",
+        "name": "Edition X"
+      },
+      {
+        "id": "7",
+        "name": "Wagon R"
+      },
+      {
+        "id": "8",
+        "name": "Ciaz"
+      }
+    ],
+    "Ashok Leyland": [
+      {
+        "id": "1",
+        "name": "Stile"
+      }
+    ],
+    "Audi": [
+      {
+        "id": "1",
+        "name": "Q8"
+      },
+      {
+        "id": "2",
+        "name": "Q3 2019"
+      },
+      {
+        "id": "3",
+        "name": "A6 2019"
+      },
+      {
+        "id": "4",
+        "name": "TT 2019"
+      },
+      {
+        "id": "5",
+        "name": "Q2"
+      },
+      {
+        "id": "6",
+        "name": "e-tron"
+      },
+      {
+        "id": "7",
+        "name": "Q3 2019"
+      },
+      {
+        "id": "8",
+        "name": "Q7"
+      },
+      {
+        "id": "9",
+        "name": "A4"
+      },
+      {
+        "id": "10",
+        "name": "A6 2019"
+      },
+      {
+        "id": "11",
+        "name": "RS6 Avant"
+      },
+      {
+        "id": "12",
+        "name": "RS5"
+      },
+      {
+        "id": "13",
+        "name": "A3Carbriolet"
+      },
+      {
+        "id": "14",
+        "name": "A5"
+      },
+      {
+        "id": "15",
+        "name": "S5"
+      },
+      {
+        "id": "16",
+        "name": "A8"
+      },
+      {
+        "id": "17",
+        "name": "Q5"
+      },
+      {
+        "id": "18",
+        "name": "A6"
+      },
+      {
+        "id": "19",
+        "name": "A3"
+      },
+      {
+        "id": "20",
+        "name": "A4"
+      },
+      {
+        "id": "21",
+        "name": "Q7"
+      }
+    ],
+    "BMW": [
+      {
+        "id": "1",
+        "name": "3 series"
+      },
+      {
+        "id": "2",
+        "name": "5 series"
+      },
+      {
+        "id": "3",
+        "name": "X5"
+      },
+      {
+        "id": "4",
+        "name": "X6"
+      },
+      {
+        "id": "5",
+        "name": "X3"
+      },
+      {
+        "id": "6",
+        "name": "i8"
+      },
+      {
+        "id": "7",
+        "name": "X1"
+      },
+      {
+        "id": "8",
+        "name": "7 series"
+      },
+      {
+        "id": "9",
+        "name": "4 series"
+      },
+      {
+        "id": "10",
+        "name": "6 series"
+      },
+      {
+        "id": "11",
+        "name": "z4"
+      }
+    ],
+    "Volvo": [
+      {
+        "id": "1",
+        "name": "XC40"
+      },
+      {
+        "id": "2",
+        "name": "XC60"
+      },
+      {
+        "id": "3",
+        "name": "XC90"
+      },
+      {
+        "id": "4",
+        "name": "S60"
+      },
+      {
+        "id": "5",
+        "name": "V40"
+      },
+      {
+        "id": "6",
+        "name": "V90"
+      },
+      {
+        "id": "7",
+        "name": "V40"
+      },
+      {
+        "id": "8",
+        "name": "S60 Cross Country"
+      },
+      {
+        "id": "9",
+        "name": "S90"
+      }
+    ],
+    "Lexus": [
+      {
+        "id": "1",
+        "name": "Lexus LS"
+      },
+      {
+        "id": "2",
+        "name": "Lexus Nx"
+      },
+      {
+        "id": "3",
+        "name": "Lexus Rx"
+      },
+      {
+        "id": "4",
+        "name": "Lexus Lx"
+      },
+      {
+        "id": "5",
+        "name": "Lexus Es"
+      },
+      {
+        "id": "6",
+        "name": "Lexus Ux"
+      }
+    ],
+    "Volkswagen": [
+      {
+        "id": "1",
+        "name": "Passat"
+      },
+      {
+        "id": "2",
+        "name": "Polo"
+      },
+      {
+        "id": "3",
+        "name": "Tiguan"
+      },
+      {
+        "id": "4",
+        "name": "Vento"
+      },
+      {
+        "id": "5",
+        "name": "Ameo"
+      }
+    ],
+    "SsangYoung": [
+      {
+        "id": "1",
+        "name": "Actyon"
+      },
+      {
+        "id": "2",
+        "name": "Chairman"
+      },
+      {
+        "id": "3",
+        "name": "Istana"
+      },
+      {
+        "id": "4",
+        "name": "Korando"
+      },
+      {
+        "id": "5",
+        "name": "Kyron"
+      },
+      {
+        "id": "6",
+        "name": "Musso"
+      },
+      {
+        "id": "7",
+        "name": "Musso Sports"
+      },
+      {
+        "id": "8",
+        "name": "Rexton"
+      },
+      {
+        "id": "9",
+        "name": "Rodius"
+      }
+    ],
+    "San": [
+      {
+        "id": "1",
+        "name": "San motors storm"
+      }
+    ],
+    "Rolls-Royce": [
+      {
+        "id": "1",
+        "name": "Phantom VIII"
+      },
+      {
+        "id": "2",
+        "name": "Ghost Series II"
+      },
+      {
+        "id": "3",
+        "name": "Wraith"
+      },
+      {
+        "id": "4",
+        "name": "Dawn"
+      },
+      {
+        "id": "5",
+        "name": "Phantom Coupe"
+      },
+      {
+        "id": "6",
+        "name": "Drophead Coupe"
+      },
+      {
+        "id": "7",
+        "name": "Cullinan"
+      }
+    ],
+    "Renault": [
+      {
+        "id": "1",
+        "name": "Renault KWID"
+      },
+      {
+        "id": "2",
+        "name": "Renault Duster"
+      },
+      {
+        "id": "3",
+        "name": "Renault Captur"
+      },
+      {
+        "id": "4",
+        "name": "Renault Lodgy"
+      },
+      {
+        "id": "5",
+        "name": "Renault Duster 2019"
+      },
+      {
+        "id": "6",
+        "name": "Renault Kwid MPV"
+      },
+      {
+        "id": "7",
+        "name": "Renault Kwid EV"
+      },
+      {
+        "id": "8",
+        "name": "Renault Zoe"
+      },
+      {
+        "id": "9",
+        "name": "Renault Arkana"
+      }
+    ],
+    "Premier": [
+      {
+        "id": "1",
+        "name": "Premier Rio"
+      }
+    ],
+    "Porsche": [
+      {
+        "id": "1",
+        "name": "Porsche Cayenne"
+      },
+      {
+        "id": "2",
+        "name": "Porsche 911"
+      },
+      {
+        "id": "3",
+        "name": "Porsche Panamera"
+      },
+      {
+        "id": "4",
+        "name": "Porsche Macan"
+      },
+      {
+        "id": "5",
+        "name": "Porsche 718"
+      },
+      {
+        "id": "6",
+        "name": "Porsche Cayenne"
+      },
+      {
+        "id": "7",
+        "name": "Porsche Macan 2019"
+      }
+    ],
+    "Nissan": [
+      {
+        "id": "1",
+        "name": "Nissan Micra"
+      },
+      {
+        "id": "2",
+        "name": "Nissan Sunny"
+      },
+      {
+        "id": "3",
+        "name": "Nissan GT-R"
+      },
+      {
+        "id": "4",
+        "name": "Nissan Micra Active"
+      },
+      {
+        "id": "5",
+        "name": "Nissan Terrano"
+      },
+      {
+        "id": "6",
+        "name": "Nissan Kicks"
+      },
+      {
+        "id": "7",
+        "name": "Nissan Terra"
+      },
+      {
+        "id": "8",
+        "name": "Nissan X-Trail"
+      },
+      {
+        "id": "7",
+        "name": "Nissan Leaf"
+      },
+      {
+        "id": "8",
+        "name": "Nissan Note e power"
+      }
+    ],
+    "Mercedes=Benz": [
+      {
+        "id": "1",
+        "name": "Mercedes-Benz CLA"
+      },
+      {
+        "id": "2",
+        "name": "Mercedes-Benz A-class"
+      },
+      {
+        "id": "3",
+        "name": "Mercedes-Benz GLA 45 AMG"
+      },
+      {
+        "id": "4",
+        "name": "Mercedes-Benz GLS"
+      },
+      {
+        "id": "5",
+        "name": "Mercedes-Benz AMG GT"
+      },
+      {
+        "id": "6",
+        "name": "Mercedes-Benz B-class"
+      },
+      {
+        "id": "7",
+        "name": "Mercedes-Benz E-class"
+      },
+      {
+        "id": "8",
+        "name": "Mercedes-Benz E-class All-Terrain"
+      },
+      {
+        "id": "9",
+        "name": "Mercedes-Benz GLA class"
+      },
+      {
+        "id": "10",
+        "name": "Mercedes-Benz GLC"
+      },
+      {
+        "id": "11",
+        "name": "Mercedes-Benz GLE"
+      },
+      {
+        "id": "12",
+        "name": "Mercedes-Benz C-class"
+      },
+      {
+        "id": "13",
+        "name": "Mercedes-Benz S-class"
+      },
+      {
+        "id": "14",
+        "name": "Mercedes-Benz S-class Cabriolet"
+      },
+      {
+        "id": "15",
+        "name": "Mercedes-Benz SLC"
+      },
+      {
+        "id": "16",
+        "name": "Mercedes-Benz A-Class Sedan"
+      },
+      {
+        "id": "17",
+        "name": "Mercedes-Benz B-class 2019"
+      },
+      {
+        "id": "18",
+        "name": "Mercedes-Benz GLB"
+      }
+    ],
+    "Maserati": [
+      {
+        "id": "1",
+        "name": "Maserati Levante"
+      },
+      {
+        "id": "2",
+        "name": "Maserati GranTurismo"
+      },
+      {
+        "id": "3",
+        "name": "Maserati Ghibli"
+      },
+      {
+        "id": "4",
+        "name": "Quattroporte"
+      },
+      {
+        "id": "5",
+        "name": "Maserati GranCabrio"
+      }
+    ],
+    "Mahindra-Reva ": [
+      {
+        "id": "1",
+        "name": "Mahindra-Reva Reva-i"
+      },
+      {
+        "id": "2",
+        "name": "Mahindra-Reva e2o Plus"
+      }
+    ],
+    "Land Rover": [
+      {
+        "id": "1",
+        "name": " Range Rover"
+      },
+      {
+        "id": "2",
+        "name": " Discovery Sport"
+      },
+      {
+        "id": "3",
+        "name": "Range Rover Evoque"
+      },
+      {
+        "id": "4",
+        "name": "Range Rover velar"
+      },
+      {
+        "id": "5",
+        "name": "Range Rover Sport"
+      },
+      {
+        "id": "6",
+        "name": "Discovery"
+      }
+    ],
+    "Lamborghini": [
+      {
+        "id": "1",
+        "name": " Lamborghini Urus"
+      },
+      {
+        "id": "2",
+        "name": " Lamborghini Huracan"
+      },
+      {
+        "id": "3",
+        "name": "Lamborghini Aventador"
+      }
+    ],
+    "Jeep": [
+      {
+        "id": "1",
+        "name": " Compass"
+      },
+      {
+        "id": "2",
+        "name": " Wrangler"
+      },
+      {
+        "id": "3",
+        "name": "Grand Cherokee"
+      },
+      {
+        "id": "4",
+        "name": "Renegade"
+      }
+    ],
+    "Jaguar": [
+      {
+        "id": "1",
+        "name": " Jaguar XF"
+      },
+      {
+        "id": "2",
+        "name": " Jaguar XJ"
+      },
+      {
+        "id": "3",
+        "name": "Jaguar F Type"
+      },
+      {
+        "id": "4",
+        "name": "Jaguar F-Pace"
+      },
+      {
+        "id": "5",
+        "name": "Jaguar XE"
+      },
+      {
+        "id": "6",
+        "name": "Jaguar E Pace"
+      }
+    ],
+    "Isuzu": [
+      {
+        "id": "1",
+        "name": " LSUZU MUX"
+      },
+      {
+        "id": "2",
+        "name": " LSUZU D-MAX V-Cross"
+      },
+      {
+        "id": "3",
+        "name": "LSUZU D-Max V-Cross 2019 "
+      }
+    ],
+    "Icml": [
+      {
+        "id": "1",
+        "name": " Icml Extreme"
+      }
+    ],
+    "Hindustan Motors": [
+      {
+        "id": "1",
+        "name": " Hindustan Motors Ambassador"
+      },
+      {
+        "id": "2",
+        "name": " Hindustan Motors Contessa"
+      }
+    ],
+    "Force": [
+      {
+        "id": "1",
+        "name": " Force Gurkha"
+      }
+    ],
+    "Fiat": [
+      {
+        "id": "1",
+        "name": "Fiat Linea"
+      },
+      {
+        "id": "2",
+        "name": "Fiat 500"
+      },
+      {
+        "id": "3",
+        "name": "Fiat Avventura"
+      },
+      {
+        "id": "4",
+        "name": "Fiat Punto Evo"
+      },
+      {
+        "id": "5",
+        "name": "Fiat Abarth Punto"
+      },
+      {
+        "id": "6",
+        "name": "Fiat Abarth Avventura"
+      },
+      {
+        "id": "7",
+        "name": "Fiat Avventura Urban Cross"
+      },
+      {
+        "id": "8",
+        "name": "Fiat Linea Classic"
+      },
+      {
+        "id": "9",
+        "name": "Fiat Punto"
+      },
+      {
+        "id": "10",
+        "name": "Fiat Agro"
+      },
+      {
+        "id": "11",
+        "name": "Fiat Cronos"
+      }
+    ],
+    "Ferrai": [
+      {
+        "id": "1",
+        "name": "Ferrai Portofino"
+      },
+      {
+        "id": "2",
+        "name": "Ferrai 812 Superfast"
+      },
+      {
+        "id": "3",
+        "name": "Ferrai GTC4Lusso"
+      },
+      {
+        "id": "4",
+        "name": "Ferrai 488"
+      }
+    ],
+    "Datsun": [
+      {
+        "id": "1",
+        "name": "Datsun GO Plus"
+      },
+      {
+        "id": "2",
+        "name": "Datsun Go"
+      },
+      {
+        "id": "3",
+        "name": "Datsun redi-GO"
+      },
+      {
+        "id": "4",
+        "name": "Datsun Cross"
+      }
+    ],
+    "Chevrolet": [
+      {
+        "id": "1",
+        "name": "Chevrolet Aveo"
+      },
+      {
+        "id": "2",
+        "name": "Chevrolet Aveo U VA"
+      },
+      {
+        "id": "3",
+        "name": "Chevrolet Beat 2010-2013"
+      },
+      {
+        "id": "4",
+        "name": "Chevrolet beat 2014-2016"
+      },
+      {
+        "id": "5",
+        "name": " Chevrolet Captiva"
+      },
+      {
+        "id": "6",
+        "name": "Chevrolet Captiva 2008-2012"
+      },
+      {
+        "id": "7",
+        "name": "Chevrolet beat 2012-2013"
+      },
+      {
+        "id": "8",
+        "name": "Chevrolet Corvette"
+      },
+      {
+        "id": "9",
+        "name": "Chevrolet Cruze 2010-2011"
+      },
+      {
+        "id": "10",
+        "name": "Chevrolet Cruze 2012-2014"
+      },
+      {
+        "id": "11",
+        "name": "Chevrolet Cruze 2014-2016"
+      },
+      {
+        "id": "12",
+        "name": "Chevrolet Enjoy"
+      },
+      {
+        "id": "13",
+        "name": "Chevrolet Enjoy 2013-2015"
+      },
+      {
+        "id": "14",
+        "name": "Chevrolet Forester"
+      },
+      {
+        "id": "15",
+        "name": "Chevrolet Optra"
+      },
+      {
+        "id": "16",
+        "name": "Chevrolet Optra Magnum"
+      },
+      {
+        "id": "17",
+        "name": "Chevrolet Optra SRV"
+      },
+      {
+        "id": "18",
+        "name": "Chevrolet Sail"
+      },
+      {
+        "id": "19",
+        "name": "Chevrolet Sail Hatchback"
+      },
+      {
+        "id": "20",
+        "name": "Chevrolet Sail Hatchback 2012-2013"
+      },
+      {
+        "id": "21",
+        "name": "Chevrolet Silverado"
+      },
+      {
+        "id": "22",
+        "name": "Chevrolet Spark"
+      },
+      {
+        "id": "23",
+        "name": "Chevrolet Spark 2007-2012"
+      },
+      {
+        "id": "24",
+        "name": "Chevrolet Tavera 2003-2007"
+      },
+      {
+        "id": "25",
+        "name": "Chevrolet Tavera 2012-2017"
+      },
+      {
+        "id": "26",
+        "name": "Chevrolet Tavera "
+      },
+      {
+        "id": "27",
+        "name": "Chevrolet Tavera Neo"
+      },
+      {
+        "id": "28",
+        "name": "Chevrolet Trailblazer"
+      }
+    ],
+    "Bugatti": [
+      {
+        "id": "1",
+        "name": "Bugatti Chiron"
+      },
+      {
+        "id": "2",
+        "name": "Bugatti Divo"
+      },
+      {
+        "id": "3",
+        "name": "Bugatti Veyron"
+      }
+    ],
+    "Bentley": [
+      {
+        "id": "1",
+        "name": "Bentley Bentayga"
+      },
+      {
+        "id": "2",
+        "name": "Bentley Mulsanne"
+      },
+      {
+        "id": "3",
+        "name": "Bentley Flying Spur"
+      }
+    ],
+    "Bajaj": [
+      {
+        "id": "1",
+        "name": "Bajaj Qute (RE60)"
+      }
+    ],
+    "Aston martin": [
+      {
+        "id": "1",
+        "name": "Aston martin V8 Vantage"
+      },
+      {
+        "id": "2",
+        "name": "Aston martin Vanquish"
+      },
+      {
+        "id": "3",
+        "name": "Aston martin Rapide"
+      },
+      {
+        "id": "4",
+        "name": "Aston martin DB11"
+      },
+      {
+        "id": "5",
+        "name": " Aston martin DB9"
+      },
+      {
+        "id": "6",
+        "name": "Aston martin Vantage"
+      },
+      {
+        "id": "7",
+        "name": "Aston martin Martin V12 Vantage"
+      }
+    ],
+    "Ford": [
+      {
+        "id": "1",
+        "name": "Ford Mustang"
+      },
+      {
+        "id": "2",
+        "name": "Ford EcoSport"
+      },
+      {
+        "id": "3",
+        "name": "Ford Figo"
+      },
+      {
+        "id": "4",
+        "name": "Ford FreeStyle"
+      },
+      {
+        "id": "5",
+        "name": " Ford Aspire"
+      },
+      {
+        "id": "6",
+        "name": "Ford Endeavour"
+      }
+    ],
+    "Opel": [
+      {
+        "id": "1",
+        "name": "Ampera"
+      },
+      {
+        "id": "2",
+        "name": "Adam"
+      },
+      {
+        "id": "3",
+        "name": "Astra"
+      },
+      {
+        "id": "4",
+        "name": "Cascada"
+      },
+      {
+        "id": "5",
+        "name": " Corsa"
+      },
+      {
+        "id": "6",
+        "name": "GTC"
+      },
+      {
+        "id": "7",
+        "name": "Insignia"
+      },
+      {
+        "id": "8",
+        "name": "Meriva"
+      },
+      {
+        "id": "9",
+        "name": "Zafira"
+      },
+      {
+        "id": "10",
+        "name": "Grandland X"
+      },
+      {
+        "id": "11",
+        "name": "Agila"
+      },
+      {
+        "id": "12",
+        "name": "Opel Antara"
+      },
+      {
+        "id": "13",
+        "name": "Opel calibra"
+      },
+      {
+        "id": "14",
+        "name": "Opel Flextreme"
+      },
+      {
+        "id": "15",
+        "name": "Opel GT"
+      },
+      {
+        "id": "16",
+        "name": "Opel Mokka"
+      },
+      {
+        "id": "17",
+        "name": "Opel Monzza"
+      },
+      {
+        "id": "18",
+        "name": "Opel speedster"
+      },
+      {
+        "id": "19",
+        "name": "Opel Tigra"
+      },
+      {
+        "id": "20",
+        "name": "Opel Vectra"
+      }
+    ],
+    "Echer": [
+      {
+        "id": "1",
+        "name": "Polaris RZR S 800"
+      },
+      {
+        "id": "2",
+        "name": "Polaris Multix"
+      }
+    ]
+  },
+  "bikeModels": {
+    "Bajaj": [
+      {
+        "id": "1",
+        "name": "Bajaj Pulsar 150"
+      },
+      {
+        "id": "2",
+        "name": "Bajaj Pulsar 220 F"
+      },
+      {
+        "id": "3",
+        "name": "Bajaj Pulsar NS200"
+      },
+      {
+        "id": "4",
+        "name": "Bajaj Pulsar RS200"
+      },
+      {
+        "id": "5",
+        "name": "Bajaj Dominar 400"
+      },
+      {
+        "id": "6",
+        "name": "Bajaj CT 100"
+      },
+      {
+        "id": "7",
+        "name": "Bajaj Pulsar NS160"
+      },
+      {
+        "id": "8",
+        "name": "Bajaj Platina Comfortec"
+      },
+      {
+        "id": "9",
+        "name": "Bajaj Pulsar 180"
+      },
+      {
+        "id": "10",
+        "name": "Bajaj V15"
+      },
+      {
+        "id": "11",
+        "name": "Bajaj Avenger Street 220"
+      },
+      {
+        "id": "12",
+        "name": "Bajaj Discover 125"
+      },
+      {
+        "id": "13",
+        "name": "Bajaj Avenger Cruise 220"
+      },
+      {
+        "id": "14",
+        "name": "Bajaj Avenger Street 180"
+      },
+      {
+        "id": "15",
+        "name": "Bajaj Discover 110"
+      },
+      {
+        "id": "16",
+        "name": "Bajaj V12"
+      }
+    ],
+    "Hero": [
+      {
+        "id": "1",
+        "name": "Hero Xtreme 200R"
+      },
+      {
+        "id": "2",
+        "name": "Hero Splendor Plus"
+      },
+      {
+        "id": "3",
+        "name": "Hero HF Deluxe"
+      },
+      {
+        "id": "4",
+        "name": "Hero Super Splendor"
+      },
+      {
+        "id": "5",
+        "name": "Hero Glamour"
+      },
+      {
+        "id": "6",
+        "name": "Hero Pleasure"
+      },
+      {
+        "id": "7",
+        "name": "Hero Passion Pro 110"
+      },
+      {
+        "id": "8",
+        "name": "Hero Passion Pro"
+      },
+      {
+        "id": "9",
+        "name": "Hero Maestro Edge"
+      },
+      {
+        "id": "10",
+        "name": "Hero Splendor PRO"
+      },
+      {
+        "id": "11",
+        "name": "Hero Duet"
+      },
+      {
+        "id": "12",
+        "name": "Hero Xtreme Sports"
+      },
+      {
+        "id": "13",
+        "name": "Hero Passion Xpro"
+      },
+      {
+        "id": "14",
+        "name": "Hero Karizma ZMR"
+      },
+      {
+        "id": "15",
+        "name": "Hero Splendor Ismart 110"
+      },
+      {
+        "id": "16",
+        "name": "Hero HF Dawn"
+      },
+      {
+        "id": "17",
+        "name": "Hero Achiever"
+      },
+      {
+        "id": "18",
+        "name": "Hero HF Deluxe Eco"
+      }
+    ],
+    "TVS": [
+      {
+        "id": "1",
+        "name": "TVS Apache RTR 160"
+      },
+      {
+        "id": "2",
+        "name": "TVS Apache RTR 160 4V"
+      },
+      {
+        "id": "3",
+        "name": "TVS Apache RTR 200 4V Race Edition 2.0"
+      },
+      {
+        "id": "4",
+        "name": "TVS Apache RR 310"
+      },
+      {
+        "id": "5",
+        "name": "TVS Apache RTR 180"
+      },
+      {
+        "id": "6",
+        "name": "TVS Jupiter"
+      },
+      {
+        "id": "7",
+        "name": "TVS NTORQ 125"
+      },
+      {
+        "id": "8",
+        "name": "TVS Sport"
+      },
+      {
+        "id": "9",
+        "name": "TVS Scooty Pep Plus"
+      },
+      {
+        "id": "10",
+        "name": "TVS Star City Plus"
+      },
+      {
+        "id": "11",
+        "name": "TVS Radeon"
+      },
+      {
+        "id": "12",
+        "name": "TVS XL 100"
+      },
+      {
+        "id": "13",
+        "name": "TVS Scooty Zest"
+      },
+      {
+        "id": "14",
+        "name": "TVS Victor"
+      },
+      {
+        "id": "15",
+        "name": "TVS Wego"
+      }
+    ],
+    "Royal Enfield": [
+      {
+        "id": "1",
+        "name": "Royal Enfield Classic 350"
+      },
+      {
+        "id": "2",
+        "name": "Royal Enfield Bullet 350"
+      },
+      {
+        "id": "3",
+        "name": "Royal Enfield Himalayan"
+      },
+      {
+        "id": "4",
+        "name": "Royal Enfield Classic 500"
+      },
+      {
+        "id": "5",
+        "name": "Royal Enfield Bullet 500"
+      },
+      {
+        "id": "6",
+        "name": "Royal Enfield Thunderbird 350"
+      },
+      {
+        "id": "7",
+        "name": "Royal Enfield Thunderbird 500X"
+      },
+      {
+        "id": "8",
+        "name": "Royal Enfield Thunderbird 500"
+      }
+    ],
+    "Honda": [
+      {
+        "id": "1",
+        "name": "Honda Activa 5G"
+      },
+      {
+        "id": "2",
+        "name": "Honda Dio"
+      },
+      {
+        "id": "3",
+        "name": "Honda CB Shine"
+      },
+      {
+        "id": "4",
+        "name": "Honda Activa 125"
+      },
+      {
+        "id": "5",
+        "name": "Honda CB Hornet 160R"
+      },
+      {
+        "id": "6",
+        "name": "Honda CB Unicorn 150"
+      },
+      {
+        "id": "7",
+        "name": "Honda CB Shine SP"
+      },
+      {
+        "id": "8",
+        "name": "Honda Activa I"
+      },
+      {
+        "id": "9",
+        "name": "Honda Grazia"
+      },
+      {
+        "id": "10",
+        "name": "Honda CBR250R"
+      },
+      {
+        "id": "11",
+        "name": "Honda Livo"
+      },
+      {
+        "id": "12",
+        "name": "Honda Xblade"
+      },
+      {
+        "id": "13",
+        "name": "Honda CB Unicorn 160"
+      },
+      {
+        "id": "14",
+        "name": "Honda Dream Yuga"
+      },
+      {
+        "id": "15",
+        "name": "Honda Aviator"
+      },
+      {
+        "id": "16",
+        "name": "Honda Navi"
+      },
+      {
+        "id": "17",
+        "name": "Honda CD 110 Dream"
+      },
+      {
+        "id": "18",
+        "name": "Honda Cliq"
+      },
+      {
+        "id": "19",
+        "name": "Honda CBR650F"
+      },
+      {
+        "id": "20",
+        "name": "Honda Dream Neo"
+      },
+      {
+        "id": "21",
+        "name": "Honda CBR1000RR"
+      },
+      {
+        "id": "22",
+        "name": "Honda CB1000R"
+      }
+    ],
+    "Yamaha": [
+      {
+        "id": "1",
+        "name": "Yamaha YZF R15 V3"
+      },
+      {
+        "id": "2",
+        "name": "Yamaha FZ S FI (V 2.0)"
+      },
+      {
+        "id": "3",
+        "name": "Yamaha FZ FI"
+      },
+      {
+        "id": "4",
+        "name": "Yamaha Fascino"
+      },
+      {
+        "id": "5",
+        "name": "Yamaha FZ 25"
+      },
+      {
+        "id": "6",
+        "name": "Yamaha YZF R1"
+      },
+      {
+        "id": "7",
+        "name": "Yamaha YZF R3"
+      },
+      {
+        "id": "8",
+        "name": "Yamaha Ray ZR"
+      },
+      {
+        "id": "9",
+        "name": "Yamaha Fazer 25"
+      },
+      {
+        "id": "10",
+        "name": "Yamaha SZ-RR"
+      },
+      {
+        "id": "11",
+        "name": "Yamaha Fazer-FI"
+      },
+      {
+        "id": "12",
+        "name": "Yamaha Saluto"
+      },
+      {
+        "id": "13",
+        "name": "Yamaha YZF R15S"
+      },
+      {
+        "id": "14",
+        "name": "Yamaha Ray Z"
+      },
+      {
+        "id": "15",
+        "name": "Yamaha YZF R15 V3 Moto GP Edition"
+      },
+      {
+        "id": "16",
+        "name": "Yamaha Saluto RX"
+      },
+      {
+        "id": "17",
+        "name": "Yamaha MT 09"
+      },
+      {
+        "id": "18",
+        "name": "Yamaha YZF R1M"
+      },
+      {
+        "id": "19",
+        "name": "Yamaha Alpha"
+      }
+    ],
+    "KTM": [
+      {
+        "id": "1",
+        "name": "KTM 200 Duke"
+      },
+      {
+        "id": "2",
+        "name": "KTM RC 200"
+      },
+      {
+        "id": "3",
+        "name": "KTM 390 Duke"
+      },
+      {
+        "id": "4",
+        "name": "KTM RC 390"
+      },
+      {
+        "id": "5",
+        "name": "KTM 250 Duke"
+      }
+    ],
+    "Suzuki": [
+      {
+        "id": "1",
+        "name": "Suzuki Access 125"
+      },
+      {
+        "id": "2",
+        "name": "Suzuki Burgman Street"
+      },
+      {
+        "id": "3",
+        "name": "Suzuki Gixxer"
+      },
+      {
+        "id": "4",
+        "name": "Suzuki Hayabusa"
+      },
+      {
+        "id": "5",
+        "name": "Suzuki Intruder"
+      },
+      {
+        "id": "6",
+        "name": "Suzuki Gixxer SF"
+      },
+      {
+        "id": "7",
+        "name": "Suzuki GSX S750"
+      },
+      {
+        "id": "8",
+        "name": "Suzuki Hayate"
+      },
+      {
+        "id": "9",
+        "name": "Suzuki Lets"
+      },
+      {
+        "id": "10",
+        "name": "Suzuki GSX S1000"
+      }
+    ],
+    "Harley Davidson": [
+      {
+        "id": "1",
+        "name": "Harley Davidson Street Glide Special"
+      },
+      {
+        "id": "2",
+        "name": "Harley Davidson Street 750"
+      },
+      {
+        "id": "3",
+        "name": "Harley Davidson Road King"
+      },
+      {
+        "id": "4",
+        "name": "Harley Davidson Iron 883"
+      },
+      {
+        "id": "5",
+        "name": "Harley Davidson Street Bob"
+      },
+      {
+        "id": "6",
+        "name": "Harley Davidson Road Glide Special"
+      },
+      {
+        "id": "7",
+        "name": "Harley Davidson Roadster"
+      },
+      {
+        "id": "8",
+        "name": "Harley Davidson Fat Bob"
+      },
+      {
+        "id": "9",
+        "name": "Harley Davidson Heritage Classic"
+      },
+      {
+        "id": "10",
+        "name": "Harley Davidson Fat Boy"
+      },
+      {
+        "id": "11",
+        "name": "Harley Davidson Forty Eight"
+      },
+      {
+        "id": "12",
+        "name": "Harley Davidson CVO Limited"
+      },
+      {
+        "id": "13",
+        "name": "Harley Davidson Street Rod"
+      },
+      {
+        "id": "14",
+        "name": "Harley Davidson Deluxe"
+      },
+      {
+        "id": "15",
+        "name": "Harley Davidson Low Rider"
+      },
+      {
+        "id": "16",
+        "name": "Harley Davidson Fat Boy Anniversary"
+      },
+      {
+        "id": "17",
+        "name": "Harley Davidson 1200 Custom"
+      }
+    ],
+    "Vespa": [
+      {
+        "id": "1",
+        "name": "Vespa Notte 125"
+      },
+      {
+        "id": "2",
+        "name": "Vespa SXL 150"
+      },
+      {
+        "id": "3",
+        "name": "Vespa LX 125"
+      },
+      {
+        "id": "4",
+        "name": "Vespa SXL 125"
+      },
+      {
+        "id": "5",
+        "name": "Vespa VXL 150"
+      },
+      {
+        "id": "6",
+        "name": "Vespa Elegante 150"
+      },
+      {
+        "id": "7",
+        "name": "Vespa VXL 125"
+      },
+      {
+        "id": "8",
+        "name": "Vespa RED 125"
+      }
+    ],
+    "Kawasaki": [
+      {
+        "id": "1",
+        "name": "Kawasaki Ninja 300"
+      },
+      {
+        "id": "2",
+        "name": "Kawasaki Ninja ZX 10R"
+      },
+      {
+        "id": "3",
+        "name": "Kawasaki Ninja 650"
+      },
+      {
+        "id": "4",
+        "name": "Kawasaki Ninja 400"
+      },
+      {
+        "id": "5",
+        "name": "Kawasaki Vulcan S"
+      },
+      {
+        "id": "6",
+        "name": "Kawasaki Z900"
+      },
+      {
+        "id": "7",
+        "name": "Kawasaki Z250"
+      },
+      {
+        "id": "8",
+        "name": "Kawasaki Z650"
+      },
+      {
+        "id": "9",
+        "name": "Kawasaki Ninja 1000"
+      },
+      {
+        "id": "10",
+        "name": "Kawasaki Ninja ZX 14R"
+      }
+    ],
+    "Ducati": [
+      {
+        "id": "1",
+        "name": "Ducati Scrambler"
+      },
+      {
+        "id": "2",
+        "name": "Ducati Diavel"
+      },
+      {
+        "id": "3",
+        "name": "Ducati Xdiavel"
+      },
+      {
+        "id": "4",
+        "name": "Ducati 1299 Panigale"
+      },
+      {
+        "id": "5",
+        "name": "Ducati Monster 797"
+      },
+      {
+        "id": "6",
+        "name": "Ducati Multistrada 950"
+      },
+      {
+        "id": "7",
+        "name": "Ducati Hypermotard"
+      },
+      {
+        "id": "8",
+        "name": "Ducati Panigale V4"
+      },
+      {
+        "id": "9",
+        "name": "Ducati Monster 821"
+      },
+      {
+        "id": "10",
+        "name": "Ducati SuperSport"
+      },
+      {
+        "id": "11",
+        "name": "Ducati Scrambler 1100"
+      }
+    ],
+    "Hyosung": [
+      {
+        "id": "1",
+        "name": "Hyosung GT250R"
+      },
+      {
+        "id": "2",
+        "name": "Hyosung GT650R"
+      },
+      {
+        "id": "3",
+        "name": "Ducati Xdiavel"
+      },
+      {
+        "id": "4",
+        "name": "Hyosung Aquila Pro"
+      },
+      {
+        "id": "5",
+        "name": "Hyosung Aquila 250"
+      },
+      {
+        "id": "6",
+        "name": "Hyosung GT250R"
+      }
+    ],
+    "BMW": [
+      {
+        "id": "1",
+        "name": "BMW G 310 R"
+      },
+      {
+        "id": "2",
+        "name": "BMW S 1000 RR"
+      },
+      {
+        "id": "3",
+        "name": "BMW G 310 GS"
+      },
+      {
+        "id": "4",
+        "name": "BMW F 850 GS"
+      },
+      {
+        "id": "5",
+        "name": "BMW F 750 GS"
+      },
+      {
+        "id": "6",
+        "name": "BMW S 1000 R"
+      },
+      {
+        "id": "7",
+        "name": "BMW K 1600 GTL"
+      },
+      {
+        "id": "8",
+        "name": "BMW R 1200 RS"
+      },
+      {
+        "id": "9",
+        "name": "BMW R 1200 R"
+      },
+      {
+        "id": "10",
+        "name": "BMW R NineT Racer"
+      },
+      {
+        "id": "11",
+        "name": "BMW S 1000 XR"
+      }
+    ],
+    "Benelli": [
+      {
+        "id": "1",
+        "name": "Benelli TNT 600 I"
+      },
+      {
+        "id": "2",
+        "name": "Benelli TNT 300"
+      },
+      {
+        "id": "3",
+        "name": "Benelli 302R"
+      }
+    ],
+    "UM Motorcycles": [
+      {
+        "id": "1",
+        "name": "UM Motorcycles Renegade Commando"
+      },
+      {
+        "id": "2",
+        "name": "UM Motorcycles Renegade Commando Classic"
+      },
+      {
+        "id": "3",
+        "name": "UM Motorcycles Renegade Commando Mojave"
+      },
+      {
+        "id": "4",
+        "name": "UM Motorcycles Renegade Sports S"
+      }
+    ],
+    "SWM": [
+      {
+        "id": "1",
+        "name": "SWM Superdual T"
+      }
+    ],
+    "MV Agusta": [
+      {
+        "id": "1",
+        "name": "MV Agusta F4"
+      },
+      {
+        "id": "2",
+        "name": "MV Agusta Brutale 800"
+      },
+      {
+        "id": "3",
+        "name": "MV Agusta Brutale 1090"
+      },
+      {
+        "id": "4",
+        "name": "MV Agusta F3 800"
+      }
+    ],
+    "Big Dog": [
+      {
+        "id": "1",
+        "name": "Big Dog K9 Red Chopper"
+      }
+    ],
+    "Ampere": [
+      {
+        "id": "1",
+        "name": "Ampere Reo"
+      },
+      {
+        "id": "2",
+        "name": "Ampere V48"
+      }
+    ],
+    "Mahindra": [
+      {
+        "id": "1",
+        "name": "Mahindra MOJO XT 300"
+      },
+      {
+        "id": "2",
+        "name": "Mahindra Gusto 125"
+      },
+      {
+        "id": "3",
+        "name": "Mahindra Gusto"
+      },
+      {
+        "id": "4",
+        "name": "Mahindra Centuro"
+      },
+      {
+        "id": "5",
+        "name": "Mahindra MOJO UT 300"
+      }
+    ],
+    "Indian": [
+      {
+        "id": "1",
+        "name": "Indian Scout Sixty"
+      },
+      {
+        "id": "2",
+        "name": "Indian Roadmaster"
+      },
+      {
+        "id": "3",
+        "name": "Indian Scout Bobber"
+      },
+      {
+        "id": "4",
+        "name": "Indian Scout"
+      },
+      {
+        "id": "5",
+        "name": "Indian Chieftain"
+      },
+      {
+        "id": "6",
+        "name": "Indian Chieftain Dark Horse"
+      },
+      {
+        "id": "7",
+        "name": "Indian Chieftain Elite"
+      }
+    ],
+    "Moto Guzzi": [
+      {
+        "id": "1",
+        "name": "Moto Guzzi Audace"
+      },
+      {
+        "id": "2",
+        "name": "Moto Guzzi V9"
+      },
+      {
+        "id": "3",
+        "name": "Moto Guzzi California 1400"
+      },
+      {
+        "id": "4",
+        "name": "Moto Guzzi MGX-21"
+      },
+      {
+        "id": "5",
+        "name": "Moto Guzzi Griso 1200 8V"
+      }
+    ],
+    "Aprilia": [
+      {
+        "id": "1",
+        "name": "Aprilia SR 150"
+      },
+      {
+        "id": "2",
+        "name": "Benelli TNT 600 I"
+      },
+      {
+        "id": "3",
+        "name": "Aprilia SR 125"
+      },
+      {
+        "id": "4",
+        "name": "Aprilia SR 150 Race"
+      },
+      {
+        "id": "5",
+        "name": "Aprilia SRV 850"
+      }
+    ]
+  }
+}

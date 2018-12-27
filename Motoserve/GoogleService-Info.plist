@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>352913663008-4bsmu3l50ufotuvcnuce6u73q41c6d2p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.352913663008-4bsmu3l50ufotuvcnuce6u73q41c6d2p</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBely04km6yB7c5CadeuXJWGXRrdbuizms</string>
+	<key>GCM_SENDER_ID</key>
+	<string>352913663008</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Rapportyk.Motosserve</string>
+	<key>PROJECT_ID</key>
+	<string>motosserve-66c6e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>motosserve-66c6e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:352913663008:ios:ad67d2f90ef4159c</string>
+	<key>DATABASE_URL</key>
+	<string>https://motosserve-66c6e.firebaseio.com</string>
+</dict>
+</plist>
