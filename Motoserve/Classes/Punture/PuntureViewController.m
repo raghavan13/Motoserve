@@ -44,7 +44,7 @@
     [vehiclenoBtn setImageEdgeInsets:UIEdgeInsetsMake(0,vehiclenoBtn.frame.size.width-20,0,0)];
     [vehiclenoBtn setImage:[UIImage imageNamed:@"dropdown"] forState:UIControlStateNormal];
     vehiclenoBtn .contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    vehiclenoBtn.titleLabel.font=RalewayRegular(appDelegate.font);
+    vehiclenoBtn.titleLabel.font=RalewayRegular(appDelegate.font-4);
     vehiclenoBtn.layer.cornerRadius = 5;
     vehiclenoBtn.layer.masksToBounds = true;
     vehiclenoBtn.layer.borderWidth = 0.5;
@@ -294,10 +294,8 @@
      }];
     NSLog(@"OldLocation %f %f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
     latArray=[[NSMutableArray alloc]init];
-    //[latArray addObject:[NSNumber numberWithDouble:@"80.215755"]];//currentLocation.coordinate.longitude]];
-    //[latArray addObject:[NSNumber numberWithDouble:currentLocation.coordinate.latitude]];
-    [latArray addObject:@"80.215755"];
-    [latArray addObject:@"13.0702475"];
+    [latArray addObject:[NSNumber numberWithDouble:currentLocation.coordinate.longitude]];
+    [latArray addObject:[NSNumber numberWithDouble:currentLocation.coordinate.latitude]];
     Source = [[CLLocation alloc]init];
     Source = currentLocation;
 }
@@ -367,7 +365,7 @@
              NSLog(@"1");
              if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"0"]) {
                  self->appDelegate.bookingstatusStr=@"0";
-                 if (self->currentsecond>181) {
+                 if (self->currentsecond==181) {
                       [self->appDelegate stopProgressView];
                      TryagainViewController * try=[[TryagainViewController alloc]init];
                      [self.navigationController pushViewController:try animated:YES];
@@ -407,12 +405,13 @@
 {
     currentsecond++;
     if (currentsecond==180) {
+        currentsecond=181;
         [checkemptyresponseTimer invalidate];
         checkemptyresponseTimer = nil;
         [bookingtimer invalidate];
         bookingtimer = nil;
-        currentsecond=181;
-        [self->appDelegate stopProgressView];
+        [self getbooking];
+        //[self->appDelegate stopProgressView];
     }
 }
 

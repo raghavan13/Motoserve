@@ -16,13 +16,13 @@
 {
     UIView * contentView,*navHeader;
     AppDelegate * appDelegate;
-    UIButton *  twowheelBtn,* fourwheelBtn,* tubetyreBtn,* tubelessBtn,*petrolBtn,* dieselBtn,* submitBtn,* brandBtn,* modelBtn,* imgBtn;
+    UIButton *  twowheelBtn,* fourwheelBtn,* tubetyreBtn,* tubelessBtn,*petrolBtn,* dieselBtn,* submitBtn,* brandBtn,* modelBtn,* imgBtn,*lpgBtn;
     NSInteger selectedtag;
     int ypos;
     BOOL iscar;
     UIScrollView * addvechScroll;
     UIView * carView;
-    UIImageView * bikeradioImg,* bikeavatharImg,* carradioImg,* caravatharImg,* tubeImg,* tubelessImg,* petrolImg,* dieselImg,* yesImg,* noImg,* no1Img,* yes1Img,* camImg;
+    UIImageView * bikeradioImg,* bikeavatharImg,* carradioImg,* caravatharImg,* tubeImg,* tubelessImg,* petrolImg,* dieselImg,* yesImg,* noImg,* no1Img,* yes1Img,* camImg,*lpgImg;
     NSMutableArray * vechicleArray,*vechiclesubArray;
     NSDictionary *json;
     SSPopup* selection;
@@ -85,44 +85,26 @@
     engineStr=@"P";
     secondaryStr=@"0";
     tyreStr=@"";
-    addvechScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, IS_IPHONEX?90:70, contentView.frame.size.width, contentView.frame.size.height)];
+    addvechScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, IS_IPHONEX?90:70, contentView.frame.size.width, contentView.frame.size.height-(IS_IPHONEX?90:70))];
+    //addvechScroll.backgroundColor=Singlecolor(grayColor);
+    addvechScroll.showsHorizontalScrollIndicator=NO;
+    addvechScroll.showsVerticalScrollIndicator=NO;
     [contentView addSubview:addvechScroll];
     
-    
-    
-    bikeradioImg=[[UIImageView alloc]initWithFrame:CGRectMake(80, 30, 25, 25)];
-    bikeradioImg.image=image(@"radiocheck");
-    [addvechScroll addSubview:bikeradioImg];
-    
-    bikeavatharImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(bikeradioImg.frame)+15, 25, 50, 31)];
-    bikeavatharImg.image=image(@"bike_select");
-    [addvechScroll addSubview:bikeavatharImg];
+    twowheelBtn=[[UIButton alloc]initWithFrame:CGRectMake(80,30, contentView.frame.size.width/4, contentView.frame.size.width/4)];
+    twowheelBtn.tag=1;
+    [twowheelBtn addTarget:self action:@selector(vechicleAction:) forControlEvents:UIControlEventTouchUpInside];
+    [twowheelBtn setBackgroundImage:image(@"bike_select") forState:UIControlStateNormal];
+    [addvechScroll addSubview:twowheelBtn];
     typeStr=@"T";
     
-    twowheelBtn=[[UIButton alloc]initWithFrame:CGRectMake(bikeradioImg.frame.origin.x,30, contentView.frame.size.width/3.5, 25)];
-    twowheelBtn.tag=1;
-    //twowheelBtn.backgroundColor=Singlecolor(grayColor);
-    [twowheelBtn addTarget:self action:@selector(vechicleAction:) forControlEvents:UIControlEventTouchUpInside];
-    [addvechScroll addSubview:twowheelBtn];
-    
-    
-    carradioImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(twowheelBtn.frame)+20, 30, 25, 25)];
-    carradioImg.image=image(@"radiouncheck");
-    [addvechScroll addSubview:carradioImg];
-    
-    caravatharImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(carradioImg.frame)+15, 25, 60, 27)];
-    caravatharImg.image=image(@"car_unselect");
-    [addvechScroll addSubview:caravatharImg];
-    
-    
-    
-    fourwheelBtn=[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(twowheelBtn.frame),twowheelBtn.frame.origin.y, twowheelBtn.frame.size.width, 25)];
+    fourwheelBtn=[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(twowheelBtn.frame)+40,twowheelBtn.frame.origin.y, twowheelBtn.frame.size.width, twowheelBtn.frame.size.width)];
     fourwheelBtn.tag=2;
-    //fourwheelBtn.backgroundColor=Singlecolor(greenColor);
     [fourwheelBtn addTarget:self action:@selector(vechicleAction:) forControlEvents:UIControlEventTouchUpInside];
+    [fourwheelBtn setBackgroundImage:image(@"car_unselect") forState:UIControlStateNormal];
     [addvechScroll addSubview:fourwheelBtn];
     
-    vechilenoTxtfld=[[UITextField alloc]initWithFrame:CGRectMake(twowheelBtn.frame.origin.x, CGRectGetMaxY(fourwheelBtn.frame)+10, addvechScroll.frame.size.width-160, 40)];
+    vechilenoTxtfld=[[UITextField alloc]initWithFrame:CGRectMake(80, CGRectGetMaxY(fourwheelBtn.frame)+10, addvechScroll.frame.size.width-160, 40)];
 vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
     vechilenoTxtfld.textAlignment=NSTextAlignmentCenter;
     vechilenoTxtfld.placeholder=@"Enter Vehicle Number";
@@ -177,7 +159,7 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
     
     UILabel * tyreLbl=[[UILabel alloc]initWithFrame:CGRectMake(vechilenoTxtfld.frame.origin.x, CGRectGetMaxY(modelBtn.frame)+10, vechilenoTxtfld.frame.size.width, 21)];
     tyreLbl.text=@"Tyre Type";
-    tyreLbl.textColor=Singlecolor(blackColor);
+    tyreLbl.textColor=RGB(17, 90, 42);
     tyreLbl.textAlignment=NSTextAlignmentLeft;
     tyreLbl.font=RalewayRegular(appDelegate.font-2);
     [addvechScroll addSubview:tyreLbl];
@@ -219,7 +201,7 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
     [submitBtn setBackgroundColor:Singlecolor(clearColor)];
     [submitBtn setTitle:@"Submit" forState:UIControlStateNormal];
     submitBtn.titleLabel.font=RalewayRegular(appDelegate.font-2);
-    [submitBtn setTitleColor:RGB(113, 209, 154) forState:UIControlStateNormal];
+    [submitBtn setTitleColor:RGB(17, 90, 42) forState:UIControlStateNormal];
     submitBtn.layer.cornerRadius = 5;
     submitBtn.layer.borderWidth = 0.5;
     submitBtn.layer.masksToBounds = true;
@@ -275,20 +257,16 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
     [modelBtn setTitle:@"Model" forState:UIControlStateNormal];
     vechilenoTxtfld.text=@"";
     if (selectedtag==2) {
-        carradioImg.image=image(@"radiocheck");
-        caravatharImg.image=image(@"car_select");
-        bikeradioImg.image=image(@"radiouncheck");
-        bikeavatharImg.image=image(@"bike_unselect");
+        [fourwheelBtn setBackgroundImage:image(@"car_select") forState:UIControlStateNormal];
+        [twowheelBtn setBackgroundImage:image(@"bike_unselect") forState:UIControlStateNormal];
         vechicleArray=[[json valueForKey:@"carBrands"]valueForKey:@"name"];
         iscar=YES;
         typeStr=@"C";
     }
     else
     {
-        bikeradioImg.image=image(@"radiocheck");
-        bikeavatharImg.image=image(@"bike_select");
-        carradioImg.image=image(@"radiouncheck");
-        caravatharImg.image=image(@"car_unselect");
+        [fourwheelBtn setBackgroundImage:image(@"car_unselect") forState:UIControlStateNormal];
+        [twowheelBtn setBackgroundImage:image(@"bike_select") forState:UIControlStateNormal];
         vechicleArray=[[json valueForKey:@"bikeBrands"]valueForKey:@"name"];
         ypos=CGRectGetMaxY(tubelessBtn.frame)+20;
         iscar=NO;
@@ -321,12 +299,21 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
     if (selectedtag==2) {
         dieselImg.image=image(@"radiocheck");
         petrolImg.image=image(@"radiouncheck");
+        lpgImg.image=image(@"radiouncheck");
         engineStr=@"D";
+    }
+    else if (selectedtag==3)
+    {
+        lpgImg.image=image(@"radiocheck");
+        dieselImg.image=image(@"radiouncheck");
+        petrolImg.image=image(@"radiouncheck");
+        engineStr=@"L";
     }
     else
     {
         petrolImg.image=image(@"radiocheck");
         dieselImg.image=image(@"radiouncheck");
+        lpgImg.image=image(@"radiouncheck");
         engineStr=@"P";
     }
 }
@@ -358,9 +345,9 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
         [addvechScroll addSubview:carView];
         
         
-        UILabel * engineLbl=[[UILabel alloc]initWithFrame:CGRectMake(twowheelBtn.frame.origin.x, 0, addvechScroll.frame.size.width-160, 21)];
+        UILabel * engineLbl=[[UILabel alloc]initWithFrame:CGRectMake(80, 0, addvechScroll.frame.size.width-160, 21)];
         engineLbl.text=@"Engine Type";
-        engineLbl.textColor=Singlecolor(blackColor);
+        engineLbl.textColor=RGB(17, 90, 42);
         engineLbl.textAlignment=NSTextAlignmentLeft;
         engineLbl.font=RalewayRegular(appDelegate.font-2);
         [carView addSubview:engineLbl];
@@ -370,15 +357,16 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
         petrolImg.image=image(@"radiouncheck");
         [carView addSubview:petrolImg];
         
-        UILabel * petrolLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(petrolImg.frame)+10, CGRectGetMaxY(engineLbl.frame)+10, 100, 21)];
+        UILabel * petrolLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(petrolImg.frame)+5, CGRectGetMaxY(engineLbl.frame)+10, 100, 21)];
         petrolLbl.text=@"Petrol";
         petrolLbl.font=RalewayRegular(appDelegate.font-2);
         [carView addSubview:petrolLbl];
         
         
-        petrolBtn=[[UIButton alloc]initWithFrame:CGRectMake(engineLbl.frame.origin.x+20,CGRectGetMaxY(engineLbl.frame)+10, contentView.frame.size.width/3.5, 21)];
+        petrolBtn=[[UIButton alloc]initWithFrame:CGRectMake(engineLbl.frame.origin.x,CGRectGetMaxY(engineLbl.frame)+10, contentView.frame.size.width/3.6, 21)];
         petrolBtn.tag=1;
         [petrolBtn addTarget:self action:@selector(vechicletypeAction:) forControlEvents:UIControlEventTouchUpInside];
+       // [petrolBtn setBackgroundColor:Singlecolor(lightGrayColor)];
         [carView addSubview:petrolBtn];
         
         
@@ -386,7 +374,7 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
         dieselImg.image=image(@"radiouncheck");
         [carView addSubview:dieselImg];
         
-        UILabel * dieselLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(dieselImg.frame)+10, CGRectGetMaxY(engineLbl.frame)+10, 100, 21)];
+        UILabel * dieselLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(dieselImg.frame)+5, CGRectGetMaxY(engineLbl.frame)+10, 100, 21)];
         dieselLbl.text=@"Diesel";
         dieselLbl.font=RalewayRegular(appDelegate.font-2);
         [carView addSubview:dieselLbl];
@@ -397,11 +385,27 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
         [dieselBtn addTarget:self action:@selector(vechicletypeAction:) forControlEvents:UIControlEventTouchUpInside];
         [carView addSubview:dieselBtn];
         
+       ////////
+        lpgImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(dieselBtn.frame),petrolBtn.frame.origin.y, 20, 20)];
+        lpgImg.image=image(@"radiouncheck");
+        [carView addSubview:lpgImg];
+        
+        UILabel * lpgLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lpgImg.frame)+5, CGRectGetMaxY(engineLbl.frame)+10, 100, 21)];
+        lpgLbl.text=@"Lpg";
+        lpgLbl.font=RalewayRegular(appDelegate.font-2);
+        [carView addSubview:lpgLbl];
+        
+        
+        lpgBtn=[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(dieselBtn.frame),petrolBtn.frame.origin.y, petrolBtn.frame.size.width, 21)];
+        lpgBtn.tag=3;
+        [lpgBtn addTarget:self action:@selector(vechicletypeAction:) forControlEvents:UIControlEventTouchUpInside];
+        [carView addSubview:lpgBtn];
+        
 
         
         UILabel * jockeyLbl=[[UILabel alloc]initWithFrame:CGRectMake(engineLbl.frame.origin.x, CGRectGetMaxY(petrolBtn.frame)+20, petrolBtn.frame.size.width, 30)];
         jockeyLbl.text=@"Jockey Available";
-        jockeyLbl.textColor=Singlecolor(blackColor);
+        jockeyLbl.textColor=RGB(17, 90, 42);
         jockeyLbl.font=RalewayRegular(appDelegate.font-2);
         [carView addSubview:jockeyLbl];
         
@@ -440,8 +444,8 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
         
         
         UILabel * secondaryLbl=[[UILabel alloc]initWithFrame:CGRectMake(engineLbl.frame.origin.x, CGRectGetMaxY(noBtn.frame)+20, petrolBtn.frame.size.width+20, 30)];
-        secondaryLbl.text=@"Spare Tyre Available";
-        secondaryLbl.textColor=Singlecolor(blackColor);
+        secondaryLbl.text=@"Spare Tyre";
+        secondaryLbl.textColor=RGB(17, 90, 42);
         secondaryLbl.font=RalewayRegular(appDelegate.font-2);
         [carView addSubview:secondaryLbl];
         
@@ -477,15 +481,6 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
         [no1Btn addTarget:self action:@selector(vechiclesecondaryAction:) forControlEvents:UIControlEventTouchUpInside];
         [carView addSubview:no1Btn];
         
-        
-//        upimgView=[[UIView alloc]initWithFrame:];
-//        upimgView.layer.cornerRadius = 5;
-//        upimgView.layer.borderWidth = 0.5;
-//        upimgView.layer.masksToBounds = true;
-//        upimgView.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
-//        [carView addSubview:upimgView];
-        
-        
         imgBtn=[[UIButton alloc]initWithFrame:CGRectMake(engineLbl.frame.origin.x, CGRectGetMaxY(no1Btn.frame)+20, petrolBtn.frame.size.width, 50)];
         [imgBtn addTarget:self action:@selector(uploadicon) forControlEvents:UIControlEventTouchUpInside];
         imgBtn.layer.cornerRadius = 5;
@@ -494,8 +489,10 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
         imgBtn.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
         [carView addSubview:imgBtn];
         
-        camImg=[[UIImageView alloc]initWithFrame:CGRectMake(imgBtn.frame.size.width/2-12.5, imgBtn.frame.size.height/2-12.5, 25, 25)];
-        camImg.image=image(@"upload");
+        
+        
+        camImg=[[UIImageView alloc]initWithFrame:CGRectMake(imgBtn.frame.size.width/2-12.5, imgBtn.frame.size.height/2-10, 25, 20)];
+        camImg.image=image(@"camera");
         [imgBtn addSubview:camImg];
         
         UILabel * uploadLbl=[[UILabel alloc]initWithFrame:CGRectMake(no1Btn.frame.origin.x, CGRectGetMaxY(no1Btn.frame)+25, no1Btn.frame.size.width, 25)];
@@ -507,11 +504,11 @@ vechilenoTxtfld.backgroundColor=RGB(217, 217, 217);
         
         
         carView.frame=[Utils normalResize:carView.frame expectedFrame:CGRectGetMaxY(imgBtn.frame) withSpace:0];
-        
+       // carView.backgroundColor=Singlecolor(grayColor);
         ypos=CGRectGetMaxY(carView.frame)+20;
     }
     submitBtn.frame=CGRectMake(SCREEN_WIDTH/2.0-50, ypos, 100, 30);
-    addvechScroll.contentSize=CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(submitBtn.frame));
+    addvechScroll.contentSize=CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(submitBtn.frame)+20);
 }
 
 - (void)uploadicon

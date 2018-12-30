@@ -145,18 +145,21 @@
     prebkBtn.layer.cornerRadius = 10;
     prebkBtn.layer.masksToBounds = YES;
     [contentView addSubview:prebkBtn];
-    
-    
-    onrdScrl=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(prebkBtn.frame)+10, contentView.frame.size.width, contentView.frame.size.height/2.0)];
+    int height=contentView.frame.size.height/2.0;
+    if(IS_IPHONE5)
+    {
+        height= contentView.frame.size.height/2.3;
+    }
+    onrdScrl=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(prebkBtn.frame)+10, contentView.frame.size.width, height)];
     onrdScrl.backgroundColor=Singlecolor(clearColor);
     [contentView addSubview:onrdScrl];
     
-     prebookScrl=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(prebkBtn.frame)+10, contentView.frame.size.width, contentView.frame.size.height/2.0)];
-    prebookScrl.backgroundColor=Singlecolor(clearColor);
+     prebookScrl=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(prebkBtn.frame)+10, contentView.frame.size.width, height)];
+    prebookScrl.backgroundColor=Singlecolor(grayColor);
     prebookScrl.hidden=YES;
     [contentView addSubview:prebookScrl];
     
-    int x=40;
+    int x=contentView.frame.size.width/11.5;
     int y=10;
     for (int i=0; i<2; i++) {
         
@@ -197,12 +200,12 @@
         x+=onrdScrl.frame.size.width/3.2+70;
         if (i%2==1) {
             y+=onrdScrl.frame.size.width/4.0+10;
-            x=40;
+            x=contentView.frame.size.width/11.5;
         }
     }
     onrdScrl.contentSize=CGSizeMake(SCREEN_WIDTH, y);
     
-    int xpos=40;
+    int xpos=contentView.frame.size.width/11.5;
     int ypos=10;
     for (int i=0; i<prebktextArray.count; i++) {
         
@@ -229,7 +232,7 @@
         xpos+=prebookScrl.frame.size.width/3.2+70;
         if (i%2==1) {
             ypos+=prebookScrl.frame.size.width/4.0+10;
-            xpos=40;
+            xpos=contentView.frame.size.width/11.5;
         }
     }
     prebookScrl.contentSize=CGSizeMake(SCREEN_WIDTH, ypos);
