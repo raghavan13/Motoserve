@@ -130,7 +130,7 @@
     }
     else
     {
-        firstVC=[[TryagainViewController alloc]init];
+        firstVC=[[MapViewController alloc]init];
     }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
