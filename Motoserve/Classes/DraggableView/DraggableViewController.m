@@ -80,7 +80,7 @@
     dateLbl.textAlignment=NSTextAlignmentRight;
     [statusScroll addSubview:dateLbl];
     
-    UIView * waitingView=[[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(dateLbl.frame)+10, statusScroll.frame.size.width-80, statusScroll.frame.size.height/4.5-20)];
+    UIView * waitingView=[[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(dateLbl.frame)+10, statusScroll.frame.size.width-80, IS_IPHONEX?statusScroll.frame.size.height/4.5-20:statusScroll.frame.size.height/3.5-20)];
     [statusScroll addSubview:waitingView];
     waitingView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     waitingView.layer.borderWidth = 1.0f;
@@ -155,10 +155,6 @@
                                              selector:@selector(receivesegmentNotification)
                                                  name:@"changetype"
                                                object:nil];
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    
 }
 - (void)gestureHandlerMethod
 {
@@ -256,7 +252,7 @@
         doneBtn.layer.borderWidth = 0.5;
         doneBtn.layer.masksToBounds = true;
         doneBtn.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
-        //[doneBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
+        [doneBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
         [statusScroll addSubview:doneBtn];
         
         scrollheight=CGRectGetMaxY(doneBtn.frame);
@@ -264,5 +260,53 @@
     
     statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
 }
+- (void)doneAction
+{
+    
+    UIAlertView * alert=[[UIAlertView alloc]initWithTitle:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"] message:@"Is your Work Done" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
+    [alert show];
+    
+}
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *string = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([string isEqualToString:@"Yes"])
+    {
+        appDelegate.bookingstatusStr=@"5";
+        [self updatelocation];
+    }
+}
+- (void)updatelocation
+{
+    [appDelegate startProgressView:self.view];
+    NSString *url =[UrlGenerator Postupdatestatus];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary * parameters = @{
+                                  @"_id":appDelegate.bookingidStr,@"bookingStatus":appDelegate.bookingstatusStr
+                                  };
+    [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSLog(@"response data %@",responseObject);
+         
+         if ([[responseObject objectForKey:@"status"]integerValue]==0) {
+             NSLog(@"0");
+             [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
+             [self->appDelegate stopProgressView];
+         }
+         else
+         {
+             NSLog(@"1");
+             self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"];
+             
+             
+         }
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         NSLog(@"Error: %@", error);
+         [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
+         [self->appDelegate stopProgressView];
+     }];
+}
 @end

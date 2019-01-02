@@ -155,7 +155,7 @@
     [contentView addSubview:onrdScrl];
     
      prebookScrl=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(prebkBtn.frame)+10, contentView.frame.size.width, height)];
-    prebookScrl.backgroundColor=Singlecolor(grayColor);
+    //prebookScrl.backgroundColor=Singlecolor(grayColor);
     prebookScrl.hidden=YES;
     [contentView addSubview:prebookScrl];
     

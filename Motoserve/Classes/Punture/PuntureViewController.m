@@ -455,16 +455,19 @@
 
 - (void)vehicleno:(id)sender
 {
-    selection=[[SSPopup alloc]init];
-    selection.backgroundColor=[UIColor colorWithWhite:0.00 alpha:0.4];
-    selection.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
-    selection.SSPopupDelegate=self;
-    [self.view.window  addSubview:selection];
-    [selection CreateTableview:vehicleArray withSender:sender  withTitle:@"Please select Vehicle" setCompletionBlock:^(int tag){
-        [self->vehiclenoBtn setTitle:[self->vehicleArray objectAtIndex:tag] forState:UIControlStateNormal];
-        self->selecedvehicle=tag;
-        self->vehicleidStr=[[self->vehicleDic objectAtIndex:tag]valueForKey:@"_id"];
-        [self createDesign];
-    }];
+    if ([Utils isCheckNotNULL:vehicleArray]) {
+        selection=[[SSPopup alloc]init];
+        selection.backgroundColor=[UIColor colorWithWhite:0.00 alpha:0.4];
+        selection.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
+        selection.SSPopupDelegate=self;
+        [self.view.window  addSubview:selection];
+        [selection CreateTableview:vehicleArray withSender:sender  withTitle:@"Please select Vehicle" setCompletionBlock:^(int tag){
+            [self->vehiclenoBtn setTitle:[self->vehicleArray objectAtIndex:tag] forState:UIControlStateNormal];
+            self->selecedvehicle=tag;
+            self->vehicleidStr=[[self->vehicleDic objectAtIndex:tag]valueForKey:@"_id"];
+            [self createDesign];
+        }];
+    }
+    
 }
 @end

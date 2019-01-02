@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Motoserve/Classes/DraggableView/DraggableViewController.m"
-            timestampString = "568107299.225674"
+            filePath = "Motoserve/Classes/Punture/PuntureViewController.m"
+            timestampString = "568119808.370392"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-createDesign"
+            startingLineNumber = "456"
+            endingLineNumber = "456"
+            landmarkName = "-vehicleno:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Motoserve/Classes/Punture/PuntureViewController.m"
+            timestampString = "568119808.370553"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-GetvehicleAction"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

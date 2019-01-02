@@ -43,13 +43,7 @@
 
 
 
-- (void)doneAction
-{
-    
-UIAlertView * alert=[[UIAlertView alloc]initWithTitle:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"] message:@"Is your Work Done" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
-    [alert show];
-    
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -218,15 +212,7 @@ UIAlertView * alert=[[UIAlertView alloc]initWithTitle:[[[NSBundle mainBundle] in
          [self->appDelegate stopProgressView];
      }];
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *string = [alertView buttonTitleAtIndex:buttonIndex];
-        if ([string isEqualToString:@"Yes"])
-        {
-            bookstatusStr=@"5";
-            [self updatelocation];
-        }
-}
+
 
 - (void)getpartnerlocation
 {
@@ -259,44 +245,6 @@ UIAlertView * alert=[[UIAlertView alloc]initWithTitle:[[[NSBundle mainBundle] in
          [self->appDelegate stopProgressView];
      }];
 }
-
-
-
-
-
-- (void)updatelocation
-{
-    [appDelegate startProgressView:self.view];
-    NSString *url =[UrlGenerator Postupdatestatus];
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    NSDictionary * parameters = @{
-                                  @"_id":appDelegate.bookingidStr,@"bookingStatus":bookstatusStr
-                                  };
-    [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         NSLog(@"response data %@",responseObject);
-        
-         if ([[responseObject objectForKey:@"status"]integerValue]==0) {
-             NSLog(@"0");
-             [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
-              [self->appDelegate stopProgressView];
-         }
-         else
-         {
-             NSLog(@"1");
-             self->bookstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"];
-           
-             
-         }
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         NSLog(@"Error: %@", error);
-         [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
-         [self->appDelegate stopProgressView];
-     }];
-}
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
