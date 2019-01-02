@@ -130,7 +130,7 @@
     }
     else
     {
-        firstVC=[[HomeViewController alloc]init];
+        firstVC=[[constraintViewController alloc]init];
     }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
