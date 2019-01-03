@@ -67,6 +67,9 @@
 #import "TryagainViewController.h"
 #import "DraggableViewController.h"
 #import "constraintViewController.h"
+#import "HomeCollectionViewCell.h"
+#import "ConstraintspuntureViewController.h"
+#import "constraintaddViewController.h";
 //#import "UILabel+UserClass.h"
 //#import "DetailViewController.h"
 //#import "OredrsListTableViewCell.h"

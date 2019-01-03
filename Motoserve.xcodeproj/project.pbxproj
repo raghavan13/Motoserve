@@ -106,6 +106,9 @@
 		25D9256621709D5A00249C87 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9255521709D5A00249C87 /* UIImageView+WebCache.m */; };
 		25D9256721709D5A00249C87 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9255721709D5A00249C87 /* UIView+WebCacheOperation.m */; };
 		25E19C31219C274300730E0A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E19C30219C274300730E0A /* MapViewController.m */; };
+		25F1AFBB21DDD05600A323F2 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1AFBA21DDD05600A323F2 /* HomeCollectionViewCell.m */; };
+		25F1AFBF21DE1DBE00A323F2 /* ConstraintspuntureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1AFBE21DE1DBE00A323F2 /* ConstraintspuntureViewController.m */; };
+		25F1AFC321DE41C600A323F2 /* constraintaddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1AFC221DE41C600A323F2 /* constraintaddViewController.m */; };
 		522D7B5321638D0A00A7385B /* UITextField+UserClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D7B5221638D0A00A7385B /* UITextField+UserClass.m */; };
 		522D7B6C2163971D00A7385B /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D7B6B2163971D00A7385B /* SignupViewController.m */; };
 		522D7B9021639F9400A7385B /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D7B7021639F9400A7385B /* IQNSArray+Sort.m */; };
@@ -321,6 +324,12 @@
 		25D9255721709D5A00249C87 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		25E19C2F219C274300730E0A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		25E19C30219C274300730E0A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		25F1AFB921DDD05600A323F2 /* HomeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewCell.h; sourceTree = "<group>"; };
+		25F1AFBA21DDD05600A323F2 /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
+		25F1AFBD21DE1DBE00A323F2 /* ConstraintspuntureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstraintspuntureViewController.h; sourceTree = "<group>"; };
+		25F1AFBE21DE1DBE00A323F2 /* ConstraintspuntureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConstraintspuntureViewController.m; sourceTree = "<group>"; };
+		25F1AFC121DE41C600A323F2 /* constraintaddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constraintaddViewController.h; sourceTree = "<group>"; };
+		25F1AFC221DE41C600A323F2 /* constraintaddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = constraintaddViewController.m; sourceTree = "<group>"; };
 		522D7B5121638D0A00A7385B /* UITextField+UserClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+UserClass.h"; sourceTree = "<group>"; };
 		522D7B5221638D0A00A7385B /* UITextField+UserClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+UserClass.m"; sourceTree = "<group>"; };
 		522D7B6A2163971D00A7385B /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -393,6 +402,7 @@
 		250862F721DCE97A0060F903 /* ConstraintsView */ = {
 			isa = PBXGroup;
 			children = (
+				25F1AFB821DDD03F00A323F2 /* HomeCollection */,
 				250862F821DCE98E0060F903 /* constraintViewController.h */,
 				250862F921DCE98E0060F903 /* constraintViewController.m */,
 			);
@@ -776,6 +786,33 @@
 			path = Mapview;
 			sourceTree = "<group>";
 		};
+		25F1AFB821DDD03F00A323F2 /* HomeCollection */ = {
+			isa = PBXGroup;
+			children = (
+				25F1AFB921DDD05600A323F2 /* HomeCollectionViewCell.h */,
+				25F1AFBA21DDD05600A323F2 /* HomeCollectionViewCell.m */,
+			);
+			path = HomeCollection;
+			sourceTree = "<group>";
+		};
+		25F1AFBC21DE1DA700A323F2 /* Constraintspunture */ = {
+			isa = PBXGroup;
+			children = (
+				25F1AFBD21DE1DBE00A323F2 /* ConstraintspuntureViewController.h */,
+				25F1AFBE21DE1DBE00A323F2 /* ConstraintspuntureViewController.m */,
+			);
+			path = Constraintspunture;
+			sourceTree = "<group>";
+		};
+		25F1AFC021DE41B700A323F2 /* constraintadd */ = {
+			isa = PBXGroup;
+			children = (
+				25F1AFC121DE41C600A323F2 /* constraintaddViewController.h */,
+				25F1AFC221DE41C600A323F2 /* constraintaddViewController.m */,
+			);
+			path = constraintadd;
+			sourceTree = "<group>";
+		};
 		34E7AEBFE49A00A0C7D17879 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,6 +966,8 @@
 		5283A49D2163476F00DA69CB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				25F1AFC021DE41B700A323F2 /* constraintadd */,
+				25F1AFBC21DE1DA700A323F2 /* Constraintspunture */,
 				250862F721DCE97A0060F903 /* ConstraintsView */,
 				25AB838F21D3915100A9C233 /* DraggableView */,
 				25AB838B21D38B7B00A9C233 /* TryagainView */,
@@ -1212,6 +1251,8 @@
 				522D7B9B21639F9400A7385B /* IQToolbar.m in Sources */,
 				254A2C28217EFAF9006DA3E9 /* AFSecurityPolicy.m in Sources */,
 				522D7B9C21639F9400A7385B /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				25F1AFC321DE41C600A323F2 /* constraintaddViewController.m in Sources */,
+				25F1AFBB21DDD05600A323F2 /* HomeCollectionViewCell.m in Sources */,
 				522D7B9121639F9400A7385B /* IQUIScrollView+Additions.m in Sources */,
 				25AB838E21D38B9700A9C233 /* TryagainViewController.m in Sources */,
 				256A0174219949200030E2C8 /* RESideMenu.m in Sources */,
@@ -1246,6 +1287,7 @@
 				25C43803217E186700089162 /* RTSpinKitFadingCircleAltAnimation.m in Sources */,
 				25343B172164C4C8000C6B6C /* ASINetworkQueue.m in Sources */,
 				25D9253221706AF000249C87 /* HomeViewController.m in Sources */,
+				25F1AFBF21DE1DBE00A323F2 /* ConstraintspuntureViewController.m in Sources */,
 				25343AA521648998000C6B6C /* OTPViewController.m in Sources */,
 				25105194217703570076C3F2 /* AddvechicleViewController.m in Sources */,
 				5283A4A62163478100DA69CB /* LoginViewController.m in Sources */,

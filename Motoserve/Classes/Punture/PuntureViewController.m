@@ -51,6 +51,7 @@
     vehiclenoBtn.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
     [vehiclenoBtn addTarget:self action:@selector(vehicleno:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:vehiclenoBtn];
+    [vehiclenoBtn setBackgroundColor:Singlecolor(redColor)];
     [self GetvehicleAction];
     
     LocationManager = [[CLLocationManager alloc]init];

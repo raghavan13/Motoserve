@@ -618,57 +618,101 @@
 }
 
 +(UIView *)CreateHeaderBarWithSearch:(UIView *)InView HeaderTitle:(NSString *)HeaderTitle  IsText:(BOOL)IsTitle Menu:(BOOL)IsMenu IsCart:(BOOL)IsCart LeftClass:(id)LeftClass LeftSelector:(SEL)LeftSelector  RightClass:(id)RightClass RightSelector:(SEL)RightSelector WithCartCount:(NSString *)CartCount  SearchClass:(id)SearchClass SearchSelector:(SEL)SearchSelector ShowSearch:(BOOL)ShowSearch HeaderTap:(id)HeaderTap TapAction:(SEL)TapAction{
-    UIView * navHeader=[[UIView alloc]initWithFrame:CGRectMake(0,0, InView.frame.size.width, IS_IPHONEX?90:70)];
+    UIView * navHeader=[[UIView alloc]init];//WithFrame:CGRectMake(0,0, InView.frame.size.width, IS_IPHONEX?90:70)];
     navHeader.backgroundColor=RGB(0, 89, 42);
     navHeader.userInteractionEnabled=YES;
     [InView addSubview:navHeader];
+    
+    
+    navHeader.translatesAutoresizingMaskIntoConstraints = NO;
+    [navHeader.topAnchor constraintEqualToAnchor:InView.topAnchor constant:0].active=YES;
+    [navHeader.leftAnchor constraintEqualToAnchor:InView.leftAnchor constant:0].active=YES;
+    [navHeader.rightAnchor constraintEqualToAnchor:InView.rightAnchor constant:0].active=YES;
+    [navHeader.heightAnchor constraintEqualToConstant:IS_IPHONEX?90:70].active=YES;
     
     AppDelegate *  appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     UILabel* headerLbl;
     if (IsTitle) {
         headerLbl = [[UILabel alloc]init];
-        if ([headerLbl.text isEqualToString:@"Motosserve"]) {
-            headerLbl.frame=CGRectMake((appDelegate.wVal/5)+10, IS_IPHONEX?40:20, appDelegate.wVal-(appDelegate.wVal/4.5)*2, 50);
-            headerLbl.textAlignment = NSTextAlignmentLeft;
-        }
-        else
-        {
-            headerLbl.frame=CGRectMake((appDelegate.wVal/5), IS_IPHONEX?40:20, appDelegate.wVal-(appDelegate.wVal/4.5)*2, 50);
+        headerLbl.text = HeaderTitle ;
+        [navHeader addSubview:headerLbl];
+//        if ([headerLbl.text isEqualToString:@"Motosserve"]) {
+//            //headerLbl.frame=CGRectMake((appDelegate.wVal/5)+10, IS_IPHONEX?40:20, appDelegate.wVal-(appDelegate.wVal/4.5)*2, 50);
+//            headerLbl.translatesAutoresizingMaskIntoConstraints = NO;
+//            [headerLbl.topAnchor constraintEqualToAnchor:InView.topAnchor constant:IS_IPHONEX?40:20].active=YES;
+//            [headerLbl.leftAnchor constraintEqualToAnchor:InView.leftAnchor constant:(appDelegate.wVal/5)+10].active=YES;
+//            [headerLbl.widthAnchor constraintEqualToConstant:(appDelegate.wVal/4.5)*2].active=YES;
+//            [headerLbl.heightAnchor constraintEqualToConstant:50].active=YES;
+//            headerLbl.textAlignment = NSTextAlignmentLeft;
+//        }
+//        else
+//        {
+           // headerLbl.frame=CGRectMake((appDelegate.wVal/5), IS_IPHONEX?40:20, appDelegate.wVal-(appDelegate.wVal/4.5)*2, 50);
+            headerLbl.translatesAutoresizingMaskIntoConstraints = NO;
+            [headerLbl.topAnchor constraintEqualToAnchor:InView.topAnchor constant:IS_IPHONEX?30:20].active=YES;
+            [headerLbl.centerXAnchor constraintEqualToAnchor:navHeader.centerXAnchor constant:0].active=YES;
+            [headerLbl.widthAnchor constraintEqualToConstant:(appDelegate.wVal/4.5)*2].active=YES;
+            [headerLbl.heightAnchor constraintEqualToAnchor:navHeader.heightAnchor constant:-20].active=YES;
+            
+            
             headerLbl.textAlignment = NSTextAlignmentCenter;
-        }
+       // }
         headerLbl.textColor =  Singlecolor(whiteColor);
         headerLbl.layer.masksToBounds = YES;
         headerLbl.backgroundColor =Singlecolor(clearColor);
-        [navHeader addSubview:headerLbl];
-        headerLbl.text = HeaderTitle ;
+        
+        
         headerLbl.font=RalewayLight(appDelegate.font+2);
     }
     UIButton *MenuBtn = [[UIButton alloc]init];
-    MenuBtn.frame = CGRectMake(0,IS_IPHONEX?30:20,appDelegate.wVal/7,navHeader.frame.size.height-20);
+    [navHeader addSubview:MenuBtn];
+   // MenuBtn.frame = CGRectMake(0,IS_IPHONEX?30:20,appDelegate.wVal/7,navHeader.frame.size.height-20);
+    MenuBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    [MenuBtn.topAnchor constraintEqualToAnchor:InView.topAnchor constant:IS_IPHONEX?30:20].active=YES;
+    [MenuBtn.leftAnchor constraintEqualToAnchor:InView.leftAnchor constant:0].active=YES;
+    [MenuBtn.widthAnchor constraintEqualToConstant:appDelegate.wVal/7].active=YES;
+    [MenuBtn.heightAnchor constraintEqualToAnchor:navHeader.heightAnchor constant:-20].active=YES;
+    
     MenuBtn.backgroundColor=Singlecolor(clearColor);
     
     UIImageView *menuImg=[[UIImageView alloc]init];
     [MenuBtn addSubview:menuImg];
         if ([headerLbl.text isEqualToString:@"Motosserve"]) {
             menuImg.image=image(@"nav_logo");
-            menuImg.frame=CGRectMake(10, navHeader.frame.size.height/2-25, 75,32);
+           // menuImg.frame=CGRectMake(10, navHeader.frame.size.height/2-25, 75,32);
+
+            menuImg.translatesAutoresizingMaskIntoConstraints = NO;
+            [menuImg.centerYAnchor constraintEqualToAnchor:MenuBtn.centerYAnchor constant:0].active=YES;
+            [menuImg.leftAnchor constraintEqualToAnchor:MenuBtn.leftAnchor constant:10].active=YES;
+            [menuImg.widthAnchor constraintEqualToConstant:75].active=YES;
+            [menuImg.heightAnchor constraintEqualToConstant:32].active=YES;
         }
         else
         {
             menuImg.image=image(@"back");
-            menuImg.frame=CGRectMake(10, navHeader.frame.size.height/2-22, 22,17);
+           // menuImg.frame=CGRectMake(10, navHeader.frame.size.height/2-22, 22,17);
+            menuImg.translatesAutoresizingMaskIntoConstraints = NO;
+            [menuImg.centerYAnchor constraintEqualToAnchor:MenuBtn.centerYAnchor constant:0].active=YES;
+            [menuImg.leftAnchor constraintEqualToAnchor:MenuBtn.leftAnchor constant:10].active=YES;
+            [menuImg.widthAnchor constraintEqualToConstant:22].active=YES;
+            [menuImg.heightAnchor constraintEqualToConstant:17].active=YES;
         }
         [MenuBtn addTarget:LeftClass action:LeftSelector forControlEvents:UIControlEventTouchUpInside];
-        [navHeader addSubview:MenuBtn];
+
     if (IsCart) {
         UIButton *CartBtn = [[UIButton alloc]init];
-        CartBtn.frame = CGRectMake(appDelegate.wVal-35,navHeader.frame.size.height/2,25,15);
+        [navHeader addSubview:CartBtn];
+        //CartBtn.frame = CGRectMake(appDelegate.wVal-35,navHeader.frame.size.height/2,25,15);
+        CartBtn.translatesAutoresizingMaskIntoConstraints = NO;
+        [CartBtn.topAnchor constraintEqualToAnchor:InView.topAnchor constant:IS_IPHONEX?60:35].active=YES;
+        [CartBtn.leftAnchor constraintEqualToAnchor:navHeader.leftAnchor constant:appDelegate.wVal-35].active=YES;
+        [CartBtn.widthAnchor constraintEqualToConstant:25].active=YES;
+        [CartBtn.heightAnchor constraintEqualToConstant:15].active=YES;
         CartBtn.backgroundColor=Singlecolor(clearColor);
         //[CartBtn addTarget:RightClass action:RightSelector forControlEvents:UIControlEventTouchUpInside];
         CartBtn.tag=1000;
         [CartBtn setImage:image(@"menu") forState:UIControlStateNormal];
         [CartBtn addTarget:[DEMOLeftMenuViewController alloc] action:@selector(presentRightMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
-        [navHeader addSubview:CartBtn];
     }
     
     

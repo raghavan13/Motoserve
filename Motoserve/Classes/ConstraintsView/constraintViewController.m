@@ -10,18 +10,24 @@
 #import "AppDelegate.h"
 #import "CPMetaFile.h"
 
-@interface constraintViewController ()
+static CGFloat ZOProductCellMargin          = 20.0;
+static CGFloat ZOProductCellSpacing         = 20.0;
+
+
+@interface constraintViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
-    UIView * contentView,*navHeader;
+    UIView *navHeader;
     AppDelegate * appDelegate;
-    NSMutableArray * prebkImgArray,*prebktextArray;
+    NSMutableArray * prebkImgArray,*prebktextArray,*onrdImgArray,*onrdtextArray;
     NSArray * bannerArray;
     NSInteger jslider;
     float xslider;
-    UIScrollView * bannerSrl,*onrdScrl,*prebookScrl;
+    UIScrollView * bannerSrl;
     NSTimer *timer;
     UIPageControl * pageControl;
     UIButton *  prebkBtn,* onrdBtn;
+    UICollectionView * bookCollection;
+    NSInteger selected;
 }
 @end
 
@@ -32,7 +38,9 @@
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.view.backgroundColor =RGB(222, 230, 239);
     self.navigationController.navigationBarHidden = YES;
-    navHeader=[Utils CreateHeaderBarWithSearch:contentView HeaderTitle:@"Motosserve" IsText:YES Menu:YES IsCart:YES LeftClass:nil LeftSelector:nil RightClass:self RightSelector:nil WithCartCount:0 SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
+    navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Motosserve" IsText:YES Menu:YES IsCart:YES LeftClass:nil LeftSelector:nil RightClass:self RightSelector:nil WithCartCount:0 SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
+    onrdImgArray=[[NSMutableArray alloc]initWithObjects:@"1",@"2",nil];
+    onrdtextArray=[[NSMutableArray alloc]initWithObjects:@"Punture",@"Repair Mechanic", nil];
     prebkImgArray=[[NSMutableArray alloc]initWithObjects:@"11",@"12",@"13",@"14",@"15",@"16",nil];
     prebktextArray=[[NSMutableArray alloc]initWithObjects:@"Repair Service",@"Oil Change",@"Wheel Alignment",@"Spa",@"Painting",@"AC Repair",nil];
     [self createDesign];
@@ -195,26 +203,87 @@
     prebkBtn.layer.cornerRadius = 10;
     prebkBtn.layer.masksToBounds = YES;
     
-    onrdScrl=[[UIScrollView alloc]init];
-    onrdScrl.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:onrdScrl];
-    [onrdScrl.topAnchor constraintEqualToAnchor:onrdBtn.bottomAnchor constant:10].active=YES;
-    [onrdScrl.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-50].active=YES;
-    [onrdScrl.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:0].active=true;
-    [onrdScrl.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:0].active=true;
-    onrdScrl.backgroundColor=Singlecolor(greenColor);
+//    onrdScrl=[[UIScrollView alloc]init];
+//    onrdScrl.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self.view addSubview:onrdScrl];
+//    [onrdScrl.topAnchor constraintEqualToAnchor:onrdBtn.bottomAnchor constant:10].active=YES;
+//    [onrdScrl.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-50].active=YES;
+//    [onrdScrl.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:0].active=true;
+//    [onrdScrl.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:0].active=true;
+//    onrdScrl.backgroundColor=Singlecolor(greenColor);
     
-    
-//    prebookScrl=[[UIScrollView alloc]init];
-//    prebookScrl.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self.view addSubview:prebookScrl];
-//    [prebookScrl.topAnchor constraintEqualToAnchor:onrdBtn.bottomAnchor constant:10].active=YES;
-//    [prebookScrl.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-50].active=YES;
-//    [prebookScrl.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:0].active=true;
-//    [prebookScrl.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:0].active=true;
-//    prebookScrl.backgroundColor=Singlecolor(greenColor);
-    
+    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+    bookCollection=[[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
+    [bookCollection registerClass:[HomeCollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+    bookCollection.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:bookCollection];
+    [bookCollection.topAnchor constraintEqualToAnchor:onrdBtn.bottomAnchor constant:10].active=YES;
+    [bookCollection.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-50].active=YES;
+    [bookCollection.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:30].active=true;
+    [bookCollection.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-30].active=true;
+    bookCollection.backgroundColor=Singlecolor(clearColor);
+    [bookCollection setDataSource:self];
+    [bookCollection setDelegate:self];
+    bookCollection.showsHorizontalScrollIndicator=NO;
+    bookCollection.showsVerticalScrollIndicator=NO;
+    bookCollection.allowsSelection = YES;
+
 }
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if (selected==0) {
+        return [onrdImgArray count];
+    }
+    else
+    {
+        return [prebkImgArray count];
+    }
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    HomeCollectionViewCell *cell = (HomeCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+    //cell.backgroundColor=[UIColor redColor];
+    if (selected==0) {
+        cell.onrdserviceImg.image=image([onrdImgArray objectAtIndex:indexPath.row]);
+        cell.onrdserviceLbl.text=[onrdtextArray objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        cell.onrdserviceImg.image=image([prebkImgArray objectAtIndex:indexPath.row]);
+        cell.onrdserviceLbl.text=[prebktextArray objectAtIndex:indexPath.row];
+    }
+    cell.serviceBtn.tag=indexPath.row;
+    [cell.serviceBtn addTarget:self action:@selector(servicetypeAction:) forControlEvents:UIControlEventTouchUpInside];
+    return cell;
+}
+
+
+
+#pragma mark - UICollectionViewDelegateFlowLayout Methods
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(bookCollection.frame.size.width/2.8, bookCollection.frame.size.width/3.0);
+}
+
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(ZOProductCellMargin, ZOProductCellMargin, ZOProductCellMargin, ZOProductCellMargin);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return ZOProductCellSpacing;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return ZOProductCellSpacing;
+}
+
+
 - (void)serviceAction:(id)sender
 {
     if ([sender tag]==0) {
@@ -222,8 +291,8 @@
         [onrdBtn setTitleColor:Singlecolor(whiteColor) forState:UIControlStateNormal];
         prebkBtn.backgroundColor=Singlecolor(clearColor);
         [prebkBtn setTitleColor:Singlecolor(blackColor) forState:UIControlStateNormal];
-        onrdScrl.hidden=NO;
-        prebookScrl.hidden=YES;
+        selected=0;
+        [bookCollection reloadData];
     }
     else
     {
@@ -231,8 +300,8 @@
         [onrdBtn setTitleColor:Singlecolor(blackColor) forState:UIControlStateNormal];
         prebkBtn.backgroundColor=RGB(0, 89, 42);
         [prebkBtn setTitleColor:Singlecolor(whiteColor) forState:UIControlStateNormal];
-        onrdScrl.hidden=YES;
-        prebookScrl.hidden=NO;
+        selected=1;
+        [bookCollection reloadData];
     }
 }
 
@@ -257,5 +326,21 @@
 {
     AddvechicleViewController * addvechicle=[[AddvechicleViewController alloc]init];
     [self.navigationController pushViewController:addvechicle animated:YES];
+}
+- (void)servicetypeAction:(id)sender {
+    if (selected==0) {
+        if ([sender tag]==0) {
+            ConstraintspuntureViewController * punture=[[ConstraintspuntureViewController alloc]init];
+            [self.navigationController pushViewController:punture animated:YES];
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        
+    }
 }
 @end
