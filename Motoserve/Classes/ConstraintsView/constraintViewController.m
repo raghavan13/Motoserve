@@ -43,6 +43,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     onrdtextArray=[[NSMutableArray alloc]initWithObjects:@"Punture",@"Repair Mechanic", nil];
     prebkImgArray=[[NSMutableArray alloc]initWithObjects:@"11",@"12",@"13",@"14",@"15",@"16",nil];
     prebktextArray=[[NSMutableArray alloc]initWithObjects:@"Repair Service",@"Oil Change",@"Wheel Alignment",@"Spa",@"Painting",@"AC Repair",nil];
+    appDelegate.onrdbool=YES;
     [self createDesign];
 }
 - (void)createDesign
@@ -293,6 +294,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         [prebkBtn setTitleColor:Singlecolor(blackColor) forState:UIControlStateNormal];
         selected=0;
         [bookCollection reloadData];
+        appDelegate.onrdbool=YES;
     }
     else
     {
@@ -302,6 +304,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         [prebkBtn setTitleColor:Singlecolor(whiteColor) forState:UIControlStateNormal];
         selected=1;
         [bookCollection reloadData];
+        appDelegate.onrdbool=NO;
     }
 }
 

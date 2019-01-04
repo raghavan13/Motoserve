@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property(nonatomic,retain)NSString *deviceType,*bookingidStr,*bookingstatusStr;
 @property(nonatomic,readwrite)float hVal,wVal,font;
+@property(nonatomic)BOOL onrdbool;
 -(void)startProgressView:(UIView *)ContentView;
 -(void)startProgressViewFadingCircle:(UIView *)ContentView;
 -(void)stopProgressView;
