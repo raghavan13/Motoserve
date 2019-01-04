@@ -245,7 +245,8 @@
     }
     else
     {
-        
+        TryagainViewController * try=[[TryagainViewController alloc]init];
+        [self.navigationController pushViewController:try animated:YES];
     }
 }
 

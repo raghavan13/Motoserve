@@ -146,7 +146,7 @@
     NSString *string = [alertView buttonTitleAtIndex:buttonIndex];
     if ([string isEqualToString:@"Ok"])
     {
-        HomeViewController * home=[[HomeViewController alloc]init];
+        constraintViewController * home=[[constraintViewController alloc]init];
         [self.navigationController pushViewController:home animated:YES];
     }
 }

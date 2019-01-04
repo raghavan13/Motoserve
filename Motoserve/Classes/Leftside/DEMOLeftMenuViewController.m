@@ -28,14 +28,14 @@
 {
     [super viewDidLoad];
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+    self.view.backgroundColor=RGB(0, 90, 45);
     tableView = ({
         tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, IS_IPHONEX?140:80, self.view.frame.size.width, IS_IPHONEX?self.view.frame.size.height-280:self.view.frame.size.height-160) style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.opaque = NO;
-        tableView.backgroundColor = [UIColor clearColor];
+        tableView.backgroundColor = RGB(0, 90, 45);
         tableView.backgroundView = nil;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.bounces = NO;
@@ -43,7 +43,7 @@
         tableView;
     });
     
-    titles = @[@"Logout"];
+    titles = @[@"Edit Profile",@"Manage Vehicle",@"Order History",@"Contact Us",@"About Us",@"Logout"];
     images = @[@"Home"];
     
 //    footerView=[[UIView alloc]init];

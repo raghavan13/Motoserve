@@ -335,7 +335,8 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         }
         else
         {
-            
+            TryagainViewController * try=[[TryagainViewController alloc]init];
+            [self.navigationController pushViewController:try animated:YES];
         }
     }
     else

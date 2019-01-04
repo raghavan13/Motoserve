@@ -145,7 +145,7 @@
                  }
                  else
                  {
-                     HomeViewController * home=[[HomeViewController alloc]init];
+                     constraintViewController * home=[[constraintViewController alloc]init];
                      [self.navigationController pushViewController:home animated:YES];
                       [Utils archieveRootObject:[responseObject valueForKey:@"data"] forkey:@"logindetails"];
                  }

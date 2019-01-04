@@ -31,7 +31,7 @@
     NSString * urlpath,*filePath;
     NSURL* fileUrl;
     UIView * senderView ;
-    UILabel * tyreLbl,* tubeLbl;
+    UILabel * tyreLbl,* tubeLbl,* carLbl,* bikeLbl;
 }
 @end
 
@@ -75,9 +75,9 @@
 }
 - (void)createDesign
 {
-    jockeyStr=@"0";
-    engineStr=@"P";
-    secondaryStr=@"0";
+    jockeyStr=@"";
+    engineStr=@"";
+    secondaryStr=@"";
     tyreStr=@"";
     
     addvechScroll=[[UIScrollView alloc]init];
@@ -104,6 +104,21 @@
     [twowheelBtn setBackgroundImage:image(@"bike_select") forState:UIControlStateNormal];
     typeStr=@"T";
     
+    
+    bikeLbl=[[UILabel alloc]init];
+    [addvechScroll addSubview:bikeLbl];
+    bikeLbl.translatesAutoresizingMaskIntoConstraints = NO;
+    [bikeLbl.topAnchor constraintEqualToAnchor:twowheelBtn.bottomAnchor constant:0].active=YES;
+    [bikeLbl.leftAnchor constraintEqualToAnchor:twowheelBtn.leftAnchor constant:0].active=YES;
+    [bikeLbl.widthAnchor constraintEqualToAnchor:twowheelBtn.widthAnchor constant:0].active=YES;
+    [bikeLbl.heightAnchor constraintEqualToConstant:21].active=YES;
+    bikeLbl.text=@"Bike";
+    bikeLbl.textColor=RGB(0, 90, 45);
+    bikeLbl.textAlignment=NSTextAlignmentCenter;
+    bikeLbl.font=RalewayRegular(appDelegate.font-2);
+    
+    
+    
     fourwheelBtn=[[UIButton alloc]init];
     fourwheelBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [addvechScroll addSubview:fourwheelBtn];
@@ -116,10 +131,23 @@
     [fourwheelBtn setBackgroundImage:image(@"car_unselect") forState:UIControlStateNormal];
     
     
+    carLbl=[[UILabel alloc]init];
+    [addvechScroll addSubview:carLbl];
+    carLbl.translatesAutoresizingMaskIntoConstraints = NO;
+    [carLbl.topAnchor constraintEqualToAnchor:fourwheelBtn.bottomAnchor constant:0].active=YES;
+    [carLbl.leftAnchor constraintEqualToAnchor:fourwheelBtn.leftAnchor constant:0].active=YES;
+    [carLbl.widthAnchor constraintEqualToAnchor:fourwheelBtn.widthAnchor constant:0].active=YES;
+    [carLbl.heightAnchor constraintEqualToAnchor:bikeLbl.heightAnchor constant:0].active=YES;
+    carLbl.text=@"Car";
+    carLbl.textColor=Singlecolor(lightGrayColor);
+    carLbl.textAlignment=NSTextAlignmentCenter;
+    carLbl.font=RalewayRegular(appDelegate.font-2);
+    
+    
     vechilenoTxtfld=[[UITextField alloc]init];
     [addvechScroll addSubview:vechilenoTxtfld];
     vechilenoTxtfld.translatesAutoresizingMaskIntoConstraints = NO;
-    [vechilenoTxtfld.topAnchor constraintEqualToAnchor:fourwheelBtn.bottomAnchor constant:40].active=YES;
+    [vechilenoTxtfld.topAnchor constraintEqualToAnchor:carLbl.bottomAnchor constant:40].active=YES;
     [vechilenoTxtfld.leftAnchor constraintEqualToAnchor:addvechScroll.rightAnchor constant:60].active=YES;
     [vechilenoTxtfld.widthAnchor constraintEqualToAnchor:addvechScroll.widthAnchor constant:-120].active=YES;
     [vechilenoTxtfld.heightAnchor constraintEqualToConstant:40].active=YES;
@@ -155,6 +183,17 @@
     brandBtn.layer.masksToBounds = true;
     [brandBtn addTarget:self action:@selector(brandAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIImageView * dropbrandImg=[[UIImageView alloc]init];
+    [brandBtn addSubview:dropbrandImg];
+    dropbrandImg.translatesAutoresizingMaskIntoConstraints = NO;
+    [dropbrandImg.centerYAnchor constraintEqualToAnchor:brandBtn.centerYAnchor constant:0].active=YES;
+    [dropbrandImg.rightAnchor constraintEqualToAnchor:brandBtn.rightAnchor constant:-20].active=YES;
+    [dropbrandImg.widthAnchor constraintEqualToConstant:19].active=YES;
+    [dropbrandImg.heightAnchor constraintEqualToConstant:10].active=YES;
+    dropbrandImg.image=image(@"dropdown");
+    
+    
+    
     modelBtn=[[UIButton alloc]init];
     [addvechScroll addSubview:modelBtn];
     modelBtn.translatesAutoresizingMaskIntoConstraints = NO;
@@ -176,6 +215,14 @@
     modelBtn.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
     [modelBtn addTarget:self action:@selector(modelAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIImageView * dropmodelImg=[[UIImageView alloc]init];
+    [modelBtn addSubview:dropmodelImg];
+    dropmodelImg.translatesAutoresizingMaskIntoConstraints = NO;
+    [dropmodelImg.centerYAnchor constraintEqualToAnchor:modelBtn.centerYAnchor constant:0].active=YES;
+    [dropmodelImg.rightAnchor constraintEqualToAnchor:modelBtn.rightAnchor constant:-20].active=YES;
+    [dropmodelImg.widthAnchor constraintEqualToConstant:19].active=YES;
+    [dropmodelImg.heightAnchor constraintEqualToConstant:10].active=YES;
+    dropmodelImg.image=image(@"dropdown");
     
     tyreLbl=[[UILabel alloc]init];
     [addvechScroll addSubview:tyreLbl];
@@ -305,8 +352,7 @@
                  }
                  [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
                  [self->appDelegate stopProgressView];
-                 HomeViewController * home=[[HomeViewController alloc]init];
-                 [self.navigationController pushViewController:home animated:YES];
+                 [self.navigationController popViewControllerAnimated:YES];
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"Error: %@", error);
@@ -331,8 +377,22 @@
         return NO;
     }
     if ([tyreStr isEqualToString:@""]) {
-        [Utils showErrorAlert:@"Please Select Tyre type" delegate:nil];
+        [Utils showErrorAlert:@"Please Select Tyre Type" delegate:nil];
         return NO;
+    }
+    if (iscar) {
+        if ([engineStr isEqualToString:@""]) {
+            [Utils showErrorAlert:@"Please Select Engine Type" delegate:nil];
+            return NO;
+        }
+        if ([jockeyStr isEqualToString:@""]) {
+            [Utils showErrorAlert:@"Please Select Jockey Available" delegate:nil];
+            return NO;
+        }
+        if ([secondaryStr isEqualToString:@""]) {
+            [Utils showErrorAlert:@"Please Select Spare Tyre" delegate:nil];
+            return NO;
+        }
     }
     return YES;
 }
@@ -404,6 +464,8 @@
         vechicleArray=[[json valueForKey:@"carBrands"]valueForKey:@"name"];
         iscar=YES;
         typeStr=@"C";
+        carLbl.textColor=RGB(0, 90, 45);
+        bikeLbl.textColor=Singlecolor(lightGrayColor);
     }
     else
     {
@@ -413,6 +475,8 @@
         submittopAnch=tubelessBtn.bottomAnchor;
         iscar=NO;
         typeStr=@"T";
+        bikeLbl.textColor=RGB(0, 90, 45);
+        carLbl.textColor=Singlecolor(lightGrayColor);
     }
     [self framechange];
 }

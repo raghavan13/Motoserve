@@ -117,7 +117,7 @@
     currentsecond=181;
     [self->appDelegate stopProgressView];
     [Utils showErrorAlert:@"Sorry for inconvience" delegate:nil];
-    HomeViewController * home=[[HomeViewController alloc]init];
+    constraintViewController * home=[[constraintViewController alloc]init];
     [self.navigationController pushViewController:home animated:YES];
 }
 - (void)handleTimer
