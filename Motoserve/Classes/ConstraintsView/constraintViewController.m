@@ -324,7 +324,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
 }
 - (void)addAction
 {
-    AddvechicleViewController * addvechicle=[[AddvechicleViewController alloc]init];
+    constraintaddViewController * addvechicle=[[constraintaddViewController alloc]init];
     [self.navigationController pushViewController:addvechicle animated:YES];
 }
 - (void)servicetypeAction:(id)sender {
