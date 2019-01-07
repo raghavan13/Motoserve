@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.view.backgroundColor =RGB(222, 230, 239);
+    self.view.backgroundColor =Singlecolor(whiteColor);
     self.navigationController.navigationBarHidden = YES;
     navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Punture Request" IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
     

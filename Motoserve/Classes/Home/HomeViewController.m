@@ -245,7 +245,7 @@
     }
     else
     {
-        TryagainViewController * try=[[TryagainViewController alloc]init];
+        OrderhistoryViewController * try=[[OrderhistoryViewController alloc]init];
         [self.navigationController pushViewController:try animated:YES];
     }
 }

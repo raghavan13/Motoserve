@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Motoserve/Classes/Home/HomeViewController.m"
-            timestampString = "568299992.104929"
+            filePath = "Motoserve/Classes/Orderhistory/Ordercell/OrderViewCell.m"
+            timestampString = "568562624.364431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "-onroadAction:"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "-createDesign"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Motoserve/Classes/ConstraintsView/constraintViewController.m"
-            timestampString = "568300444.9056441"
+            filePath = "Motoserve/Classes/Orderhistory/OrderhistoryViewController.m"
+            timestampString = "568561320.652338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "-serviceAction:"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

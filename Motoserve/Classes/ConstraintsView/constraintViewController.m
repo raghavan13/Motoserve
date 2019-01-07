@@ -344,7 +344,8 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     }
     else
     {
-        
+        OrderhistoryViewController * histroy=[[OrderhistoryViewController alloc]init];
+        [self.navigationController pushViewController:histroy animated:YES];
     }
 }
 @end

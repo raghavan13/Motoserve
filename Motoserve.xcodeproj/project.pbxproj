@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2507165E21E3231300A1E35A /* OrderhistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2507165D21E3231300A1E35A /* OrderhistoryViewController.m */; };
+		2507166221E3236B00A1E35A /* OrderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2507166121E3236B00A1E35A /* OrderViewCell.m */; };
 		250862FA21DCE98E0060F903 /* constraintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250862F921DCE98E0060F903 /* constraintViewController.m */; };
 		25105194217703570076C3F2 /* AddvechicleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25105193217703570076C3F2 /* AddvechicleViewController.m */; };
 		25343AA521648998000C6B6C /* OTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25343AA421648998000C6B6C /* OTPViewController.m */; };
@@ -141,6 +143,10 @@
 
 /* Begin PBXFileReference section */
 		0B5C51F2BFA4AFE34267F5B8 /* Pods-Motoserve.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motoserve.release.xcconfig"; path = "Pods/Target Support Files/Pods-Motoserve/Pods-Motoserve.release.xcconfig"; sourceTree = "<group>"; };
+		2507165C21E3231300A1E35A /* OrderhistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderhistoryViewController.h; sourceTree = "<group>"; };
+		2507165D21E3231300A1E35A /* OrderhistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderhistoryViewController.m; sourceTree = "<group>"; };
+		2507166021E3236B00A1E35A /* OrderViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderViewCell.h; sourceTree = "<group>"; };
+		2507166121E3236B00A1E35A /* OrderViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderViewCell.m; sourceTree = "<group>"; };
 		250862F821DCE98E0060F903 /* constraintViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constraintViewController.h; sourceTree = "<group>"; };
 		250862F921DCE98E0060F903 /* constraintViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = constraintViewController.m; sourceTree = "<group>"; };
 		25105192217703570076C3F2 /* AddvechicleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddvechicleViewController.h; sourceTree = "<group>"; };
@@ -399,6 +405,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2507165B21E322E800A1E35A /* Orderhistory */ = {
+			isa = PBXGroup;
+			children = (
+				2507165F21E3234300A1E35A /* Ordercell */,
+				2507165C21E3231300A1E35A /* OrderhistoryViewController.h */,
+				2507165D21E3231300A1E35A /* OrderhistoryViewController.m */,
+			);
+			path = Orderhistory;
+			sourceTree = "<group>";
+		};
+		2507165F21E3234300A1E35A /* Ordercell */ = {
+			isa = PBXGroup;
+			children = (
+				2507166021E3236B00A1E35A /* OrderViewCell.h */,
+				2507166121E3236B00A1E35A /* OrderViewCell.m */,
+			);
+			path = Ordercell;
+			sourceTree = "<group>";
+		};
 		250862F721DCE97A0060F903 /* ConstraintsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -966,6 +991,7 @@
 		5283A49D2163476F00DA69CB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2507165B21E322E800A1E35A /* Orderhistory */,
 				25F1AFC021DE41B700A323F2 /* constraintadd */,
 				25F1AFBC21DE1DA700A323F2 /* Constraintspunture */,
 				250862F721DCE97A0060F903 /* ConstraintsView */,
@@ -1235,6 +1261,7 @@
 				25D9255E21709D5A00249C87 /* SDWebImageDownloader.m in Sources */,
 				25343B1E2164C4C8000C6B6C /* SBJsonWriter.m in Sources */,
 				25D92536217099CB00249C87 /* LCBannerView.m in Sources */,
+				2507165E21E3231300A1E35A /* OrderhistoryViewController.m in Sources */,
 				25343B122164C4C8000C6B6C /* ASIDataDecompressor.m in Sources */,
 				256A0175219949200030E2C8 /* UIViewController+RESideMenu.m in Sources */,
 				25D9256521709D5A00249C87 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1276,6 +1303,7 @@
 				522D7B9821639F9400A7385B /* IQBarButtonItem.m in Sources */,
 				522D7B6C2163971D00A7385B /* SignupViewController.m in Sources */,
 				25C4380F217E189A00089162 /* CWCColor.m in Sources */,
+				2507166221E3236B00A1E35A /* OrderViewCell.m in Sources */,
 				254A2C34217EFAF9006DA3E9 /* UIProgressView+AFNetworking.m in Sources */,
 				256A0173219949200030E2C8 /* RECommonFunctions.m in Sources */,
 				522D7B9021639F9400A7385B /* IQNSArray+Sort.m in Sources */,
