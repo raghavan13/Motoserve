@@ -104,6 +104,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     [trackBtn.topAnchor constraintEqualToAnchor:footerView.topAnchor constant:0].active=YES;
     [trackBtn.widthAnchor constraintEqualToConstant:SCREEN_WIDTH/2].active=YES;
     [trackBtn.heightAnchor constraintEqualToAnchor:footerView.heightAnchor constant:0].active=YES;
+    [trackBtn addTarget:self action:@selector(trackAction) forControlEvents:UIControlEventTouchUpInside];
     //trackBtn.backgroundColor=Singlecolor(greenColor);
     
     UIImageView * trackImg=[[UIImageView alloc]init];
@@ -307,7 +308,11 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         appDelegate.onrdbool=NO;
     }
 }
-
+- (void)trackAction
+{
+    TrackViewController  *track=[[TrackViewController alloc]init];
+    [self.navigationController pushViewController:track animated:YES];
+}
 
 
 - (void)timerAction

@@ -1,16 +1,15 @@
 //
-//  OrderViewCell.m
+//  TrackViewCell.m
 //  Motoserve
 //
-//  Created by Karthik Baskaran on 07/01/19.
+//  Created by Shyam on 07/01/19.
 //  Copyright © 2019 Shyam. All rights reserved.
 //
 
-#import "OrderViewCell.h"
+#import "TrackViewCell.h"
 #import "Utils.h"
 #import "AppDelegate.h"
-
-@implementation OrderViewCell
+@implementation TrackViewCell
 {
     AppDelegate *appDelegate;
     UIView  * MainView;
@@ -85,8 +84,8 @@
     [orderidLbl.leftAnchor constraintEqualToAnchor:headerImg.rightAnchor constant:7].active=YES;
     [orderidLbl.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:-20].active=YES;
     //[orderidLbl.heightAnchor constraintEqualToConstant:40].active=YES;
-   // orderidLbl.backgroundColor=Singlecolor(redColor);
-    orderidLbl.text=@"Order ID : 152525222222";
+    // orderidLbl.backgroundColor=Singlecolor(redColor);
+    orderidLbl.text=@"Last Updated : 12pm";
     orderidLbl.font=RalewayRegular(appDelegate.font-7);
     orderidLbl.textColor=Singlecolor(grayColor);
     orderidLbl.textAlignment=NSTextAlignmentRight;
@@ -162,7 +161,7 @@
     
     UIImageView * carImg=[[UIImageView alloc]init];
     [MainView addSubview:carImg];
-carImg.translatesAutoresizingMaskIntoConstraints = NO;
+    carImg.translatesAutoresizingMaskIntoConstraints = NO;
     [carImg.centerYAnchor constraintEqualToAnchor:MainView.centerYAnchor constant:5].active=YES;
     [carImg.leftAnchor constraintEqualToAnchor:MainView.leftAnchor constant:20].active=YES;
     [carImg.widthAnchor constraintEqualToConstant:60].active=YES;

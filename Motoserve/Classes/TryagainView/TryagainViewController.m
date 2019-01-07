@@ -42,7 +42,7 @@
 
 - (void)createdesign
 {
-    UIImageView * headerImg=[[UIImageView alloc]initWithFrame:CGRectMake(40, IS_IPHONEX?110:90, contentView.frame.size.width-80, contentView.frame.size.height/4.5)];
+    UIImageView * headerImg=[[UIImageView alloc]initWithFrame:CGRectMake(40, IS_IPHONEX?110:90, contentView.frame.size.width-80, contentView.frame.size.height/5.0)];
     headerImg.image=image(@"tryagainheader");
     [contentView addSubview:headerImg];
     

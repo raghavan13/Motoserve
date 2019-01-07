@@ -1,16 +1,17 @@
 //
-//  OrderhistoryViewController.m
+//  TrackViewController.m
 //  Motoserve
 //
-//  Created by Karthik Baskaran on 07/01/19.
+//  Created by Shyam on 07/01/19.
 //  Copyright © 2019 Shyam. All rights reserved.
 //
 
-#import "OrderhistoryViewController.h"
+#import "TrackViewController.h"
 #import "AppDelegate.h"
 #import "CPMetaFile.h"
 
-@interface OrderhistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TrackViewController ()
+<UITableViewDelegate,UITableViewDataSource>
 {
     UIView *navHeader,* div1View,* div2View;
     AppDelegate * appDelegate;
@@ -18,14 +19,14 @@
 }
 @end
 
-@implementation OrderhistoryViewController
+@implementation TrackViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.view.backgroundColor =Singlecolor(whiteColor);
     self.navigationController.navigationBarHidden = YES;
-    navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Order History" IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
+    navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Track Order" IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
     
     [self createDesign];
 }
@@ -102,7 +103,6 @@
     orderTbl.delegate=self;
     orderTbl.dataSource=self;
 }
-
 - (void)orderAction:(id)sender
 {
     if ([sender tag]==1) {
@@ -140,15 +140,14 @@
 {
     static NSString *identifier=@"cell";
     
-    OrderViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+    TrackViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         
-        cell =[[OrderViewCell alloc] init];
+        cell =[[TrackViewCell alloc] init];
         [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
     return cell;
 }
-
 @end
