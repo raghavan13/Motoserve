@@ -131,7 +131,7 @@
              if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"8"]) {
                  [self->bookingtimer invalidate];
                  self->bookingtimer=nil;
-                 [Utils showErrorAlert:@"Thank You" delegate:self];
+                // [Utils showErrorAlert:@"Thank You" delegate:self];
              }
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

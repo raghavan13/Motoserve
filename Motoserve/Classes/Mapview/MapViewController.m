@@ -97,6 +97,11 @@
     dragBtn.layer.borderColor = [UIColor blackColor].CGColor;
     [self.view addSubview:dragBtn];
     
+    UIImageView * sliderImg=[[UIImageView alloc]initWithFrame:CGRectMake(dragBtn.frame.size.width/2-22, dragBtn.frame.size.height/2-4.5, 44, 9)];
+    sliderImg.image=image(@"seperator");
+    [dragBtn addSubview:sliderImg];
+    
+    
     ordernw = [[DraggableViewController alloc]init];
     
     //=======

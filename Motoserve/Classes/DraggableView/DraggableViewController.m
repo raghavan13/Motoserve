@@ -45,6 +45,11 @@
     dragBtn.layer.borderColor = [UIColor blackColor].CGColor;
     [swipeView addSubview:dragBtn];
     
+    UIImageView * sliderImg=[[UIImageView alloc]initWithFrame:CGRectMake(dragBtn.frame.size.width/2-22, dragBtn.frame.size.height/2-4.5, 44, 9)];
+    sliderImg.image=image(@"seperator");
+    [dragBtn addSubview:sliderImg];
+    
+    
     statusScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(dragBtn.frame), swipeView.frame.size.width, swipeView.frame.size.height-CGRectGetMaxY(dragBtn.frame))];
     [swipeView addSubview:statusScroll];
     
@@ -59,14 +64,14 @@
     
     UILabel * areaLbl=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(vehiclenoLbl.frame)+10, statusScroll.frame.size.width, 21)];
     areaLbl.text=@"Adyar Motors";
-    areaLbl.font=RalewayRegular(appDelegate.font-2);
+    areaLbl.font=RalewayRegular(appDelegate.font-2);https://mail.google.com/mail/u/0/#inbox/FMfcgxwBTsjmdrfdWctjPMJfhbCgBKlc?projector=1&messagePartId=0.3
     areaLbl.textAlignment=NSTextAlignmentCenter;
     [statusScroll addSubview:areaLbl];
     
     
-    UILabel * bookingidLbl=[[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetMaxY(areaLbl.frame)+10, statusScroll.frame.size.width/2.5, 21)];
+    UILabel * bookingidLbl=[[UILabel alloc]initWithFrame:CGRectMake(60, CGRectGetMaxY(areaLbl.frame)+10, statusScroll.frame.size.width/3.0, 21)];
     bookingidLbl.text=@"Booking ID:15257";
-    bookingidLbl.font=RalewayRegular(appDelegate.font-2);
+    bookingidLbl.font=RalewayRegular(appDelegate.font-6);
     bookingidLbl.textAlignment=NSTextAlignmentLeft;
     [statusScroll addSubview:bookingidLbl];
     
@@ -76,7 +81,7 @@
     [dateFormat setDateFormat:@"dd.mm.yyyy"];
     dateLbl.text=[NSString stringWithFormat:@"Date:%@",[dateFormat stringFromDate:startdate]];
     //dateLbl.text=@"Date:12.01.2019";
-    dateLbl.font=RalewayRegular(appDelegate.font-2);
+    dateLbl.font=RalewayRegular(appDelegate.font-6);
     dateLbl.textAlignment=NSTextAlignmentRight;
     [statusScroll addSubview:dateLbl];
     
@@ -100,8 +105,8 @@
     nameLbl.textAlignment=NSTextAlignmentCenter;
     [waitingView addSubview:nameLbl];
     
-    UIView * divView=[[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(profImg.frame)+10, CGRectGetMaxY(nameLbl.frame)+10, nameLbl.frame.size.width-45, 1)];
-    divView.backgroundColor=Singlecolor(lightGrayColor);
+    UIView * divView=[[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(profImg.frame)+10, CGRectGetMaxY(nameLbl.frame)+10, nameLbl.frame.size.width-45, 0.5)];
+    divView.backgroundColor=RGB(0, 89, 42);
     [waitingView addSubview:divView];
     
     
@@ -112,13 +117,13 @@
     [waitingView addSubview:noLbl];
     
     UIView * div2View=[[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(noLbl.frame), noLbl.frame.origin.y,1, 21)];
-    div2View.backgroundColor=Singlecolor(lightGrayColor);
+    div2View.backgroundColor=RGB(0, 89, 42);
     [waitingView addSubview:div2View];
     
-    UIImageView * callImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(div2View.frame)+10, CGRectGetMaxY(divView.frame)+10, waitingView.frame.size.width/8, waitingView.frame.size.width/8)];
+    UIImageView * callImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(div2View.frame)+10, CGRectGetMaxY(divView.frame)+12, waitingView.frame.size.width/10, waitingView.frame.size.width/10)];
     callImg.layer.cornerRadius = callImg.frame.size.width/2;
     callImg.layer.masksToBounds = YES;
-    callImg.image=image(@"logo");
+    callImg.image=image(@"phone");
     [waitingView addSubview:callImg];
     
     UILabel * statusLbl=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(waitingView.frame)+10, statusScroll.frame.size.width, 21)];

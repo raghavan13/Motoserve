@@ -184,7 +184,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     [onrdBtn setTitleColor:Singlecolor(whiteColor) forState:UIControlStateNormal];
     onrdBtn.tag=0;
     [onrdBtn addTarget:self action:@selector(serviceAction:) forControlEvents:UIControlEventTouchUpInside];
-    onrdBtn.layer.cornerRadius = 10;
+    onrdBtn.layer.cornerRadius = 15;
     onrdBtn.layer.masksToBounds = YES;
     
     
@@ -202,7 +202,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     prebkBtn.backgroundColor=[UIColor clearColor];
     prebkBtn.tag=1;
     [prebkBtn addTarget:self action:@selector(serviceAction:) forControlEvents:UIControlEventTouchUpInside];
-    prebkBtn.layer.cornerRadius = 10;
+    prebkBtn.layer.cornerRadius = 15;
     prebkBtn.layer.masksToBounds = YES;
     
 //    onrdScrl=[[UIScrollView alloc]init];
@@ -349,8 +349,21 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     }
     else
     {
-        OrderhistoryViewController * histroy=[[OrderhistoryViewController alloc]init];
-        [self.navigationController pushViewController:histroy animated:YES];
+        if ([sender tag]==0) {
+            NewbillViewController * bill=[[NewbillViewController alloc]init];
+            [self.navigationController pushViewController:bill animated:YES];
+        }
+        else if ([sender tag]==1)
+        {
+            MapViewController * map=[[MapViewController alloc]init];
+            [self.navigationController pushViewController:map animated:YES];
+        }
+        else
+        {
+            OrderhistoryViewController * histroy=[[OrderhistoryViewController alloc]init];
+            [self.navigationController pushViewController:histroy animated:YES];
+        }
+        
     }
 }
 @end

@@ -114,7 +114,7 @@
     _contentViewFadeOutAlpha = 1.0f;
     _contentViewInLandscapeOffsetCenterX = 30.f;
     _contentViewInPortraitOffsetCenterX  = 30.f;
-    _contentViewScaleValue = 0.9f;
+    _contentViewScaleValue = 0.7f;
 }
 
 #pragma mark -

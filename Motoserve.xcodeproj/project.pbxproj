@@ -108,6 +108,11 @@
 		25D9256621709D5A00249C87 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9255521709D5A00249C87 /* UIImageView+WebCache.m */; };
 		25D9256721709D5A00249C87 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9255721709D5A00249C87 /* UIView+WebCacheOperation.m */; };
 		25E19C31219C274300730E0A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E19C30219C274300730E0A /* MapViewController.m */; };
+		25EED80821E46A480009FA4F /* NewbillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EED80721E46A480009FA4F /* NewbillViewController.m */; };
+		25EED80E21E4A8F80009FA4F /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EED80A21E4A8F70009FA4F /* FLAnimatedImage.m */; };
+		25EED80F21E4A8F80009FA4F /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EED80B21E4A8F70009FA4F /* FLAnimatedImageView.m */; };
+		25EED81121E4AACE0009FA4F /* bill.gif in Resources */ = {isa = PBXBuildFile; fileRef = 25EED81021E4AACD0009FA4F /* bill.gif */; };
+		25EED81521E4ABFE0009FA4F /* SuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EED81421E4ABFE0009FA4F /* SuccessViewController.m */; };
 		25F1AFBB21DDD05600A323F2 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1AFBA21DDD05600A323F2 /* HomeCollectionViewCell.m */; };
 		25F1AFBF21DE1DBE00A323F2 /* ConstraintspuntureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1AFBE21DE1DBE00A323F2 /* ConstraintspuntureViewController.m */; };
 		25F1AFC321DE41C600A323F2 /* constraintaddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F1AFC221DE41C600A323F2 /* constraintaddViewController.m */; };
@@ -332,6 +337,15 @@
 		25D9255721709D5A00249C87 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		25E19C2F219C274300730E0A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		25E19C30219C274300730E0A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		25EED80621E46A480009FA4F /* NewbillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewbillViewController.h; sourceTree = "<group>"; };
+		25EED80721E46A480009FA4F /* NewbillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewbillViewController.m; sourceTree = "<group>"; };
+		25EED80A21E4A8F70009FA4F /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		25EED80B21E4A8F70009FA4F /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		25EED80C21E4A8F70009FA4F /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		25EED80D21E4A8F80009FA4F /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		25EED81021E4AACD0009FA4F /* bill.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bill.gif; sourceTree = "<group>"; };
+		25EED81321E4ABFE0009FA4F /* SuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuccessViewController.h; sourceTree = "<group>"; };
+		25EED81421E4ABFE0009FA4F /* SuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuccessViewController.m; sourceTree = "<group>"; };
 		25F1AFB921DDD05600A323F2 /* HomeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewCell.h; sourceTree = "<group>"; };
 		25F1AFBA21DDD05600A323F2 /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
 		25F1AFBD21DE1DBE00A323F2 /* ConstraintspuntureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstraintspuntureViewController.h; sourceTree = "<group>"; };
@@ -817,6 +831,35 @@
 			path = Mapview;
 			sourceTree = "<group>";
 		};
+		25EED80521E46A280009FA4F /* Newbill */ = {
+			isa = PBXGroup;
+			children = (
+				25EED80621E46A480009FA4F /* NewbillViewController.h */,
+				25EED80721E46A480009FA4F /* NewbillViewController.m */,
+			);
+			path = Newbill;
+			sourceTree = "<group>";
+		};
+		25EED80921E4A8F70009FA4F /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				25EED80A21E4A8F70009FA4F /* FLAnimatedImage.m */,
+				25EED80B21E4A8F70009FA4F /* FLAnimatedImageView.m */,
+				25EED80C21E4A8F70009FA4F /* FLAnimatedImage.h */,
+				25EED80D21E4A8F80009FA4F /* FLAnimatedImageView.h */,
+			);
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		25EED81221E4ABEF0009FA4F /* Success */ = {
+			isa = PBXGroup;
+			children = (
+				25EED81321E4ABFE0009FA4F /* SuccessViewController.h */,
+				25EED81421E4ABFE0009FA4F /* SuccessViewController.m */,
+			);
+			path = Success;
+			sourceTree = "<group>";
+		};
 		25F1AFB821DDD03F00A323F2 /* HomeCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -987,6 +1030,7 @@
 		5283A49C2163476E00DA69CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				25EED81021E4AACD0009FA4F /* bill.gif */,
 				2578C55A21B7DBE000E3C174 /* service1.jpg */,
 				2578C55E21B7E11B00E3C174 /* service2.jpg */,
 				25343AA621649F39000C6B6C /* raleway */,
@@ -997,6 +1041,8 @@
 		5283A49D2163476F00DA69CB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				25EED81221E4ABEF0009FA4F /* Success */,
+				25EED80521E46A280009FA4F /* Newbill */,
 				528C139C21E3B88800688FF2 /* TrackOrder */,
 				2507165B21E322E800A1E35A /* Orderhistory */,
 				25F1AFC021DE41B700A323F2 /* constraintadd */,
@@ -1041,6 +1087,7 @@
 		5283A4A22163476F00DA69CB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				25EED80921E4A8F70009FA4F /* FLAnimatedImage */,
 				25AB838721D3783700A9C233 /* GlobalApiCall */,
 				253A47A121BFE31F0057E60D /* UILabel */,
 				256A016C219949200030E2C8 /* RESideMenu */,
@@ -1213,6 +1260,7 @@
 				25343AC721649F39000C6B6C /* Raleway-Regular.ttf in Resources */,
 				F01C556A21B1704800F15091 /* coordinates.json in Resources */,
 				25343AC021649F39000C6B6C /* Raleway-ExtraLight.ttf in Resources */,
+				25EED81121E4AACE0009FA4F /* bill.gif in Resources */,
 				5283A48E216346CF00DA69CB /* Main.storyboard in Resources */,
 				25343ABA21649F39000C6B6C /* Raleway-Black.ttf in Resources */,
 				2578C55F21B7E11B00E3C174 /* service2.jpg in Resources */,
@@ -1320,6 +1368,7 @@
 				522D7B9721639F9400A7385B /* IQTextView.m in Sources */,
 				254A2C32217EFAF9006DA3E9 /* UIButton+AFNetworking.m in Sources */,
 				25C43805217E186700089162 /* RTSpinKitView.m in Sources */,
+				25EED81521E4ABFE0009FA4F /* SuccessViewController.m in Sources */,
 				254FAE4421B16801009241F9 /* ARCarMovement.swift in Sources */,
 				25343B1F2164C4C8000C6B6C /* NSObject+FL.m in Sources */,
 				25730A1921A6725C00E9FAE1 /* ForgotViewController.m in Sources */,
@@ -1353,8 +1402,10 @@
 				25D9256321709D5A00249C87 /* UIImage+GIF.m in Sources */,
 				254A2C2F217EFAF9006DA3E9 /* AFImageDownloader.m in Sources */,
 				2541D38321956E4400DE0FAD /* PuntureViewController.m in Sources */,
+				25EED80821E46A480009FA4F /* NewbillViewController.m in Sources */,
 				254A2C31217EFAF9006DA3E9 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				5283A4AA2163493400DA69CB /* Constants.m in Sources */,
+				25EED80F21E4A8F80009FA4F /* FLAnimatedImageView.m in Sources */,
 				25D9256721709D5A00249C87 /* UIView+WebCacheOperation.m in Sources */,
 				25D9256021709D5A00249C87 /* SDWebImageManager.m in Sources */,
 				254A2C30217EFAF9006DA3E9 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1374,6 +1425,7 @@
 				25343B142164C4C8000C6B6C /* ASIFormDataRequest.m in Sources */,
 				254A2C36217EFAF9006DA3E9 /* UIWebView+AFNetworking.m in Sources */,
 				5283A4B621634AD400DA69CB /* UrlGenerator.m in Sources */,
+				25EED80E21E4A8F80009FA4F /* FLAnimatedImage.m in Sources */,
 				25D9256121709D5A00249C87 /* SDWebImagePrefetcher.m in Sources */,
 				25343B112164C4C8000C6B6C /* ASIDataCompressor.m in Sources */,
 				25343B1A2164C4C8000C6B6C /* NSString+SBJSON.m in Sources */,

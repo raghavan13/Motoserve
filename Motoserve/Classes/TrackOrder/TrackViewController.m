@@ -10,8 +10,7 @@
 #import "AppDelegate.h"
 #import "CPMetaFile.h"
 
-@interface TrackViewController ()
-<UITableViewDelegate,UITableViewDataSource>
+@interface TrackViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIView *navHeader,* div1View,* div2View;
     AppDelegate * appDelegate;
@@ -90,7 +89,8 @@
     [div2View.leftAnchor constraintEqualToAnchor:div1View .rightAnchor constant:0].active=YES;
     [div2View.widthAnchor constraintEqualToAnchor:div1View.widthAnchor constant:0].active=YES;
     [div2View.heightAnchor constraintEqualToAnchor:divView.heightAnchor constant:0].active=YES;
-    div2View.backgroundColor=Singlecolor(lightGrayColor);
+    div2View.backgroundColor=RGB(0, 89, 42);
+    div2View.hidden=YES;
     
     UITableView * orderTbl=[[UITableView alloc]init];
     [self.view addSubview:orderTbl];
