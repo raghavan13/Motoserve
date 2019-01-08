@@ -522,16 +522,6 @@
     totalamtLbl.text=@"118. Rs";
     
     
-//    UIImageView * cashImg=[[UIImageView alloc]init];
-//    [scroll addSubview:cashImg];
-//    cashImg.translatesAutoresizingMaskIntoConstraints = NO;
-//    [cashImg.topAnchor constraintEqualToAnchor:totalamtLbl.bottomAnchor constant:40].active=YES;
-//    [cashImg.centerXAnchor constraintEqualToAnchor:scroll.centerXAnchor constant:-60].active=YES;
-//    [cashImg.widthAnchor constraintEqualToConstant:20].active=YES;
-//    [cashImg.heightAnchor constraintEqualToConstant:20].active=YES;
-//    cashImg.image=image(@"radiouncheck");
-    
-    
     cashImg=[[UIImageView alloc]init];
     [scroll addSubview:cashImg];
     cashImg.translatesAutoresizingMaskIntoConstraints = NO;

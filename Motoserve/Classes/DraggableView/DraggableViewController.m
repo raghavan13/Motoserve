@@ -16,7 +16,7 @@
     UIView * prepareView,* startView,* rchView;
     NSDateFormatter *dateFormat;
     UIImageView * prepareImg,* startImg,* rchImg,* doneImg;
-    UILabel *  prepareLbl,* startLbl,* starttimeLbl,* rchLbl,* rchtimeLbl,* doneLbl,* donetimeLbl;
+    UILabel *  prepareLbl,* startLbl,* starttimeLbl,* rchLbl,* rchtimeLbl,* doneLbl,* donetimeLbl,* estdidtLbl,* esttimeLbl;
     UIButton *  doneBtn;
     int scrollheight;
 }
@@ -51,6 +51,8 @@
     
     
     statusScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(dragBtn.frame), swipeView.frame.size.width, swipeView.frame.size.height-CGRectGetMaxY(dragBtn.frame))];
+    statusScroll.showsHorizontalScrollIndicator=NO;
+    statusScroll.showsVerticalScrollIndicator=NO;
     [swipeView addSubview:statusScroll];
     
     //statusScroll.backgroundColor=Singlecolor(redColor);
@@ -193,7 +195,32 @@
         starttimeLbl.font=RalewayRegular(appDelegate.font-4);
         [statusScroll addSubview:starttimeLbl];
         
-        scrollheight=CGRectGetMaxY(starttimeLbl.frame);
+        
+        UIImageView * estdistImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(starttimeLbl.frame)+5, 15, 13)];
+        estdistImg.image=image(@"est_distance");
+        [statusScroll addSubview:estdistImg];
+        
+         estdidtLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(estdistImg.frame),CGRectGetMaxY(starttimeLbl.frame), 50, 21)];
+        estdidtLbl.textColor=Singlecolor(lightGrayColor);
+        estdidtLbl.font=RalewayRegular(appDelegate.font-4);
+        [statusScroll addSubview:estdidtLbl];
+       
+        
+        UIView * distdiv=[[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(estdidtLbl.frame)+10, estdistImg.frame.origin.y, 1, estdistImg.frame.size.height)];
+        distdiv.backgroundColor=Singlecolor(lightGrayColor);
+        [statusScroll addSubview:distdiv];
+        
+        
+        UIImageView * esttimeImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(distdiv.frame)+10, estdistImg.frame.origin.y, 15, 15)];
+        esttimeImg.image=image(@"est_time");
+        [statusScroll addSubview:esttimeImg];
+        
+        esttimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(esttimeImg.frame),CGRectGetMaxY(starttimeLbl.frame), 100, 21)];
+        esttimeLbl.textColor=Singlecolor(lightGrayColor);
+        esttimeLbl.font=RalewayRegular(appDelegate.font-4);
+        [statusScroll addSubview:esttimeLbl];
+        
+        scrollheight=CGRectGetMaxY(esttimeLbl.frame);
     }
     else if ([appDelegate.bookingstatusStr isEqualToString:@"3"])
     {
@@ -262,7 +289,10 @@
         
         scrollheight=CGRectGetMaxY(doneBtn.frame);
     }
-    
+    estdidtLbl.text=@": 2.5 Km";
+     [estdidtLbl autowidth:0];
+    esttimeLbl.text=@": 10 Mins";
+    [esttimeLbl autowidth:0];
     statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
 }
 - (void)doneAction

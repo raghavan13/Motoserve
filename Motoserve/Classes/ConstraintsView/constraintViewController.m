@@ -358,6 +358,11 @@ static CGFloat ZOProductCellSpacing         = 20.0;
             MapViewController * map=[[MapViewController alloc]init];
             [self.navigationController pushViewController:map animated:YES];
         }
+        else if ([sender tag]==2)
+        {
+            SuccessViewController * success=[[SuccessViewController alloc]init];
+            [self.navigationController pushViewController:success animated:YES];
+        }
         else
         {
             OrderhistoryViewController * histroy=[[OrderhistoryViewController alloc]init];
