@@ -9,7 +9,9 @@
 #import "NewbillViewController.h"
 #import "AppDelegate.h"
 #import "CPMetaFile.h"
-@interface NewbillViewController ()
+#import <Razorpay/Razorpay.h>
+
+@interface NewbillViewController ()<RazorpayPaymentCompletionProtocol>
 {
     UIView *navHeader;
     AppDelegate * appDelegate;
@@ -18,6 +20,8 @@
     NSString * price;
     UIImageView * cardImg,* cashImg;
     FLAnimatedImageView * sandclockmainImg;
+    BOOL paytypeselected,cod;
+    Razorpay * razor;
 }
 @end
 
@@ -31,7 +35,7 @@
     navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Bill Summary" IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
     
     sandclockmainImg=[[FLAnimatedImageView alloc]init];
-     [self.view addSubview:sandclockmainImg];
+    [self.view addSubview:sandclockmainImg];
     sandclockmainImg.translatesAutoresizingMaskIntoConstraints = NO;
     [sandclockmainImg.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:IS_IPHONEX?120:100].active=YES;
     [sandclockmainImg.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:20].active=YES;
@@ -42,25 +46,27 @@
     FLAnimatedImage *animatedImage1 = [FLAnimatedImage animatedImageWithGIFData:data1];
     sandclockmainImg.animatedImage= animatedImage1;
     sandclockmainImg.contentMode = UIViewContentModeScaleAspectFit;
-    
+    sandclockmainImg.hidden=YES;
     [sandclockmainImg startAnimating];
-    //[self createDesign];
     self->bookingtimer= [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
-    
-//    [NSTimer scheduledTimerWithTimeInterval:10.0
-//                                     target:self
-//                                   selector:@selector(targetMethod)
-//                                   userInfo:nil
-//                                    repeats:NO];
+    paytypeselected=NO;
+    cod=NO;
+    //[self createDesign];
+    razor = [Razorpay initWithKey:@"rzp_test_1DP5mmOlF5G5ag" andDelegate:self];
+    //    [NSTimer scheduledTimerWithTimeInterval:10.0
+    //                                     target:self
+    //                                   selector:@selector(targetMethod)
+    //                                   userInfo:nil
+    //                                    repeats:NO];
     //
 }
 
-- (void)targetMethod
-{
-    
-    //[self createDesign];
-    
-}
+//- (void)targetMethod
+//{
+//    
+//    //[self createDesign];
+//    
+//}
 - (void)backAction
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -117,7 +123,29 @@
          else
          {
              NSLog(@"1");
-             
+             if(self->cod)
+             {
+                 SuccessViewController * success=[[SuccessViewController alloc]init];
+                 [self.navigationController pushViewController:success animated:YES];
+             }
+             else
+             {
+                 NSDictionary *options = @{
+                                           @"amount": @"1000", // mandatory, in paise
+                                           // all optional other than amount.
+                                           @"image": @"https://url-to-image.png",
+                                           @"name": @"business or product name",
+                                           @"description": @"purchase description",
+                                           @"prefill" : @{
+                                                   @"email": @"pranav@razorpay.com",
+                                                   @"contact": @"8879524924"
+                                                   },
+                                           @"theme": @{
+                                                   @"color": @"#F37254"
+                                                   }
+                                           };
+                 [self->razor open:options];
+             }
              
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -126,7 +154,19 @@
          [self->appDelegate stopProgressView];
      }];
 }
+- (void)onPaymentSuccess:(nonnull NSString*)payment_id {
+    [[[UIAlertView alloc] initWithTitle:@"Payment Successful" message:payment_id delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
 
+- (void)onPaymentError:(int)code description:(nonnull NSString *)str {
+    [[[UIAlertView alloc] initWithTitle:@"Error" message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
+- (void)onExternalWalletSelected:(NSString *)walletName
+                 WithPaymentData:(NSDictionary *)paymentData {
+    //    [self showAlertWithTitle:EXTERNAL_METHOD_TITLE
+    //                  andMessage:[NSString stringWithFormat:EXTERNAL_METHOD_MESSAGE,
+    //                              walletName]];
+}
 - (void)getbooking
 {
     NSString *url =[UrlGenerator PostBooking];
@@ -147,10 +187,10 @@
          else
          {
              NSLog(@"1");
-            if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"] isEqualToString:@"6"])
-            {
-                self->sandclockmainImg.hidden=YES;
-                [self payment];
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"] isEqualToString:@"6"])
+             {
+                 self->sandclockmainImg.hidden=YES;
+                 [self payment];
              }
              else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"8"]) {
                  [self->bookingtimer invalidate];
@@ -177,7 +217,33 @@
 
 -(void)submitAction
 {
-    [self updatelocation];
+    //    if(cod==NO)
+    //    {
+    //        NSDictionary *options = @{
+    //                                  @"amount": @"1000", // mandatory, in paise
+    //                                  // all optional other than amount.
+    //                                  @"image": @"https://url-to-image.png",
+    //                                  @"name": @"business or product name",
+    //                                  @"description": @"purchase description",
+    //                                  @"prefill" : @{
+    //                                          @"email": @"pranav@razorpay.com",
+    //                                          @"contact": @"8879524924"
+    //                                          },
+    //                                  @"theme": @{
+    //                                          @"color": @"#F37254"
+    //                                          }
+    //                                  };
+    //        [self->razor open:options];
+    //    }
+    if(paytypeselected)
+    {
+        [self updatelocation];
+    }
+    else
+    {
+        [Utils showErrorAlert:@"Select Payment Type" delegate:nil];
+    }
+    
 }
 
 - (void)createDesign
@@ -230,8 +296,8 @@
     dateLbl.text=@"Wed, 12.12.2018";
     dateLbl.font=RalewayRegular(appDelegate.font-7);
     dateLbl.textColor=Singlecolor(grayColor);
-
-
+    
+    
     UIImageView * headerImg=[[UIImageView alloc]init];
     [MainView addSubview:headerImg];
     headerImg.translatesAutoresizingMaskIntoConstraints = NO;
@@ -240,8 +306,8 @@
     [headerImg.widthAnchor constraintEqualToConstant:SCREEN_WIDTH/2.5].active=YES;
     [headerImg.heightAnchor constraintEqualToAnchor:dateLbl.heightAnchor constant:5].active=YES;
     headerImg.image=image(@"service_header");
-
-
+    
+    
     UILabel * serviceLbl=[[UILabel alloc]init];
     [headerImg addSubview:serviceLbl];
     serviceLbl.translatesAutoresizingMaskIntoConstraints = NO;
@@ -253,7 +319,7 @@
     serviceLbl.textColor=Singlecolor(whiteColor);
     serviceLbl.textAlignment=NSTextAlignmentCenter;
     serviceLbl.font=RalewayRegular(appDelegate.font-6);
-
+    
     UILabel * orderidLbl=[[UILabel alloc]init];
     [MainView addSubview:orderidLbl];
     orderidLbl.translatesAutoresizingMaskIntoConstraints = NO;
@@ -261,14 +327,14 @@
     [orderidLbl.leftAnchor constraintEqualToAnchor:headerImg.rightAnchor constant:7].active=YES;
     [orderidLbl.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:-20].active=YES;
     //[orderidLbl.heightAnchor constraintEqualToConstant:40].active=YES;
-     orderidLbl.backgroundColor=Singlecolor(clearColor);
+    orderidLbl.backgroundColor=Singlecolor(clearColor);
     orderidLbl.text=@"Last Updated : 12pm";
     orderidLbl.font=RalewayRegular(appDelegate.font-7);
     orderidLbl.textColor=Singlecolor(grayColor);
     orderidLbl.textAlignment=NSTextAlignmentRight;
     orderidLbl.numberOfLines=2;
-
-
+    
+    
     UIView * imgdiv=[[UIView alloc]init];
     [MainView addSubview:imgdiv];
     imgdiv.translatesAutoresizingMaskIntoConstraints = NO;
@@ -277,8 +343,8 @@
     [imgdiv.widthAnchor constraintEqualToConstant:1].active=YES;
     [imgdiv.bottomAnchor constraintEqualToAnchor:MainView.bottomAnchor constant:-20].active=YES;
     imgdiv.backgroundColor=Singlecolor(lightGrayColor);
-
-
+    
+    
     UIView * orderdiv=[[UIView alloc]init];
     [MainView addSubview:orderdiv];
     orderdiv.translatesAutoresizingMaskIntoConstraints = NO;
@@ -287,7 +353,7 @@
     [orderdiv.widthAnchor constraintEqualToConstant:1].active=YES;
     [orderdiv.bottomAnchor constraintEqualToAnchor:MainView.bottomAnchor constant:-20].active=YES;
     orderdiv.backgroundColor=Singlecolor(lightGrayColor);
-
+    
     UIView * namedivView=[[UIView alloc]init];
     [MainView addSubview:namedivView];
     namedivView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -296,8 +362,8 @@
     [namedivView.rightAnchor constraintEqualToAnchor:orderdiv.leftAnchor constant:-5].active=YES;
     [namedivView.heightAnchor constraintEqualToConstant:1].active=YES;
     namedivView.backgroundColor=RGB(169, 197, 184);
-
-
+    
+    
     UILabel * noLbl=[[UILabel alloc]init];
     [MainView addSubview:noLbl];
     noLbl.translatesAutoresizingMaskIntoConstraints = NO;
@@ -308,8 +374,8 @@
     noLbl.text=@"TN 22 1458";
     noLbl.textAlignment=NSTextAlignmentCenter;
     noLbl.font=RalewayRegular(appDelegate.font-4);
-
-
+    
+    
     UILabel * typeLbl=[[UILabel alloc]init];
     [MainView addSubview:typeLbl];
     typeLbl.translatesAutoresizingMaskIntoConstraints = NO;
@@ -321,8 +387,8 @@
     typeLbl.textAlignment=NSTextAlignmentCenter;
     typeLbl.textColor=Singlecolor(grayColor);
     typeLbl.font=RalewayRegular(appDelegate.font-5);
-
-
+    
+    
     UILabel * servicecenterLbl=[[UILabel alloc]init];
     [MainView addSubview:servicecenterLbl];
     servicecenterLbl.translatesAutoresizingMaskIntoConstraints = NO;
@@ -334,8 +400,8 @@
     servicecenterLbl.textAlignment=NSTextAlignmentCenter;
     servicecenterLbl.textColor=Singlecolor(grayColor);
     servicecenterLbl.font=RalewayRegular(appDelegate.font-5);
-
-
+    
+    
     UIImageView * carImg=[[UIImageView alloc]init];
     [MainView addSubview:carImg];
     carImg.translatesAutoresizingMaskIntoConstraints = NO;
@@ -456,7 +522,7 @@
     //puntureinnerLbl.textAlignment=NSTextAlignmentRight;
     puntureinnerLbl.text=@"Punture";
     
-
+    
     UILabel * amtinnerLbl=[[UILabel alloc]init];
     [scroll addSubview:amtinnerLbl];
     amtinnerLbl.translatesAutoresizingMaskIntoConstraints = NO;
@@ -553,7 +619,7 @@
     cashImg.image=image(@"radiouncheck");
     
     
-     UILabel * cashLbl=[[UILabel alloc]init];
+    UILabel * cashLbl=[[UILabel alloc]init];
     [scroll addSubview:cashLbl];
     cashLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [cashLbl.topAnchor constraintEqualToAnchor:totalamtLbl.bottomAnchor constant:60].active=YES;
@@ -596,7 +662,7 @@
     cardLbl.font=RalewayRegular(appDelegate.font-4);
     
     
-   UIButton *  cardBtn=[[UIButton alloc]init];
+    UIButton *  cardBtn=[[UIButton alloc]init];
     [scroll addSubview:cardBtn];
     cardBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [cardBtn.topAnchor constraintEqualToAnchor:cashBtn.topAnchor constant:0].active=YES;
@@ -622,7 +688,7 @@
     submitBtn.layer.borderWidth = 0.5;
     submitBtn.layer.masksToBounds = true;
     //submitBtn.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
-    //[submitBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
+    [submitBtn addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
     [scroll.bottomAnchor constraintEqualToAnchor:submitBtn.bottomAnchor constant:20].active=YES;
 }
 - (void)paytypeAction:(id)sender
@@ -630,11 +696,14 @@
     if ([sender tag]==2) {
         cardImg.image=image(@"radiocheck");
         cashImg.image=image(@"radiouncheck");
+        cod=NO;
     }
     else
     {
         cardImg.image=image(@"radiouncheck");
         cashImg.image=image(@"radiocheck");
+        cod=YES;
     }
+    paytypeselected=YES;
 }
 @end
