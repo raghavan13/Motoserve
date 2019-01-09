@@ -35,17 +35,37 @@
     [MainView.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:-10].active=YES;
     [MainView.heightAnchor constraintEqualToConstant:110].active=YES;
     MainView.backgroundColor=Singlecolor(clearColor);
-    MainView.layer.borderColor = [UIColor blackColor].CGColor;
+    MainView.layer.borderColor = [UIColor clearColor].CGColor;
     MainView.layer.borderWidth = 1.0f;
     MainView.layer.cornerRadius = 8;
     MainView.layer.masksToBounds = true;
+    
+    UIButton * bgBtn=[[UIButton alloc]init];
+    [MainView addSubview:bgBtn];
+    bgBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    [bgBtn.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:0].active=YES;
+    [bgBtn.leftAnchor constraintEqualToAnchor:MainView.leftAnchor constant:0].active=YES;
+    [bgBtn.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:0].active=YES;
+    [bgBtn.heightAnchor constraintEqualToAnchor:MainView.heightAnchor constant:0].active=YES;
+    [bgBtn setBackgroundImage:image(@"list_bg") forState:UIControlStateNormal];
+    bgBtn.userInteractionEnabled=NO;
+    
+    
+   //MainView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"list_bg"]];
+
+    
+  //  UIGraphicsBeginImageContext(MainView.frame.size);
+    //[[UIImage imageNamed:@"list_bg"] drawInRect:MainView.bounds];
+   // UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+   // UIGraphicsEndImageContext();
+//MainView.backgroundColor = [UIColor colorWithPatternImage:image];
     
     
     
     UILabel * dateLbl=[[UILabel alloc]init];
     [MainView addSubview:dateLbl];
     dateLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [dateLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:0].active=YES;
+    [dateLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:5].active=YES;
     [dateLbl.leftAnchor constraintEqualToAnchor:MainView.leftAnchor constant:10].active=YES;
     [dateLbl.widthAnchor constraintEqualToConstant:SCREEN_WIDTH/4.5].active=YES;
     [dateLbl.heightAnchor constraintEqualToConstant:21].active=YES;
@@ -80,7 +100,7 @@
     UILabel * orderidLbl=[[UILabel alloc]init];
     [MainView addSubview:orderidLbl];
     orderidLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [orderidLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:5].active=YES;
+    [orderidLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:10].active=YES;
     [orderidLbl.leftAnchor constraintEqualToAnchor:headerImg.rightAnchor constant:7].active=YES;
     [orderidLbl.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:-20].active=YES;
     //[orderidLbl.heightAnchor constraintEqualToConstant:40].active=YES;

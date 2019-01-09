@@ -10,6 +10,7 @@
 		2507165E21E3231300A1E35A /* OrderhistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2507165D21E3231300A1E35A /* OrderhistoryViewController.m */; };
 		2507166221E3236B00A1E35A /* OrderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2507166121E3236B00A1E35A /* OrderViewCell.m */; };
 		250862FA21DCE98E0060F903 /* constraintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250862F921DCE98E0060F903 /* constraintViewController.m */; };
+		250889BA21E5D6C400887ACD /* CurrentLocation.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 250889B921E5D6C400887ACD /* CurrentLocation.gpx */; };
 		25105194217703570076C3F2 /* AddvechicleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25105193217703570076C3F2 /* AddvechicleViewController.m */; };
 		25343AA521648998000C6B6C /* OTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25343AA421648998000C6B6C /* OTPViewController.m */; };
 		25343ABA21649F39000C6B6C /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25343AA721649F39000C6B6C /* Raleway-Black.ttf */; };
@@ -156,6 +157,7 @@
 		2507166121E3236B00A1E35A /* OrderViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderViewCell.m; sourceTree = "<group>"; };
 		250862F821DCE98E0060F903 /* constraintViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constraintViewController.h; sourceTree = "<group>"; };
 		250862F921DCE98E0060F903 /* constraintViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = constraintViewController.m; sourceTree = "<group>"; };
+		250889B921E5D6C400887ACD /* CurrentLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CurrentLocation.gpx; sourceTree = "<group>"; };
 		25105192217703570076C3F2 /* AddvechicleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddvechicleViewController.h; sourceTree = "<group>"; };
 		25105193217703570076C3F2 /* AddvechicleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddvechicleViewController.m; sourceTree = "<group>"; };
 		25343AA321648998000C6B6C /* OTPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OTPViewController.h; sourceTree = "<group>"; };
@@ -1034,6 +1036,7 @@
 				2578C55A21B7DBE000E3C174 /* service1.jpg */,
 				2578C55E21B7E11B00E3C174 /* service2.jpg */,
 				25343AA621649F39000C6B6C /* raleway */,
+				250889B921E5D6C400887ACD /* CurrentLocation.gpx */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1246,6 +1249,7 @@
 				5283A493216346D200DA69CB /* LaunchScreen.storyboard in Resources */,
 				25343AC321649F39000C6B6C /* Raleway-Light.ttf in Resources */,
 				522D7B9D21639F9400A7385B /* IQKeyboardManager.bundle in Resources */,
+				250889BA21E5D6C400887ACD /* CurrentLocation.gpx in Resources */,
 				25343ABD21649F39000C6B6C /* Raleway-BoldItalic.ttf in Resources */,
 				25343AC221649F39000C6B6C /* Raleway-Italic.ttf in Resources */,
 				25343ABB21649F39000C6B6C /* Raleway-BlackItalic.ttf in Resources */,

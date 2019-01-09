@@ -44,18 +44,22 @@
     sandclockmainImg.contentMode = UIViewContentModeScaleAspectFit;
     
     [sandclockmainImg startAnimating];
-    [NSTimer scheduledTimerWithTimeInterval:10.0
-                                     target:self
-                                   selector:@selector(targetMethod)
-                                   userInfo:nil
-                                    repeats:NO];
-    //[self payment];
+    //[self createDesign];
+    self->bookingtimer= [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+    
+//    [NSTimer scheduledTimerWithTimeInterval:10.0
+//                                     target:self
+//                                   selector:@selector(targetMethod)
+//                                   userInfo:nil
+//                                    repeats:NO];
+    //
 }
 
 - (void)targetMethod
 {
-    sandclockmainImg.hidden=YES;
-    [self createDesign];
+    
+    //[self createDesign];
+    
 }
 - (void)backAction
 {
@@ -81,6 +85,7 @@
          else
          {
              NSLog(@"1");
+             [self createDesign];
              self->price=[[[[responseObject valueForKey:@"data"]valueForKey:@"payment"]objectAtIndex:0]valueForKey:@"amount"];
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -112,7 +117,7 @@
          else
          {
              NSLog(@"1");
-             self->bookingtimer= [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+             
              
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -142,7 +147,12 @@
          else
          {
              NSLog(@"1");
-             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"8"]) {
+            if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"] isEqualToString:@"6"])
+            {
+                self->sandclockmainImg.hidden=YES;
+                [self payment];
+             }
+             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"8"]) {
                  [self->bookingtimer invalidate];
                  self->bookingtimer=nil;
                  [Utils showErrorAlert:@"Thank You" delegate:self];
@@ -191,17 +201,28 @@
     [MainView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-10].active=YES;
     [MainView.heightAnchor constraintEqualToConstant:110].active=YES;
     MainView.backgroundColor=Singlecolor(clearColor);
-    MainView.layer.borderColor = [UIColor blackColor].CGColor;
+    MainView.layer.borderColor = [UIColor clearColor].CGColor;
     MainView.layer.borderWidth = 1.0f;
     MainView.layer.cornerRadius = 8;
     MainView.layer.masksToBounds = true;
+    
+    
+    UIButton * bgBtn=[[UIButton alloc]init];
+    [MainView addSubview:bgBtn];
+    bgBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    [bgBtn.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:0].active=YES;
+    [bgBtn.leftAnchor constraintEqualToAnchor:MainView.leftAnchor constant:0].active=YES;
+    [bgBtn.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:0].active=YES;
+    [bgBtn.heightAnchor constraintEqualToAnchor:MainView.heightAnchor constant:0].active=YES;
+    [bgBtn setBackgroundImage:image(@"list_bg") forState:UIControlStateNormal];
+    bgBtn.userInteractionEnabled=NO;
     
     
     
     UILabel * dateLbl=[[UILabel alloc]init];
     [MainView addSubview:dateLbl];
     dateLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [dateLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:0].active=YES;
+    [dateLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:5].active=YES;
     [dateLbl.leftAnchor constraintEqualToAnchor:MainView.leftAnchor constant:10].active=YES;
     [dateLbl.widthAnchor constraintEqualToConstant:SCREEN_WIDTH/4.5].active=YES;
     [dateLbl.heightAnchor constraintEqualToConstant:21].active=YES;
@@ -236,7 +257,7 @@
     UILabel * orderidLbl=[[UILabel alloc]init];
     [MainView addSubview:orderidLbl];
     orderidLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [orderidLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:5].active=YES;
+    [orderidLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:10].active=YES;
     [orderidLbl.leftAnchor constraintEqualToAnchor:headerImg.rightAnchor constant:7].active=YES;
     [orderidLbl.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:-20].active=YES;
     //[orderidLbl.heightAnchor constraintEqualToConstant:40].active=YES;

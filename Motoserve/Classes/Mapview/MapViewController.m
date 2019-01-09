@@ -111,23 +111,42 @@
     driverMarker = [[GMSMarker alloc] init];
     driverMarker.position = self.oldCoordinate;
     driverMarker.icon = [UIImage imageNamed:@"carIcon"];
-    driverMarker.map = self.mapView;
+    if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+        driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
+    }
     
+    driverMarker.map = self.mapView;
+    [mapView setSelectedMarker:driverMarker];
     //set counter value 0
     //
     self.counter = 0;
     
     //start the timer, change the interval based on your requirement
     //
-   // getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+    getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     
-    appDelegate.bookingstatusStr=@"2";
-    [NSTimer scheduledTimerWithTimeInterval:10.0
-                                     target:self
-                                   selector:@selector(targetMethod)
-                                   userInfo:nil
-                                    repeats:NO];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updatebill)
+                                                 name:@"updatebill"
+                                               object:nil];
+    
+//    appDelegate.bookingstatusStr=@"2";
+//    [NSTimer scheduledTimerWithTimeInterval:10.0
+//                                     target:self
+//                                   selector:@selector(targetMethod)
+//                                   userInfo:nil
+//                                    repeats:NO];
 }
+
+- (void)updatebill
+{
+    [self->getbookingtimer invalidate];
+    self->getbookingtimer = nil;
+    NewbillViewController * bill=[[NewbillViewController alloc]init];
+    //bill.bookidStr=self->appDelegate.bookingidStr;
+    [self.navigationController pushViewController:bill animated:YES];
+}
+
 
 - (void)targetMethod
 {
@@ -183,6 +202,7 @@
              NSLog(@"1");
              
              if (![self->appDelegate.bookingstatusStr isEqualToString:[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]]) {
+                 self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"];
                  [[NSNotificationCenter defaultCenter]
                       postNotificationName:@"changetype"
                       object:nil];
@@ -202,14 +222,14 @@
              {
                  self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"];
              }
-             if ([self->appDelegate.bookingstatusStr isEqualToString:@"6"])
-             {
-                 [self->getbookingtimer invalidate];
-                 self->getbookingtimer = nil;
-                 billViewController * bill=[[billViewController alloc]init];
-                 bill.bookidStr=self->appDelegate.bookingidStr;
-                 [self.navigationController pushViewController:bill animated:YES];
-             }
+//             if ([self->appDelegate.bookingstatusStr isEqualToString:@"6"])
+//             {
+//                 [self->getbookingtimer invalidate];
+//                 self->getbookingtimer = nil;
+//                 billViewController * bill=[[billViewController alloc]init];
+//                 bill.bookidStr=self->appDelegate.bookingidStr;
+//                 [self.navigationController pushViewController:bill animated:YES];
+//             }
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          NSLog(@"Error: %@", error);

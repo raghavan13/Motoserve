@@ -64,30 +64,39 @@
     waitingLbl.font=RalewayRegular(appDelegate.font-2);
     
     
-    UIView * callView=[[UIView alloc]initWithFrame:CGRectMake(waitingView.frame.origin.x+20, CGRectGetMaxY(waitingView.frame)+20, waitingView.frame.size.width-40, 50)];
-    callView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    callView.layer.borderWidth = 1.0f;
-    callView.layer.cornerRadius = 8;
-    callView.layer.masksToBounds = true;
-    [contentView addSubview:callView];
+//    UIView * callView=[[UIView alloc]initWithFrame:CGRectMake(waitingView.frame.origin.x+20, CGRectGetMaxY(waitingView.frame)+20, waitingView.frame.size.width-40, 50)];
+//    callView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    callView.layer.borderWidth = 1.0f;
+//    callView.layer.cornerRadius = 8;
+//    callView.layer.masksToBounds = true;
+//    [contentView addSubview:callView];
     
-    UILabel * noLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, callView.frame.size.width/1.4, callView.frame.size.height)];
+    
+    UIButton * callBtn=[[UIButton alloc]initWithFrame:CGRectMake(waitingView.frame.origin.x+20, CGRectGetMaxY(waitingView.frame)+20, waitingView.frame.size.width-40, 50)];
+    callBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    callBtn.layer.borderWidth = 1.0f;
+    callBtn.layer.cornerRadius = 8;
+    callBtn.layer.masksToBounds = true;
+    [callBtn addTarget:self action:@selector(callAction) forControlEvents:UIControlEventTouchUpInside];
+    [contentView addSubview:callBtn];
+    
+    UILabel * noLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, callBtn.frame.size.width/1.4, callBtn.frame.size.height)];
     noLbl.text=@"8778441334000";
     noLbl.textAlignment=NSTextAlignmentCenter;
-    [callView addSubview:noLbl];
+    [callBtn addSubview:noLbl];
     noLbl.textColor=Singlecolor(blackColor);
     noLbl.font=RalewayRegular(appDelegate.font-2);
     
-    UIImageView * callImg=[[UIImageView alloc]initWithFrame:CGRectMake(callView.frame.size.width-60, callView.frame.size.height/2.0-15, 50, 30)];
+    UIImageView * callImg=[[UIImageView alloc]initWithFrame:CGRectMake(callBtn.frame.size.width-60, callBtn.frame.size.height/2.0-15, 50, 30)];
     callImg.image=image(@"24");
-    [callView addSubview:callImg];
+    [callBtn addSubview:callImg];
     
-    UIButton * callBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, callView.frame.size.width, callView.frame.size.height)];
-    [callView addSubview:callBtn];
+//    UIButton * callBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, callView.frame.size.width, callView.frame.size.height)];
+//    [callView addSubview:callBtn];
     
     
     
-    tryagainBtn=[[UIButton alloc]initWithFrame:CGRectMake(contentView.frame.size.width/4, CGRectGetMaxY(callView.frame)+30, contentView.frame.size.width/4, 25)];
+    tryagainBtn=[[UIButton alloc]initWithFrame:CGRectMake(contentView.frame.size.width/4, CGRectGetMaxY(callBtn.frame)+30, contentView.frame.size.width/4, 25)];
     [tryagainBtn setBackgroundImage:image(@"tryagain") forState:UIControlStateNormal];
     [tryagainBtn addTarget:self action:@selector(tryagainAction) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:tryagainBtn];
@@ -99,6 +108,13 @@
     overallsecond=0;
 }
 
+
+- (void)callAction
+{
+    NSString *phoneStr = [[NSString alloc] initWithFormat:@"tel:%@",@"8778441334"];
+    NSURL *phoneURL = [[NSURL alloc] initWithString:phoneStr];
+    [[UIApplication sharedApplication] openURL:phoneURL];
+}
 - (void)tryagainAction
 {
     [appDelegate startProgressView:self.view];

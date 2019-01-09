@@ -58,32 +58,41 @@
     //statusScroll.backgroundColor=Singlecolor(redColor);
     
     UILabel * vehiclenoLbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 10, statusScroll.frame.size.width, 21)];
-    vehiclenoLbl.text=@"TN 45 1420 - Hero Splendor Pro";
-    vehiclenoLbl.font=RalewayRegular(appDelegate.font-2);
+    NSLog(@"srerg %@ bfdbf %@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"],[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"model"]);
+    if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"]]||[Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"model"]]) {
+        vehiclenoLbl.text=[[NSString stringWithFormat:@"%@ - %@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"],[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"model"]]capitalizedString];//@"TN 45 1420 - Hero Splendor Pro";
+    }
+    vehiclenoLbl.font=RalewayBold(appDelegate.font-2);
     vehiclenoLbl.textAlignment=NSTextAlignmentCenter;
     [statusScroll addSubview:vehiclenoLbl];
     
     
     UILabel * areaLbl=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(vehiclenoLbl.frame)+10, statusScroll.frame.size.width, 21)];
-    areaLbl.text=@"Adyar Motors";
-    areaLbl.font=RalewayRegular(appDelegate.font-2);https://mail.google.com/mail/u/0/#inbox/FMfcgxwBTsjmdrfdWctjPMJfhbCgBKlc?projector=1&messagePartId=0.3
+    if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+        areaLbl.text=[[NSString stringWithFormat:@"%@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]uppercaseString];//@"Adyar Motors";
+    }
+    
+    areaLbl.font=RalewayBold(appDelegate.font-2);https://mail.google.com/mail/u/0/#inbox/FMfcgxwBTsjmdrfdWctjPMJfhbCgBKlc?projector=1&messagePartId=0.3
     areaLbl.textAlignment=NSTextAlignmentCenter;
     [statusScroll addSubview:areaLbl];
     
     
-    UILabel * bookingidLbl=[[UILabel alloc]initWithFrame:CGRectMake(60, CGRectGetMaxY(areaLbl.frame)+10, statusScroll.frame.size.width/3.0, 21)];
-    bookingidLbl.text=@"Booking ID:15257";
-    bookingidLbl.font=RalewayRegular(appDelegate.font-6);
+    UILabel * bookingidLbl=[[UILabel alloc]initWithFrame:CGRectMake(60, CGRectGetMaxY(areaLbl.frame)+10, statusScroll.frame.size.width/2.8, 21)];
+    bookingidLbl.text=[NSString stringWithFormat:@"Booking ID:%@",appDelegate.bookingidStr];//@"Booking ID:15257";
+    bookingidLbl.font=RalewayRegular(appDelegate.font-7);
     bookingidLbl.textAlignment=NSTextAlignmentLeft;
     [statusScroll addSubview:bookingidLbl];
     
     
-    UILabel * dateLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(bookingidLbl.frame), bookingidLbl.frame.origin.y, bookingidLbl.frame.size.width, bookingidLbl.frame.size.height)];
-    NSDate * startdate=[NSDate date];
-    [dateFormat setDateFormat:@"dd.mm.yyyy"];
-    dateLbl.text=[NSString stringWithFormat:@"Date:%@",[dateFormat stringFromDate:startdate]];
-    //dateLbl.text=@"Date:12.01.2019";
-    dateLbl.font=RalewayRegular(appDelegate.font-6);
+    UILabel * dateLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(bookingidLbl.frame), bookingidLbl.frame.origin.y, statusScroll.frame.size.width/3.0, bookingidLbl.frame.size.height)];
+    if ([Utils isCheckNotNULL:[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"lastUpdated"]]) {
+    NSArray * seperatetransidArray= [[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"lastUpdated"] componentsSeparatedByString:@"T"];
+    if ([Utils isCheckNotNULL:seperatetransidArray]) {
+        dateLbl.text=[NSString stringWithFormat:@"Date:%@",[Utils GlobalDateConvert:[seperatetransidArray objectAtIndex:0] inputFormat:@"yyyy-mm-dd" outputFormat:@"dd.mm.yyyy"]];
+    }
+    }
+    
+    dateLbl.font=RalewayRegular(appDelegate.font-8);
     dateLbl.textAlignment=NSTextAlignmentRight;
     [statusScroll addSubview:dateLbl];
     
@@ -102,7 +111,10 @@
     [waitingView addSubview:profImg];
     
     UILabel * nameLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(profImg.frame)-5, 5, waitingView.frame.size.width-(CGRectGetMaxX(profImg.frame)-10), 21)];
-    nameLbl.text=@"Vinoth Kumar";
+    if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"userName"]]) {
+        nameLbl.text=[NSString stringWithFormat:@"%@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"userName"]];
+    }
+    
     //nameLbl.backgroundColor=Singlecolor(grayColor);
     nameLbl.textAlignment=NSTextAlignmentCenter;
     [waitingView addSubview:nameLbl];
@@ -112,8 +124,14 @@
     [waitingView addSubview:divView];
     
     
+    nameLbl.frame=CGRectMake(nameLbl.frame.origin.x, nameLbl.frame.origin.y, divView.frame.size.width, nameLbl.frame.size.height);
+    
+    
     UILabel * noLbl=[[UILabel alloc]initWithFrame:CGRectMake(nameLbl.frame.origin.x+10, CGRectGetMaxY(divView.frame)+20, nameLbl.frame.size.width/1.8, 21)];
-    noLbl.text=@"9787430308";
+    if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"mobile"]]) {
+        noLbl.text=[NSString stringWithFormat:@"%@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"mobile"]];//@"9787430308";
+    }
+    
     noLbl.textAlignment=NSTextAlignmentCenter;
     // noLbl.backgroundColor=Singlecolor(grayColor);
     [waitingView addSubview:noLbl];
@@ -127,6 +145,15 @@
     callImg.layer.masksToBounds = YES;
     callImg.image=image(@"phone");
     [waitingView addSubview:callImg];
+    
+    
+    UIButton * callBtn=[[UIButton alloc]initWithFrame:CGRectMake(noLbl.frame.origin.x, callImg.frame.origin.y, CGRectGetMaxX(callImg.frame),callImg.frame.size.height)];
+    [callBtn addTarget:self action:@selector(callAction) forControlEvents:UIControlEventTouchUpInside];
+    //callBtn.backgroundColor=Singlecolor(redColor);
+    [waitingView addSubview:callBtn];
+    
+    
+    
     
     UILabel * statusLbl=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(waitingView.frame)+10, statusScroll.frame.size.width, 21)];
     statusLbl.text=@"Status";
@@ -162,6 +189,15 @@
                                              selector:@selector(receivesegmentNotification)
                                                  name:@"changetype"
                                                object:nil];
+}
+
+- (void)callAction
+{
+    if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"mobile"]]) {
+        NSString *phoneStr = [[NSString alloc] initWithFormat:@"tel:%@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"mobile"]];
+        NSURL *phoneURL = [[NSURL alloc] initWithString:phoneStr];
+        [[UIApplication sharedApplication] openURL:phoneURL];
+    }
 }
 - (void)gestureHandlerMethod
 {
@@ -335,8 +371,10 @@
          {
              NSLog(@"1");
              self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"];
-             
-             
+             [self gestureHandlerMethod];
+             [[NSNotificationCenter defaultCenter]
+              postNotificationName:@"updatebill"
+              object:nil];
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          NSLog(@"Error: %@", error);
