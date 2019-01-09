@@ -77,14 +77,16 @@
     [statusScroll addSubview:areaLbl];
     
     
-    UILabel * bookingidLbl=[[UILabel alloc]initWithFrame:CGRectMake(60, CGRectGetMaxY(areaLbl.frame)+10, statusScroll.frame.size.width/2.8, 21)];
-    bookingidLbl.text=[NSString stringWithFormat:@"Booking ID:%@",appDelegate.bookingidStr];//@"Booking ID:15257";
+    UILabel * bookingidLbl=[[UILabel alloc]initWithFrame:CGRectMake(60, CGRectGetMaxY(areaLbl.frame)+10, statusScroll.frame.size.width/3.0, 21)];
+   // text = [text substringToIndex:NSMaxRange([text rangeOfComposedCharacterSequenceAtIndex:2])];
+
+    bookingidLbl.text=[NSString stringWithFormat:@"Booking ID:%@",[appDelegate.bookingidStr substringToIndex:NSMaxRange([appDelegate.bookingidStr rangeOfComposedCharacterSequenceAtIndex:5])]];//@"Booking ID:15257";
     bookingidLbl.font=RalewayRegular(appDelegate.font-7);
     bookingidLbl.textAlignment=NSTextAlignmentLeft;
     [statusScroll addSubview:bookingidLbl];
     
     
-    UILabel * dateLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(bookingidLbl.frame), bookingidLbl.frame.origin.y, statusScroll.frame.size.width/3.0, bookingidLbl.frame.size.height)];
+    UILabel * dateLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(bookingidLbl.frame), bookingidLbl.frame.origin.y, bookingidLbl.frame.size.width, bookingidLbl.frame.size.height)];
     if ([Utils isCheckNotNULL:[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"lastUpdated"]]) {
     NSArray * seperatetransidArray= [[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"lastUpdated"] componentsSeparatedByString:@"T"];
     if ([Utils isCheckNotNULL:seperatetransidArray]) {

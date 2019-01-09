@@ -155,18 +155,18 @@
      }];
 }
 - (void)onPaymentSuccess:(nonnull NSString*)payment_id {
-    [[[UIAlertView alloc] initWithTitle:@"Payment Successful" message:payment_id delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+//    [[[UIAlertView alloc] initWithTitle:@"Payment Successful" message:payment_id delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    [Utils showErrorAlert:@"Payment Success" delegate:nil];
+    SuccessViewController * success=[[SuccessViewController alloc]init];
+    [self.navigationController pushViewController:success animated:YES];
 }
 
 - (void)onPaymentError:(int)code description:(nonnull NSString *)str {
-    [[[UIAlertView alloc] initWithTitle:@"Error" message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+//    [[[UIAlertView alloc] initWithTitle:@"Error" message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    NSString * failureStr=[NSString stringWithFormat:@"Payment Failure \n %@",str];
+    [Utils showErrorAlert:failureStr delegate:nil];
 }
-- (void)onExternalWalletSelected:(NSString *)walletName
-                 WithPaymentData:(NSDictionary *)paymentData {
-    //    [self showAlertWithTitle:EXTERNAL_METHOD_TITLE
-    //                  andMessage:[NSString stringWithFormat:EXTERNAL_METHOD_MESSAGE,
-    //                              walletName]];
-}
+
 - (void)getbooking
 {
     NSString *url =[UrlGenerator PostBooking];
@@ -217,24 +217,6 @@
 
 -(void)submitAction
 {
-    //    if(cod==NO)
-    //    {
-    //        NSDictionary *options = @{
-    //                                  @"amount": @"1000", // mandatory, in paise
-    //                                  // all optional other than amount.
-    //                                  @"image": @"https://url-to-image.png",
-    //                                  @"name": @"business or product name",
-    //                                  @"description": @"purchase description",
-    //                                  @"prefill" : @{
-    //                                          @"email": @"pranav@razorpay.com",
-    //                                          @"contact": @"8879524924"
-    //                                          },
-    //                                  @"theme": @{
-    //                                          @"color": @"#F37254"
-    //                                          }
-    //                                  };
-    //        [self->razor open:options];
-    //    }
     if(paytypeselected)
     {
         [self updatelocation];
