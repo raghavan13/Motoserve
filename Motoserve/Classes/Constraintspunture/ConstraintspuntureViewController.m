@@ -168,8 +168,16 @@
     NSMutableDictionary * locationDic=[[NSMutableDictionary alloc]init];
     [locationDic setObject:@"Point" forKey:@"type"];
     [locationDic setObject:latArray forKey:@"coordinates"];
+    NSString * serviceonStr=@"";
+    if (appDelegate.onrdbool) {
+        serviceonStr=@"o";
+    }
+    else
+    {
+        serviceonStr=@"";
+    }
     NSDictionary * parameters = @{
-                                  @"userId":[login valueForKey:@"_id"],@"vehicleId":vehicleidStr,@"location":locationDic,@"serviceType":@"P",@"serviceOn":@"o"
+                                  @"userId":[login valueForKey:@"_id"],@"vehicleId":vehicleidStr,@"location":locationDic,@"serviceType":appDelegate.servicetype,@"serviceOn":serviceonStr
                                   };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {

@@ -16,7 +16,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property(nonatomic,retain)NSString *deviceType,*bookingidStr,*bookingstatusStr;
+@property(nonatomic,retain)NSString *deviceType,*bookingidStr,*bookingstatusStr,*servicetype;
 @property(nonatomic,readwrite)float hVal,wVal,font;
 @property(nonatomic)BOOL onrdbool;
 @property (strong,nonatomic)NSArray * servicedetails;

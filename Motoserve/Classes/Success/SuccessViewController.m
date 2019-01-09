@@ -66,10 +66,16 @@
     [submitBtn setTitle:[NSString stringWithFormat:@"Done"] forState:UIControlStateNormal];
     submitBtn.titleLabel.font=RalewayRegular(appDelegate.font-2);
     [submitBtn setTitleColor:Singlecolor(whiteColor) forState:UIControlStateNormal];
+    [submitBtn addTarget:self action:@selector(sumbitAction) forControlEvents:UIControlEventTouchUpInside];
     submitBtn.layer.cornerRadius = 5;
     submitBtn.layer.borderWidth = 0.5;
     submitBtn.layer.masksToBounds = true;
     
+}
+- (void)sumbitAction
+{
+    constraintViewController * home=[[constraintViewController alloc]init];
+    [self.navigationController pushViewController:home animated:YES];
 }
 
 @end

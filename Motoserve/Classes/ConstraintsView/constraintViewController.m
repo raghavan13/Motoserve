@@ -338,14 +338,14 @@ static CGFloat ZOProductCellSpacing         = 20.0;
 - (void)servicetypeAction:(id)sender {
     if (selected==0) {
         if ([sender tag]==0) {
-            ConstraintspuntureViewController * punture=[[ConstraintspuntureViewController alloc]init];
-            [self.navigationController pushViewController:punture animated:YES];
+            appDelegate.servicetype=@"p";
         }
         else
         {
-            TryagainViewController * try=[[TryagainViewController alloc]init];
-            [self.navigationController pushViewController:try animated:YES];
+            appDelegate.servicetype=@"";
         }
+        ConstraintspuntureViewController * punture=[[ConstraintspuntureViewController alloc]init];
+        [self.navigationController pushViewController:punture animated:YES];
     }
     else
     {
@@ -362,6 +362,11 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         {
             SuccessViewController * success=[[SuccessViewController alloc]init];
             [self.navigationController pushViewController:success animated:YES];
+        }
+        else if ([sender tag]==3)
+        {
+            TryagainViewController * try=[[TryagainViewController alloc]init];
+            [self.navigationController pushViewController:try animated:YES];
         }
         else
         {
