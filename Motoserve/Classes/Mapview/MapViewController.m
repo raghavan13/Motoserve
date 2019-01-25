@@ -123,7 +123,7 @@
     
     //start the timer, change the interval based on your requirement
     //
-    getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+   // getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updatebill)

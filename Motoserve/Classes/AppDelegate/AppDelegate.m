@@ -126,12 +126,13 @@
     UIViewController *firstVC;
     if (![Utils isCheckNotNULL:login])
     {
-         firstVC=[[LoginViewController alloc]init];
+         firstVC=[[MapViewController alloc]init];
     }
     else
     {
         firstVC=[[constraintViewController alloc]init];
     }
+    _serviceon=@"p";
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:firstVC];

@@ -19,22 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Motoserve/Classes/Orderhistory/OrderhistoryViewController.m"
-            timestampString = "568637003.538121"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Motoserve/Classes/TryagainView/TryagainViewController.m"
             timestampString = "568724218.0126899"
             startingColumnNumber = "9223372036854775807"
@@ -51,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Motoserve/Classes/DraggableView/DraggableViewController.m"
-            timestampString = "568733059.329513"
+            filePath = "Motoserve/Classes/Orderhistory/OrderhistoryViewController.m"
+            timestampString = "570086236.898196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "-callAction"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "-GetBookinglist"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Motoserve/Classes/DraggableView/DraggableViewController.m"
-            timestampString = "568733059.329592"
+            filePath = "Motoserve/Classes/Orderhistory/OrderhistoryViewController.m"
+            timestampString = "570086236.898967"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-createDesign"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "-GetBookinglist"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

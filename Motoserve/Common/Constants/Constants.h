@@ -145,4 +145,6 @@ FOUNDATION_EXPORT NSString * const Post_UpdateStatus;
 FOUNDATION_EXPORT NSString * const Post_ResendOtp;
 
 FOUNDATION_EXPORT NSString * const Post_Payment;
+
+FOUNDATION_EXPORT NSString * const Post_Bookinglist;
 @end

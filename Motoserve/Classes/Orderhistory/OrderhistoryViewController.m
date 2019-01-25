@@ -28,6 +28,7 @@
     navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Order History" IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
     
     [self createDesign];
+    [self GetBookinglist];
 }
 
 - (void)createDesign
@@ -151,5 +152,37 @@
     }
     return cell;
 }
-
+- (void)GetBookinglist
+{
+    [appDelegate startProgressView:self.view];
+    NSString *url =[UrlGenerator PostBookinglist];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
+    NSDictionary * dic = @{
+                           @"userId":[login valueForKey:@"_id"]
+                           };
+    
+    [manager POST:url parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSLog(@"response data %@",responseObject);
+         [self->appDelegate stopProgressView];
+         //[Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
+         
+         if ([[responseObject objectForKey:@"status"]integerValue]==0) {
+             NSLog(@"0");
+         }
+         else
+         {
+             NSLog(@"1");
+             
+         }
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         NSLog(@"Error: %@", error);
+         [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
+         [self->appDelegate stopProgressView];
+     }];
+    
+}
 @end

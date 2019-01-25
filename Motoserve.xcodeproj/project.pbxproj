@@ -111,6 +111,8 @@
 		25D9256521709D5A00249C87 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9255321709D5A00249C87 /* UIImageView+HighlightedWebCache.m */; };
 		25D9256621709D5A00249C87 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9255521709D5A00249C87 /* UIImageView+WebCache.m */; };
 		25D9256721709D5A00249C87 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9255721709D5A00249C87 /* UIView+WebCacheOperation.m */; };
+		25DCACDE21FB06F500F00ED8 /* PrebookscheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25DCACDD21FB06F500F00ED8 /* PrebookscheduleViewController.m */; };
+		25DCACE221FB370000F00ED8 /* ShopviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25DCACE121FB370000F00ED8 /* ShopviewCell.m */; };
 		25E19C31219C274300730E0A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E19C30219C274300730E0A /* MapViewController.m */; };
 		25EED80821E46A480009FA4F /* NewbillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EED80721E46A480009FA4F /* NewbillViewController.m */; };
 		25EED80E21E4A8F80009FA4F /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EED80A21E4A8F70009FA4F /* FLAnimatedImage.m */; };
@@ -343,6 +345,10 @@
 		25D9255521709D5A00249C87 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		25D9255621709D5A00249C87 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		25D9255721709D5A00249C87 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		25DCACDC21FB06F500F00ED8 /* PrebookscheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrebookscheduleViewController.h; sourceTree = "<group>"; };
+		25DCACDD21FB06F500F00ED8 /* PrebookscheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrebookscheduleViewController.m; sourceTree = "<group>"; };
+		25DCACE021FB370000F00ED8 /* ShopviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopviewCell.h; sourceTree = "<group>"; };
+		25DCACE121FB370000F00ED8 /* ShopviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopviewCell.m; sourceTree = "<group>"; };
 		25E19C2F219C274300730E0A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		25E19C30219C274300730E0A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		25EED80621E46A480009FA4F /* NewbillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewbillViewController.h; sourceTree = "<group>"; };
@@ -734,6 +740,7 @@
 		25AB838F21D3915100A9C233 /* DraggableView */ = {
 			isa = PBXGroup;
 			children = (
+				25DCACDF21FB36D000F00ED8 /* shoplistcell */,
 				25AB839021D3918200A9C233 /* DraggableViewController.h */,
 				25AB839121D3918200A9C233 /* DraggableViewController.m */,
 			);
@@ -831,6 +838,24 @@
 				25D9255721709D5A00249C87 /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		25DCACDB21FB068E00F00ED8 /* PrebookSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				25DCACDC21FB06F500F00ED8 /* PrebookscheduleViewController.h */,
+				25DCACDD21FB06F500F00ED8 /* PrebookscheduleViewController.m */,
+			);
+			path = PrebookSchedule;
+			sourceTree = "<group>";
+		};
+		25DCACDF21FB36D000F00ED8 /* shoplistcell */ = {
+			isa = PBXGroup;
+			children = (
+				25DCACE021FB370000F00ED8 /* ShopviewCell.h */,
+				25DCACE121FB370000F00ED8 /* ShopviewCell.m */,
+			);
+			path = shoplistcell;
 			sourceTree = "<group>";
 		};
 		25E19C2E219C274300730E0A /* Mapview */ = {
@@ -1056,6 +1081,7 @@
 		5283A49D2163476F00DA69CB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				25DCACDB21FB068E00F00ED8 /* PrebookSchedule */,
 				25EED81221E4ABEF0009FA4F /* Success */,
 				25EED80521E46A280009FA4F /* Newbill */,
 				528C139C21E3B88800688FF2 /* TrackOrder */,
@@ -1363,6 +1389,7 @@
 				5283A4A32163476F00DA69CB /* AppDelegate.m in Sources */,
 				254A2C26217EFAF9006DA3E9 /* AFHTTPSessionManager.m in Sources */,
 				25D9255D21709D5A00249C87 /* SDWebImageDecoder.m in Sources */,
+				25DCACDE21FB06F500F00ED8 /* PrebookscheduleViewController.m in Sources */,
 				25AB838A21D3787B00A9C233 /* CommonApiCall.m in Sources */,
 				25343B192164C4C8000C6B6C /* NSObject+SBJSON.m in Sources */,
 				522D7B9B21639F9400A7385B /* IQToolbar.m in Sources */,
@@ -1412,6 +1439,7 @@
 				25105194217703570076C3F2 /* AddvechicleViewController.m in Sources */,
 				5283A4A62163478100DA69CB /* LoginViewController.m in Sources */,
 				250862FA21DCE98E0060F903 /* constraintViewController.m in Sources */,
+				25DCACE221FB370000F00ED8 /* ShopviewCell.m in Sources */,
 				25343B162164C4C8000C6B6C /* ASIInputStream.m in Sources */,
 				254A2C2B217EFAF9006DA3E9 /* AFURLSessionManager.m in Sources */,
 				254A2C33217EFAF9006DA3E9 /* UIImageView+AFNetworking.m in Sources */,

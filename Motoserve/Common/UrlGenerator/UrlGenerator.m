@@ -82,4 +82,9 @@
 {
     return [NSString stringWithFormat: @"%@",[self appendBaseUrl:Post_Payment]];
 }
+
++(NSString *)PostBookinglist
+{
+    return [NSString stringWithFormat: @"%@",[self appendBaseUrl:Post_Bookinglist]];
+}
 @end

@@ -37,6 +37,8 @@
 +(NSString *)Postresendotp;
 
 +(NSString *)Postpayment;
+
++(NSString *)PostBookinglist;
 @end
 
 
