@@ -35,7 +35,7 @@
 		<key>FirebaseCore.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
 		</dict>
 		<key>GoogleUtilities.xcscheme</key>
 		<dict>
