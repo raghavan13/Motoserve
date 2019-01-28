@@ -15,7 +15,7 @@
     AppDelegate * appDelegate;
     int currentsecond,overallsecond;
     NSTimer * bookingtimer,*checkemptyresponseTimer;
-    UIButton *  tryagainBtn;
+    UIButton *  tryagainBtn,* callBtn,* cancelBtn;
 }
 @end
 
@@ -72,7 +72,7 @@
 //    [contentView addSubview:callView];
     
     
-    UIButton * callBtn=[[UIButton alloc]initWithFrame:CGRectMake(waitingView.frame.origin.x+20, CGRectGetMaxY(waitingView.frame)+20, waitingView.frame.size.width-40, 50)];
+    callBtn=[[UIButton alloc]initWithFrame:CGRectMake(waitingView.frame.origin.x+20, CGRectGetMaxY(waitingView.frame)+20, waitingView.frame.size.width-40, 50)];
     callBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     callBtn.layer.borderWidth = 1.0f;
     callBtn.layer.cornerRadius = 8;
@@ -91,21 +91,20 @@
     callImg.image=image(@"24");
     [callBtn addSubview:callImg];
     
-//    UIButton * callBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, callView.frame.size.width, callView.frame.size.height)];
-//    [callView addSubview:callBtn];
-    
-    
-    
     tryagainBtn=[[UIButton alloc]initWithFrame:CGRectMake(contentView.frame.size.width/4, CGRectGetMaxY(callBtn.frame)+30, contentView.frame.size.width/4, 25)];
     [tryagainBtn setBackgroundImage:image(@"tryagain") forState:UIControlStateNormal];
     [tryagainBtn addTarget:self action:@selector(tryagainAction) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:tryagainBtn];
     
-    UIButton * cancelBtn=[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(tryagainBtn.frame)+5, tryagainBtn.frame.origin.y, tryagainBtn.frame.size.width, tryagainBtn.frame.size.height)];
+    cancelBtn=[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(tryagainBtn.frame)+5, tryagainBtn.frame.origin.y, tryagainBtn.frame.size.width, tryagainBtn.frame.size.height)];
     [cancelBtn setBackgroundImage:image(@"cancel") forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:cancelBtn];
+    cancelBtn.hidden=YES;
+    tryagainBtn.hidden=YES;
+    callBtn.hidden=YES;
     overallsecond=0;
+    [self tryagainAction];
 }
 
 
@@ -148,6 +147,7 @@
         currentsecond=181;
         [self->appDelegate stopProgressView];
         tryagainBtn.hidden=YES;
+        [self updatelocation];
     }
     else if (currentsecond==180) {
         [checkemptyresponseTimer invalidate];
@@ -156,7 +156,40 @@
         bookingtimer = nil;
         currentsecond=181;
         [self->appDelegate stopProgressView];
+        cancelBtn.hidden=NO;
+        tryagainBtn.hidden=NO;
+        callBtn.hidden=NO;
     }
+}
+- (void)updatelocation
+{
+    [appDelegate startProgressView:self.view];
+    NSString *url =[UrlGenerator Postupdatestatus];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary * parameters = @{
+                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":@"16"
+                                  };
+    [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSLog(@"response data %@",responseObject);
+         
+         if ([[responseObject objectForKey:@"status"]integerValue]==0) {
+             NSLog(@"0");
+             [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
+             [self->appDelegate stopProgressView];
+         }
+         else
+         {
+             NSLog(@"1");
+             [self cancelAction];
+         }
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         NSLog(@"Error: %@", error);
+         [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
+         [self->appDelegate stopProgressView];
+     }];
 }
 - (void)getbooking
 {
