@@ -79,19 +79,20 @@
     [contentView addSubview:signupBtn];
     
     
-//    UIButton * loginBtn=[[UIButton alloc]initWithFrame:CGRectMake(logoImg.frame.origin.x+10, CGRectGetMaxY(signupBtn.frame)+40, logoImg.frame.size.width-20, 30)];
-//    [loginBtn setTitle:@"Login" forState:UIControlStateNormal];
-//    [loginBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-//    [loginBtn setTitleColor:Singlecolor(whiteColor) forState:UIControlStateNormal];
-//    loginBtn.titleLabel.font=RalewayRegular(appDelegate.font-2);
-//    loginBtn .contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    [contentView addSubview:loginBtn];
+    UIButton * loginBtn=[[UIButton alloc]initWithFrame:CGRectMake(logoImg.frame.origin.x+10, CGRectGetMaxY(signupBtn.frame)+40, logoImg.frame.size.width-20, 30)];
+    [loginBtn setTitle:@"Login" forState:UIControlStateNormal];
+    [loginBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [loginBtn setTitleColor:Singlecolor(whiteColor) forState:UIControlStateNormal];
+    loginBtn.titleLabel.font=RalewayRegular(appDelegate.font-2);
+    loginBtn .contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [contentView addSubview:loginBtn];
 }
 
-//- (void)backAction
-//{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+- (void)backAction
+{
+    LoginViewController * login=[[LoginViewController alloc]init];
+    [self.navigationController pushViewController:login animated:YES];
+}
 - (void)signupAction
 {
     if ([self isValidEntry])
@@ -116,7 +117,6 @@
              {
                  NSLog(@"1");
                  LoginViewController * home=[[LoginViewController alloc]init];
-//                 home.userid=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
                  [self.navigationController pushViewController:home animated:YES];
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

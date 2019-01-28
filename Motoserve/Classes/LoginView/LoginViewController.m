@@ -139,6 +139,7 @@
              {
                  NSLog(@"1");
                  if ([[responseObject valueForKey:@"message"]isEqualToString:@"Mobile number not verified"]) {
+                     self->appDelegate.islogin=YES;
                      OTPViewController * otp=[[OTPViewController alloc]init];
                      otp.otpidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
                      [self.navigationController pushViewController:otp animated:YES];

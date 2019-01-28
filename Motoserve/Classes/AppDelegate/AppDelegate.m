@@ -126,7 +126,7 @@
     UIViewController *firstVC;
     if (![Utils isCheckNotNULL:login])
     {
-         firstVC=[[MapViewController alloc]init];
+         firstVC=[[LoginViewController alloc]init];
     }
     else
     {

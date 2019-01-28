@@ -76,6 +76,7 @@
     submitBtn.titleLabel.font=RalewayRegular(appDelegate.font-2);
     [submitBtn addTarget:self action:@selector(otpAction) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:submitBtn];
+    
 
 }
 - (void)resendAction
@@ -132,8 +133,17 @@
              else
              {
                  NSLog(@"1");
-                 LoginViewController * home=[[LoginViewController alloc]init];
-                 [self.navigationController pushViewController:home animated:YES];
+                 if (self->appDelegate.islogin) {
+                    LoginViewController *   home=[[LoginViewController alloc]init];
+                      [self.navigationController pushViewController:home animated:YES];
+                 }
+                 else
+                 {
+                     ResetpassViewController* home=[[ResetpassViewController alloc]init];
+                     home.userid=self.otpidStr;
+                      [self.navigationController pushViewController:home animated:YES];
+                 }
+                
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"Error: %@", error);

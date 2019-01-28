@@ -114,9 +114,10 @@
              else
              {
                  NSLog(@"1");
-                 ResetpassViewController * home=[[ResetpassViewController alloc]init];
-                 home.userid=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
-                 [self.navigationController pushViewController:home animated:YES];
+                 self->appDelegate.islogin=NO;
+                 OTPViewController * otp=[[OTPViewController alloc]init];
+                 otp.otpidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
+                 [self.navigationController pushViewController:otp animated:YES];
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"Error: %@", error);
