@@ -177,7 +177,9 @@
     signupBtn.titleLabel.font=RalewayRegular(appDelegate.font-2);
     [signupBtn setTitleColor:Singlecolor(blackColor) forState:UIControlStateNormal];
     [signupScrl addSubview:signupBtn];
-    
+    if (appDelegate.isedit) {
+      [signupBtn setTitle:@"Update" forState:UIControlStateNormal];
+    }
     
     UIButton * loginBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(signupBtn.frame)+40, SCREEN_WIDTH, 30)];
     NSMutableAttributedString *temString=[[NSMutableAttributedString alloc]initWithString:@"Already have an Account ? Login"];
@@ -260,27 +262,35 @@
              else
              {
                  NSLog(@"1");
-                 AWSS3TransferManagerUploadRequest *uploadRequest = [AWSS3TransferManagerUploadRequest new];
-                 uploadRequest.body = self->fileUrl;
-                 uploadRequest.bucket = @"motoserve/MotoServe/User";
-                 uploadRequest.key = self->urlpath;
-                 //uploadRequest.contentType = @"image/png";
-                 uploadRequest.ACL = AWSS3BucketCannedACLPublicRead;
+                 if (appDelegate.isedit) {
+                     
+                 }
+                 else
+                 {
+                     AWSS3TransferManagerUploadRequest *uploadRequest = [AWSS3TransferManagerUploadRequest new];
+                     uploadRequest.body = self->fileUrl;
+                     uploadRequest.bucket = @"motoserve/MotoServe/User";
+                     uploadRequest.key = self->urlpath;
+                     //uploadRequest.contentType = @"image/png";
+                     uploadRequest.ACL = AWSS3BucketCannedACLPublicRead;
+                     
+                     AWSS3TransferManager *transferManager = [AWSS3TransferManager defaultS3TransferManager];
+                     
+                     [[transferManager upload:uploadRequest] continueWithExecutor:[AWSExecutor mainThreadExecutor]
+                                                                        withBlock:^id(AWSTask *task) {
+                                                                            if (task.error != nil) {
+                                                                                NSLog(@"%s %@","Error uploading :", uploadRequest.key);
+                                                                            }else { NSLog(@"Upload completed"); }
+                                                                            [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
+                                                                            [self->appDelegate stopProgressView];
+                                                                            OTPViewController * home=[[OTPViewController alloc]init];
+                                                                            home.otpidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
+                                                                            [self.navigationController pushViewController:home animated:YES];
+                                                                            return nil;
+                                                                        }];
+                 }
                  
-                 AWSS3TransferManager *transferManager = [AWSS3TransferManager defaultS3TransferManager];
-                 
-                 [[transferManager upload:uploadRequest] continueWithExecutor:[AWSExecutor mainThreadExecutor]
-                                                                    withBlock:^id(AWSTask *task) {
-                                                                        if (task.error != nil) {
-                                                                            NSLog(@"%s %@","Error uploading :", uploadRequest.key);
-                                                                        }else { NSLog(@"Upload completed"); }
-                                                                        [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
-                                                                        [self->appDelegate stopProgressView];
-                                                                        OTPViewController * home=[[OTPViewController alloc]init];
-                                                                        home.otpidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
-                                                                        [self.navigationController pushViewController:home animated:YES];
-                                                                        return nil;
-                                                                    }];
+                      
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"Error: %@", error);
