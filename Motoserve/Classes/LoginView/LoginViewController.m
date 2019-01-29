@@ -112,6 +112,7 @@
 - (void)signupAction
 {
     SignupViewController * signup=[[SignupViewController alloc]init];
+    appDelegate.isedit=NO;
     [self.navigationController pushViewController:signup animated:YES];
 }
 

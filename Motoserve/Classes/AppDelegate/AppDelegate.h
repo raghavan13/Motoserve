@@ -19,6 +19,7 @@
 @property(nonatomic,retain)NSString *deviceType,*bookingidStr,*bookingstatusStr,*servicetype,*serviceon;
 @property(nonatomic,readwrite)float hVal,wVal,font;
 @property (strong,nonatomic)NSArray * servicedetails;
+@property (nonatomic)BOOL isedit;
 @property (nonatomic)BOOL islogin;
 -(void)startProgressView:(UIView *)ContentView;
 -(void)startProgressViewFadingCircle:(UIView *)ContentView;

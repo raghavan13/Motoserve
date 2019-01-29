@@ -1048,8 +1048,8 @@
 		5283A485216346CE00DA69CB /* Motoserve */ = {
 			isa = PBXGroup;
 			children = (
-				254FAE4221B16800009241F9 /* ARCarMovement.swift */,
 				F01C556921B1704800F15091 /* coordinates.json */,
+				254FAE4221B16800009241F9 /* ARCarMovement.swift */,
 				5283A49D2163476F00DA69CB /* Classes */,
 				5283A4A22163476F00DA69CB /* Common */,
 				5283A49C2163476E00DA69CB /* Resources */,

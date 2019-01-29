@@ -134,6 +134,27 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[SignupViewController alloc] init]]animated:YES];
+            appDelegate.isedit=YES;
+            [self.sideMenuViewController hideMenuViewController];
+            break;
+        case 1:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[constraintViewController alloc] init]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
+        case 2:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[OrderhistoryViewController alloc] init]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
+        case 3:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[constraintViewController alloc] init]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
+        case 4:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[constraintViewController alloc] init]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
+        case 5:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]]animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             [Utils removeSavedStringData:@"logindetails"];
