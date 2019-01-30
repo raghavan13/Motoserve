@@ -13,9 +13,9 @@
 {
     UIScrollView *  statusScroll;
     AppDelegate * appDelegate;
-    UIView * prepareView,* startView,* rchView;
+    UIView * prepareView,* startView,* rchView,* distdiv;
     NSDateFormatter *dateFormat;
-    UIImageView * prepareImg,* startImg,* rchImg,* doneImg;
+    UIImageView * prepareImg,* startImg,* rchImg,* doneImg,* esttimeImg,* estdistImg;
     UILabel *  prepareLbl,* startLbl,* starttimeLbl,* rchLbl,* rchtimeLbl,* doneLbl,* donetimeLbl,* estdidtLbl,* esttimeLbl;
     UIButton *  doneBtn;
     int scrollheight;
@@ -113,7 +113,7 @@
         dateLbl.textAlignment=NSTextAlignmentRight;
         [statusScroll addSubview:dateLbl];
         
-        UIView * waitingView=[[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(dateLbl.frame)+10, statusScroll.frame.size.width-80, IS_IPHONEX?statusScroll.frame.size.height/4.5-20:statusScroll.frame.size.height/3.5-20)];
+        UIView * waitingView=[[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(dateLbl.frame)+10, statusScroll.frame.size.width-80, IS_IPHONEX?100:statusScroll.frame.size.height/3.5-20)];
         [statusScroll addSubview:waitingView];
         waitingView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         waitingView.layer.borderWidth = 1.0f;
@@ -224,7 +224,7 @@
 - (void)receivesegmentNotification
 {
     
-    if ([appDelegate.bookingstatusStr isEqualToString:@"2"]) {
+    //if ([appDelegate.bookingstatusStr isEqualToString:@"2"]) {
         prepareView=[[UIView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x+5, CGRectGetMaxY(prepareImg.frame), 1, 80)];
         prepareView.backgroundColor=RGB(0, 90, 45);
         [statusScroll addSubview:prepareView];
@@ -249,7 +249,7 @@
         [statusScroll addSubview:starttimeLbl];
         
         
-        UIImageView * estdistImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(starttimeLbl.frame)+5, 15, 13)];
+        estdistImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(starttimeLbl.frame)+5, 15, 13)];
         estdistImg.image=image(@"est_distance");
         [statusScroll addSubview:estdistImg];
         
@@ -259,12 +259,12 @@
         [statusScroll addSubview:estdidtLbl];
        
         
-        UIView * distdiv=[[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(estdidtLbl.frame)+10, estdistImg.frame.origin.y, 1, estdistImg.frame.size.height)];
+         distdiv=[[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(estdidtLbl.frame)+10, estdistImg.frame.origin.y, 1, estdistImg.frame.size.height)];
         distdiv.backgroundColor=Singlecolor(lightGrayColor);
         [statusScroll addSubview:distdiv];
         
         
-        UIImageView * esttimeImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(distdiv.frame)+10, estdistImg.frame.origin.y, 15, 15)];
+        esttimeImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(distdiv.frame)+10, estdistImg.frame.origin.y, 15, 15)];
         esttimeImg.image=image(@"est_time");
         [statusScroll addSubview:esttimeImg];
         
@@ -274,9 +274,9 @@
         [statusScroll addSubview:esttimeLbl];
         
         scrollheight=CGRectGetMaxY(esttimeLbl.frame);
-    }
-    else if ([appDelegate.bookingstatusStr isEqualToString:@"3"])
-    {
+    //}
+    //else if ([appDelegate.bookingstatusStr isEqualToString:@"3"])
+    //{
     startView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(startImg.frame), 1, prepareView.frame.size.height)];
         startView.backgroundColor=RGB(0, 90, 45);
         [statusScroll addSubview:startView];
@@ -301,9 +301,9 @@
         [statusScroll addSubview:rchtimeLbl];
         
         scrollheight=CGRectGetMaxY(rchtimeLbl.frame);
-    }
-    else if ([appDelegate.bookingstatusStr isEqualToString:@"4"])
-    {
+    //}
+    //else if ([appDelegate.bookingstatusStr isEqualToString:@"4"])
+    //{
     rchView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(rchImg.frame), 1, prepareView.frame.size.height)];
         rchView.backgroundColor=RGB(0, 90, 45);
         [statusScroll addSubview:rchView];
@@ -341,12 +341,82 @@
         [statusScroll addSubview:doneBtn];
         
         scrollheight=CGRectGetMaxY(doneBtn.frame);
-    }
+    //}
     estdidtLbl.text=@": 2.5 Km";
      [estdidtLbl autowidth:0];
     esttimeLbl.text=@": 10 Mins";
     [esttimeLbl autowidth:0];
     statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
+    
+    if ([appDelegate.bookingstatusStr isEqualToString:@"2"]) {
+     
+        prepareView.hidden=NO;
+        startImg.hidden=NO;
+        startLbl.hidden=NO;
+        starttimeLbl.hidden=NO;
+        estdistImg.hidden=NO;
+        estdidtLbl.hidden=NO;
+        distdiv.hidden=NO;
+        esttimeImg.hidden=NO;
+        esttimeLbl.hidden=NO;
+        
+        startView.hidden=YES;
+        rchImg.hidden=YES;
+        rchLbl.hidden=YES;
+        rchtimeLbl.hidden=YES;
+        
+        rchView.hidden=YES;
+        doneImg.hidden=YES;
+        doneLbl.hidden=YES;
+        donetimeLbl.hidden=YES;
+        doneBtn.hidden=YES;
+    }
+    else if ([appDelegate.bookingstatusStr isEqualToString:@"3"])
+    {
+        prepareView.hidden=NO;
+        startImg.hidden=NO;
+        startLbl.hidden=NO;
+        starttimeLbl.hidden=NO;
+        estdistImg.hidden=NO;
+        estdidtLbl.hidden=NO;
+        distdiv.hidden=NO;
+        esttimeImg.hidden=NO;
+        esttimeLbl.hidden=NO;
+        
+        startView.hidden=NO;
+        rchImg.hidden=NO;
+        rchLbl.hidden=NO;
+        rchtimeLbl.hidden=NO;
+        
+        rchView.hidden=YES;
+        doneImg.hidden=YES;
+        doneLbl.hidden=YES;
+        donetimeLbl.hidden=YES;
+        doneBtn.hidden=YES;
+    }
+    else if ([appDelegate.bookingstatusStr isEqualToString:@"4"])
+    {
+        prepareView.hidden=NO;
+        startImg.hidden=NO;
+        startLbl.hidden=NO;
+        starttimeLbl.hidden=NO;
+        estdistImg.hidden=NO;
+        estdidtLbl.hidden=NO;
+        distdiv.hidden=NO;
+        esttimeImg.hidden=NO;
+        esttimeLbl.hidden=NO;
+        
+        startView.hidden=NO;
+        rchImg.hidden=NO;
+        rchLbl.hidden=NO;
+        rchtimeLbl.hidden=NO;
+        
+        rchView.hidden=NO;
+        doneImg.hidden=NO;
+        doneLbl.hidden=NO;
+        donetimeLbl.hidden=NO;
+        doneBtn.hidden=NO;
+    }
 }
 - (void)doneAction
 {

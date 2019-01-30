@@ -123,19 +123,20 @@
     
     //start the timer, change the interval based on your requirement
     //
-    getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+    //getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updatebill)
                                                  name:@"updatebill"
                                                object:nil];
     
-//    appDelegate.bookingstatusStr=@"2";
+    //appDelegate.bookingstatusStr=@"2";
 //    [NSTimer scheduledTimerWithTimeInterval:10.0
 //                                     target:self
 //                                   selector:@selector(targetMethod)
 //                                   userInfo:nil
 //                                    repeats:NO];
+    [self targetMethod];
 }
 
 - (void)updatebill
@@ -154,11 +155,11 @@
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"changetype"
      object:nil];
-    [NSTimer scheduledTimerWithTimeInterval:10.0
-                                     target:self
-                                   selector:@selector(targetMethod1)
-                                   userInfo:nil
-                                    repeats:NO];
+//    [NSTimer scheduledTimerWithTimeInterval:10.0
+//                                     target:self
+//                                   selector:@selector(targetMethod1)
+//                                   userInfo:nil
+//                                    repeats:NO];
 }
 - (void)targetMethod1
 {

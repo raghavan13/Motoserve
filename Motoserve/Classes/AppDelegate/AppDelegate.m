@@ -130,9 +130,9 @@
     }
     else
     {
-        firstVC=[[constraintViewController alloc]init];
+        firstVC=[[MapViewController alloc]init];
     }
-    _serviceon=@"p";
+    _serviceon=@"O";
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:firstVC];
