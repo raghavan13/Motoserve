@@ -299,7 +299,9 @@
 }
 - (void)submitAction
 {
-    
+    TryagainViewController * tryagain=[[TryagainViewController alloc]init];
+    appDelegate.fromschedule=YES;
+    [self.navigationController pushViewController:tryagain animated:YES];
 }
 
 - (void)timeAction

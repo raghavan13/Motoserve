@@ -56,7 +56,7 @@
     sliderImg.image=image(@"seperator");
     [dragBtn addSubview:sliderImg];
     
-    if ([appDelegate.serviceon isEqualToString:@"p"]) {
+    if (appDelegate.fromschedule==YES) {
         UITableView * shoplistTbl=[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(dragBtn.frame), swipeView.frame.size.width, swipeView.frame.size.height-(CGRectGetMaxY(dragBtn.frame)))];
         shoplistTbl.backgroundColor=Singlecolor(clearColor);
         shoplistTbl.dataSource=self;
@@ -223,7 +223,11 @@
 
 - (void)receivesegmentNotification
 {
-    
+    if (appDelegate.fromschedule) {
+        
+    }
+    else
+    {
     //if ([appDelegate.bookingstatusStr isEqualToString:@"2"]) {
         prepareView=[[UIView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x+5, CGRectGetMaxY(prepareImg.frame), 1, 80)];
         prepareView.backgroundColor=RGB(0, 90, 45);
@@ -416,6 +420,7 @@
         doneLbl.hidden=NO;
         donetimeLbl.hidden=NO;
         doneBtn.hidden=NO;
+    }
     }
 }
 - (void)doneAction

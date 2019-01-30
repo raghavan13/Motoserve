@@ -214,6 +214,7 @@
              self->currentsecond=0;
              self->appDelegate.bookingidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
              TryagainViewController * tryagain=[[TryagainViewController alloc]init];
+             self->appDelegate.fromschedule=NO;
              [self.navigationController pushViewController:tryagain animated:YES];
 //             self->checkemptyresponseTimer=[NSTimer scheduledTimerWithTimeInterval: 1.0
 //                                                                            target:self
