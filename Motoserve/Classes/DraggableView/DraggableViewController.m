@@ -13,11 +13,11 @@
 {
     UIScrollView *  statusScroll;
     AppDelegate * appDelegate;
-    UIView * prepareView,* startView,* rchView,* distdiv;
+    UIView * prepareView,* startView,* rchView,* distdiv,* driverView,*  deliveredView,* deliverView;
     NSDateFormatter *dateFormat;
-    UIImageView * prepareImg,* startImg,* rchImg,* doneImg,* esttimeImg,* estdistImg;
-    UILabel *  prepareLbl,* startLbl,* starttimeLbl,* rchLbl,* rchtimeLbl,* doneLbl,* donetimeLbl,* estdidtLbl,* esttimeLbl;
-    UIButton *  doneBtn;
+    UIImageView * prepareImg,* startImg,* rchImg,* doneImg,* esttimeImg,* estdistImg,* driverImg,* drivercallImg,* deliverImg,* deliveredImg,* delivercallImg;
+    UILabel *  prepareLbl,* startLbl,* starttimeLbl,* rchLbl,* rchtimeLbl,* doneLbl,* donetimeLbl,* estdidtLbl,* esttimeLbl,* drivernameLbl,* drivernoLbl,* Amtlbl,* amtpriceLbl,* delivdatelbl,* delivdatevalLbl,* paylbl,* payvalLbl,*  deliverbl,* delivertimeLbl,* delivernameLbl,* delivernoLbl;
+    UIButton *  doneBtn,* driverBtn,* drivercallBtn,* viewreceiptBtn,* deliverBtn,* delivercallBtn;
     int scrollheight;
 }
 @end
@@ -34,12 +34,12 @@
 - (void)createDesign
 {
     UIView * swipeView=[[UIView alloc]init];
-    if ([appDelegate.serviceon isEqualToString:@"o"]) {
-        swipeView.frame=CGRectMake(0, SCREEN_HEIGHT/3.0, SCREEN_WIDTH, SCREEN_HEIGHT-SCREEN_HEIGHT/3.0);
+    if (appDelegate.fromschedule==YES) {
+     swipeView.frame=CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40);
     }
     else
     {
-        swipeView.frame=CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40);
+        swipeView.frame=CGRectMake(0, SCREEN_HEIGHT/3.0, SCREEN_WIDTH, SCREEN_HEIGHT-SCREEN_HEIGHT/3.0);
     }
     swipeView.backgroundColor=Singlecolor(whiteColor);
     [self.view addSubview:swipeView];
@@ -115,11 +115,15 @@
         
         UIView * waitingView=[[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(dateLbl.frame)+10, statusScroll.frame.size.width-80, IS_IPHONEX?100:statusScroll.frame.size.height/3.5-20)];
         [statusScroll addSubview:waitingView];
-        waitingView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        waitingView.layer.borderWidth = 1.0f;
-        waitingView.layer.cornerRadius = 8;
-        waitingView.layer.masksToBounds = true;
+//        waitingView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//        waitingView.layer.borderWidth = 1.0f;
+//        waitingView.layer.cornerRadius = 8;
+//        waitingView.layer.masksToBounds = true;
         
+        UIButton * waitingBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, waitingView.frame.size.width, waitingView.frame.size.height)];
+        [waitingBtn setBackgroundImage:image(@"list_bg") forState:UIControlStateNormal];
+        [waitingView addSubview:waitingBtn];
+         waitingBtn.userInteractionEnabled=NO;
         
         UIImageView * profImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 15, waitingView.frame.size.width/5, waitingView.frame.size.width/5)];
         profImg.layer.cornerRadius = profImg.frame.size.width/2;
@@ -177,28 +181,412 @@
         statusLbl.textAlignment=NSTextAlignmentCenter;
         statusLbl.font=RalewayRegular(appDelegate.font-2);
         [statusScroll addSubview:statusLbl];
+        int y=CGRectGetMaxY(statusLbl.frame)+30;
         
-        
-        prepareImg=[[UIImageView alloc]initWithFrame:CGRectMake(waitingView.frame.origin.x+40, CGRectGetMaxY(statusLbl.frame)+30, 11, 10)];
+        prepareImg=[[UIImageView alloc]initWithFrame:CGRectMake(waitingView.frame.origin.x+40, y, 11, 10)];
         prepareImg.image=image(@"Progress");
         [statusScroll addSubview:prepareImg];
         
-        prepareLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(prepareImg.frame)+20,CGRectGetMaxY(statusLbl.frame)+25,statusLbl.frame.size.width-120, 21)];
-        prepareLbl.text=@"Preparing Tools";
-        prepareLbl.textColor=Singlecolor(blackColor);
         
-        prepareLbl.font=RalewayRegular(appDelegate.font-2);
-        [statusScroll addSubview:prepareLbl];
+            prepareLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(prepareImg.frame)+20,CGRectGetMaxY(statusLbl.frame)+25,statusLbl.frame.size.width-120, 21)];
+            prepareLbl.text=@"Preparing Tools";
+            prepareLbl.textColor=Singlecolor(blackColor);
+            
+            prepareLbl.font=RalewayRegular(appDelegate.font-2);
+            [statusScroll addSubview:prepareLbl];
+            
+            UILabel * preparetimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(prepareLbl.frame), prepareLbl.frame.size.width, 21)];
+            NSDate * date=[NSDate date];
+            [dateFormat setDateFormat:@"hh:mm a"];
+            preparetimeLbl.text=[dateFormat stringFromDate:date];
+            preparetimeLbl.textColor=Singlecolor(lightGrayColor);
+            preparetimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:preparetimeLbl];
         
-        UILabel * preparetimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(prepareLbl.frame), prepareLbl.frame.size.width, 21)];
-        NSDate * date=[NSDate date];
-        [dateFormat setDateFormat:@"hh:mm a"];
-        preparetimeLbl.text=[dateFormat stringFromDate:date];
-        preparetimeLbl.textColor=Singlecolor(lightGrayColor);
-        preparetimeLbl.font=RalewayRegular(appDelegate.font-4);
-        [statusScroll addSubview:preparetimeLbl];
+            
+            y=CGRectGetMaxY(preparetimeLbl.frame);
         
-        scrollheight=CGRectGetMaxY(preparetimeLbl.frame);
+        
+        scrollheight=y;
+        if ([appDelegate.serviceon isEqualToString:@"o"]) {
+            prepareLbl.text=@"Accepted on";
+            preparetimeLbl.text=[dateFormat stringFromDate:date];
+            
+            prepareView=[[UIView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x+5, CGRectGetMaxY(prepareImg.frame), 1, 120)];
+            prepareView.backgroundColor=RGB(0, 90, 45);
+            [statusScroll addSubview:prepareView];
+            
+            startImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(prepareView.frame), 11, 10)];
+            startImg.image=image(@"Progress");
+            [statusScroll addSubview:startImg];
+            
+            startLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,startImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
+            startLbl.text=@"Pick up";
+            startLbl.textColor=Singlecolor(blackColor);
+            startLbl.font=RalewayRegular(appDelegate.font-2);
+            [statusScroll addSubview:startLbl];
+            
+            
+            starttimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(startLbl.frame), prepareLbl.frame.size.width, 21)];
+            NSDate * startdate=[NSDate date];
+            [dateFormat setDateFormat:@"hh:mm a"];
+            starttimeLbl.text=[dateFormat stringFromDate:startdate];
+            starttimeLbl.textColor=Singlecolor(lightGrayColor);
+            starttimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:starttimeLbl];
+            
+            driverView=[[UIView alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(starttimeLbl.frame), prepareLbl.frame.size.width, 50)];
+            [statusScroll addSubview:driverView];
+            
+            driverBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, driverView.frame.size.width-20, 50)];
+            [driverBtn setBackgroundImage:image(@"list_bg") forState:UIControlStateNormal];
+            [driverView addSubview:driverBtn];
+            driverBtn.userInteractionEnabled=NO;
+            scrollheight=CGRectGetMaxY(driverView.frame);
+            
+            driverImg=[[UIImageView alloc]initWithFrame:CGRectMake(10,5, 40, 40)];
+            driverImg.layer.cornerRadius = driverImg.frame.size.width/2;
+            driverImg.layer.masksToBounds = YES;
+            driverImg.image=image(@"logo");
+            [driverView addSubview:driverImg];
+            
+            drivernameLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(driverImg.frame)+5, 5, driverView.frame.size.width-(CGRectGetMaxX(driverImg.frame)+80), 21)];
+            drivernameLbl.text=@"Ramesh";
+            drivernameLbl.textColor=Singlecolor(blackColor);
+            drivernameLbl.font=RalewayRegular(appDelegate.font-2);
+            [driverView addSubview:drivernameLbl];
+            
+            drivernoLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(driverImg.frame)+5, CGRectGetMaxY(drivernameLbl.frame), drivernameLbl.frame.size.width, 21)];
+            drivernoLbl.text=@"9787430508";
+            drivernoLbl.textColor=Singlecolor(blackColor);
+            drivernoLbl.font=RalewayRegular(appDelegate.font-2);
+            [driverView addSubview:drivernoLbl];
+            
+            drivercallImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(drivernoLbl.frame)+5, 10, 30, 30)];
+            drivercallImg.layer.cornerRadius = callImg.frame.size.width/2;
+            drivercallImg.layer.masksToBounds = YES;
+            drivercallImg.image=image(@"phone");
+            [driverView addSubview:drivercallImg];
+
+
+            drivercallBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetMaxX(drivercallImg.frame),drivercallImg.frame.size.height)];
+            [drivercallBtn addTarget:self action:@selector(callAction) forControlEvents:UIControlEventTouchUpInside];
+            [drivercallImg addSubview:drivercallBtn];
+            
+            
+            scrollheight=CGRectGetMaxY(drivercallImg.frame);
+            
+            startView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(startImg.frame), 1, prepareView.frame.size.height)];
+            startView.backgroundColor=RGB(0, 90, 45);
+            [statusScroll addSubview:startView];
+
+            rchImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(startView.frame), 11, 10)];
+            rchImg.image=image(@"Progress");
+            [statusScroll addSubview:rchImg];
+
+            rchLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,rchImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
+            rchLbl.text=@"Estimation Accepted";
+            rchLbl.textColor=Singlecolor(blackColor);
+            rchLbl.font=RalewayRegular(appDelegate.font-2);
+            [statusScroll addSubview:rchLbl];
+
+            Amtlbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(rchLbl.frame), prepareLbl.frame.size.width/2.0, 21)];
+            Amtlbl.text=@"Amount            :";
+            Amtlbl.textColor=Singlecolor(blackColor);
+            Amtlbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:Amtlbl];
+            [Amtlbl autowidth:0];
+
+            amtpriceLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(Amtlbl.frame)+5, Amtlbl.frame.origin.y, prepareLbl.frame.size.width/2.0, 21)];
+            amtpriceLbl.text=@"1800 Rs";
+            amtpriceLbl.textColor=Singlecolor(blackColor);
+            amtpriceLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:amtpriceLbl];
+
+
+            delivdatelbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(Amtlbl.frame), prepareLbl.frame.size.width/2.0, 21)];
+            delivdatelbl.text=@"Delivery date  :";
+            delivdatelbl.textColor=Singlecolor(blackColor);
+            delivdatelbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:delivdatelbl];
+            [delivdatelbl autowidth:0];
+
+             delivdatevalLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(delivdatelbl.frame)+5, delivdatelbl.frame.origin.y, prepareLbl.frame.size.width/2.0, 21)];
+            delivdatevalLbl.text=@"19.0.2019 2:00PM";
+            delivdatevalLbl.textColor=Singlecolor(blackColor);
+            delivdatevalLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:delivdatevalLbl];
+
+            rchtimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(delivdatelbl.frame), prepareLbl.frame.size.width, 21)];
+            NSDate * rchdate=[NSDate date];
+            [dateFormat setDateFormat:@"hh:mm a"];
+            rchtimeLbl.text=[dateFormat stringFromDate:rchdate];
+            rchtimeLbl.textColor=Singlecolor(lightGrayColor);
+            rchtimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:rchtimeLbl];
+
+            scrollheight=CGRectGetMaxY(rchtimeLbl.frame);
+
+
+            rchView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(rchImg.frame), 1, prepareView.frame.size.height)];
+            rchView.backgroundColor=RGB(0, 90, 45);
+            [statusScroll addSubview:rchView];
+
+
+            doneImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(rchView.frame), 11, 10)];
+            doneImg.image=image(@"Progress");
+            [statusScroll addSubview:doneImg];
+
+            doneLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,doneImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
+            doneLbl.text=@"Work Done";
+            doneLbl.textColor=Singlecolor(blackColor);
+            doneLbl.font=RalewayRegular(self->appDelegate.font-2);
+            [self->statusScroll addSubview:doneLbl];
+
+
+            paylbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(doneLbl.frame), prepareLbl.frame.size.width/2.0, 21)];
+            paylbl.text=@"Pay bill  :";
+            paylbl.textColor=Singlecolor(lightGrayColor);
+            paylbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:paylbl];
+            [paylbl autowidth:0];
+
+            payvalLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(paylbl.frame)+5, paylbl.frame.origin.y, prepareLbl.frame.size.width/2.0, 21)];
+            payvalLbl.text=@"1500 Rs";
+            payvalLbl.textColor=Singlecolor(lightGrayColor);
+            payvalLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:payvalLbl];
+            [payvalLbl autowidth:0];
+
+            viewreceiptBtn=[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(payvalLbl.frame)+5, paylbl.frame.origin.y-10, 80, 30)];
+            [viewreceiptBtn setTitle:@"View Receipt" forState:UIControlStateNormal];
+            [viewreceiptBtn setTitleColor:Singlecolor(blackColor) forState:UIControlStateNormal];
+            [viewreceiptBtn setBackgroundImage:image(@"list_bg") forState:UIControlStateNormal];
+            [statusScroll addSubview:viewreceiptBtn];
+            viewreceiptBtn.userInteractionEnabled=NO;
+            [statusScroll addSubview:viewreceiptBtn];
+            viewreceiptBtn.titleLabel.font=RalewayRegular(appDelegate.font-6);
+
+
+            donetimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(paylbl.frame), prepareLbl.frame.size.width, 21)];
+            NSDate * donedate=[NSDate date];
+            [dateFormat setDateFormat:@"hh:mm a"];
+            donetimeLbl.text=[dateFormat stringFromDate:donedate];
+            donetimeLbl.textColor=Singlecolor(lightGrayColor);
+            donetimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:donetimeLbl];
+
+            scrollheight=CGRectGetMaxY(donetimeLbl.frame);
+
+           deliveredView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(doneImg.frame), 1, prepareView.frame.size.height)];
+            deliveredView.backgroundColor=RGB(0, 90, 45);
+            [statusScroll addSubview:deliveredView];
+
+
+            deliverImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(deliveredView.frame), 11, 10)];
+            deliverImg.image=image(@"Progress");
+            [statusScroll addSubview:deliverImg];
+
+
+            deliverbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,deliverImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
+            deliverbl.text=@"Delivered";
+            deliverbl.textColor=Singlecolor(blackColor);
+            deliverbl.font=RalewayRegular(self->appDelegate.font-2);
+            [self->statusScroll addSubview:deliverbl];
+
+          delivertimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(deliverbl.frame), prepareLbl.frame.size.width, 21)];
+            NSDate * deliverdate=[NSDate date];
+            [dateFormat setDateFormat:@"hh:mm a"];
+            delivertimeLbl.text=[dateFormat stringFromDate:deliverdate];
+            delivertimeLbl.textColor=Singlecolor(lightGrayColor);
+            delivertimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:delivertimeLbl];
+
+
+             deliverView=[[UIView alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(delivertimeLbl.frame), prepareLbl.frame.size.width, 50)];
+            [statusScroll addSubview:deliverView];
+
+            deliverBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, driverView.frame.size.width-20, 50)];
+            [deliverBtn setBackgroundImage:image(@"list_bg") forState:UIControlStateNormal];
+            [deliverView addSubview:deliverBtn];
+            deliverBtn.userInteractionEnabled=NO;
+            
+
+            deliveredImg=[[UIImageView alloc]initWithFrame:CGRectMake(10,5, 40, 40)];
+            deliveredImg.layer.cornerRadius = deliveredImg.frame.size.width/2;
+            deliveredImg.layer.masksToBounds = YES;
+            deliveredImg.image=image(@"logo");
+            [deliverView addSubview:deliveredImg];
+
+            delivernameLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(deliveredImg.frame)+5, 5, deliverView.frame.size.width-(CGRectGetMaxX(deliveredImg.frame)+80), 21)];
+            delivernameLbl.text=@"Ramesh";
+            delivernameLbl.textColor=Singlecolor(blackColor);
+            delivernameLbl.font=RalewayRegular(appDelegate.font-2);
+            [deliverView addSubview:delivernameLbl];
+
+           delivernoLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(deliveredImg.frame)+5, CGRectGetMaxY(delivernameLbl.frame), delivernameLbl.frame.size.width, 21)];
+            delivernoLbl.text=@"9787430508";
+            delivernoLbl.textColor=Singlecolor(blackColor);
+            delivernoLbl.font=RalewayRegular(appDelegate.font-2);
+            [deliverView addSubview:delivernoLbl];
+
+            delivercallImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(delivernoLbl.frame)+5, 10, 30, 30)];
+            delivercallImg.layer.cornerRadius = callImg.frame.size.width/2;
+            delivercallImg.layer.masksToBounds = YES;
+            delivercallImg.image=image(@"phone");
+            [deliverView addSubview:delivercallImg];
+
+
+            delivercallBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetMaxX(delivercallImg.frame),delivercallImg.frame.size.height)];
+            [delivercallBtn addTarget:self action:@selector(callAction) forControlEvents:UIControlEventTouchUpInside];
+            [delivercallImg addSubview:delivercallBtn];
+
+            
+            doneBtn=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.0-75, CGRectGetMaxY(deliverView.frame)+40, 150, 30)];
+            [doneBtn setBackgroundColor:Singlecolor(clearColor)];
+            [doneBtn setTitle:@"Make Payment" forState:UIControlStateNormal];
+            doneBtn.titleLabel.font=RalewayRegular(self->appDelegate.font-2);
+            [doneBtn setTitleColor:RGB(0, 90, 45) forState:UIControlStateNormal];
+            doneBtn.layer.cornerRadius = 5;
+            doneBtn.layer.borderWidth = 0.5;
+            doneBtn.layer.masksToBounds = true;
+            doneBtn.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
+            [doneBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
+            [statusScroll addSubview:doneBtn];
+
+            scrollheight=CGRectGetMaxY(doneBtn.frame);
+            
+            
+            statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
+        }
+        else
+        {
+            prepareView=[[UIView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x+5, CGRectGetMaxY(prepareImg.frame), 1, 80)];
+            prepareView.backgroundColor=RGB(0, 90, 45);
+            [statusScroll addSubview:prepareView];
+            
+            startImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(prepareView.frame), 11, 10)];
+            startImg.image=image(@"Progress");
+            [statusScroll addSubview:startImg];
+            
+            startLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,startImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
+            startLbl.text=@"Start Navigation";
+            startLbl.textColor=Singlecolor(blackColor);
+            startLbl.font=RalewayRegular(appDelegate.font-2);
+            [statusScroll addSubview:startLbl];
+            
+            
+            starttimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(startLbl.frame), prepareLbl.frame.size.width, 21)];
+            NSDate * startdate=[NSDate date];
+            [dateFormat setDateFormat:@"hh:mm a"];
+            starttimeLbl.text=[dateFormat stringFromDate:startdate];
+            starttimeLbl.textColor=Singlecolor(lightGrayColor);
+            starttimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:starttimeLbl];
+            
+            
+            estdistImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(starttimeLbl.frame)+5, 15, 13)];
+            estdistImg.image=image(@"est_distance");
+            [statusScroll addSubview:estdistImg];
+            
+            estdidtLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(estdistImg.frame),CGRectGetMaxY(starttimeLbl.frame), 50, 21)];
+            estdidtLbl.textColor=Singlecolor(lightGrayColor);
+            estdidtLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:estdidtLbl];
+            
+            
+            distdiv=[[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(estdidtLbl.frame)+10, estdistImg.frame.origin.y, 1, estdistImg.frame.size.height)];
+            distdiv.backgroundColor=Singlecolor(lightGrayColor);
+            [statusScroll addSubview:distdiv];
+            
+            
+            esttimeImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(distdiv.frame)+10, estdistImg.frame.origin.y, 15, 15)];
+            esttimeImg.image=image(@"est_time");
+            [statusScroll addSubview:esttimeImg];
+            
+            esttimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(esttimeImg.frame),CGRectGetMaxY(starttimeLbl.frame), 100, 21)];
+            esttimeLbl.textColor=Singlecolor(lightGrayColor);
+            esttimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:esttimeLbl];
+            
+            
+            //}
+            //else if ([appDelegate.bookingstatusStr isEqualToString:@"3"])
+            //{
+            startView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(startImg.frame), 1, prepareView.frame.size.height)];
+            startView.backgroundColor=RGB(0, 90, 45);
+            [statusScroll addSubview:startView];
+            
+            
+            rchImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(startView.frame), 11, 10)];
+            rchImg.image=image(@"Progress");
+            [statusScroll addSubview:rchImg];
+            
+            rchLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,rchImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
+            rchLbl.text=@"Work In Progress";
+            rchLbl.textColor=Singlecolor(blackColor);
+            rchLbl.font=RalewayRegular(appDelegate.font-2);
+            [statusScroll addSubview:rchLbl];
+            
+            rchtimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(rchLbl.frame), prepareLbl.frame.size.width, 21)];
+            NSDate * rchdate=[NSDate date];
+            [dateFormat setDateFormat:@"hh:mm a"];
+            rchtimeLbl.text=[dateFormat stringFromDate:rchdate];
+            rchtimeLbl.textColor=Singlecolor(lightGrayColor);
+            rchtimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:rchtimeLbl];
+            
+            
+            //}
+            //else if ([appDelegate.bookingstatusStr isEqualToString:@"4"])
+            //{
+            rchView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(rchImg.frame), 1, prepareView.frame.size.height)];
+            rchView.backgroundColor=RGB(0, 90, 45);
+            [statusScroll addSubview:rchView];
+            
+            
+            doneImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(rchView.frame), 11, 10)];
+            doneImg.image=image(@"Progress");
+            [statusScroll addSubview:doneImg];
+            
+            doneLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,doneImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
+            doneLbl.text=@"Work Done";
+            doneLbl.textColor=Singlecolor(blackColor);
+            doneLbl.font=RalewayRegular(self->appDelegate.font-2);
+            [self->statusScroll addSubview:doneLbl];
+            
+            donetimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(doneLbl.frame), prepareLbl.frame.size.width, 21)];
+            NSDate * donedate=[NSDate date];
+            [dateFormat setDateFormat:@"hh:mm a"];
+            donetimeLbl.text=[dateFormat stringFromDate:donedate];
+            donetimeLbl.textColor=Singlecolor(lightGrayColor);
+            donetimeLbl.font=RalewayRegular(appDelegate.font-4);
+            [statusScroll addSubview:donetimeLbl];
+            
+            
+            doneBtn=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.0-50, CGRectGetMaxY(doneLbl.frame)+40, 100, 30)];
+            [doneBtn setBackgroundColor:Singlecolor(clearColor)];
+            [doneBtn setTitle:@"Done" forState:UIControlStateNormal];
+            doneBtn.titleLabel.font=RalewayRegular(self->appDelegate.font-2);
+            [doneBtn setTitleColor:RGB(0, 90, 45) forState:UIControlStateNormal];
+            doneBtn.layer.cornerRadius = 5;
+            doneBtn.layer.borderWidth = 0.5;
+            doneBtn.layer.masksToBounds = true;
+            doneBtn.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
+            [doneBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
+            [statusScroll addSubview:doneBtn];
+            
+            
+            //}
+            estdidtLbl.text=@": 2.5 Km";
+            [estdidtLbl autowidth:0];
+            esttimeLbl.text=@": 10 Mins";
+            [esttimeLbl autowidth:0];
+            statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
+        }
+        
+        CGPoint bottomOffset = CGPointMake(0, (statusScroll.contentSize.height - statusScroll.bounds.size.height)+20);
+        [statusScroll setContentOffset:bottomOffset animated:YES];
         
         [self receivesegmentNotification];
         
@@ -223,135 +611,11 @@
 
 - (void)receivesegmentNotification
 {
-    if (appDelegate.fromschedule) {
+    if ([appDelegate.serviceon isEqualToString:@"o"]) {
         
     }
     else
     {
-    //if ([appDelegate.bookingstatusStr isEqualToString:@"2"]) {
-        prepareView=[[UIView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x+5, CGRectGetMaxY(prepareImg.frame), 1, 80)];
-        prepareView.backgroundColor=RGB(0, 90, 45);
-        [statusScroll addSubview:prepareView];
-        
-       startImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(prepareView.frame), 11, 10)];
-        startImg.image=image(@"Progress");
-        [statusScroll addSubview:startImg];
-        
-        startLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,startImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
-        startLbl.text=@"Start Navigation";
-        startLbl.textColor=Singlecolor(blackColor);
-        startLbl.font=RalewayRegular(appDelegate.font-2);
-        [statusScroll addSubview:startLbl];
-        
-        
-        starttimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(startLbl.frame), prepareLbl.frame.size.width, 21)];
-        NSDate * startdate=[NSDate date];
-        [dateFormat setDateFormat:@"hh:mm a"];
-        starttimeLbl.text=[dateFormat stringFromDate:startdate];
-        starttimeLbl.textColor=Singlecolor(lightGrayColor);
-        starttimeLbl.font=RalewayRegular(appDelegate.font-4);
-        [statusScroll addSubview:starttimeLbl];
-        
-        
-        estdistImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(starttimeLbl.frame)+5, 15, 13)];
-        estdistImg.image=image(@"est_distance");
-        [statusScroll addSubview:estdistImg];
-        
-         estdidtLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(estdistImg.frame),CGRectGetMaxY(starttimeLbl.frame), 50, 21)];
-        estdidtLbl.textColor=Singlecolor(lightGrayColor);
-        estdidtLbl.font=RalewayRegular(appDelegate.font-4);
-        [statusScroll addSubview:estdidtLbl];
-       
-        
-         distdiv=[[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(estdidtLbl.frame)+10, estdistImg.frame.origin.y, 1, estdistImg.frame.size.height)];
-        distdiv.backgroundColor=Singlecolor(lightGrayColor);
-        [statusScroll addSubview:distdiv];
-        
-        
-        esttimeImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(distdiv.frame)+10, estdistImg.frame.origin.y, 15, 15)];
-        esttimeImg.image=image(@"est_time");
-        [statusScroll addSubview:esttimeImg];
-        
-        esttimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(esttimeImg.frame),CGRectGetMaxY(starttimeLbl.frame), 100, 21)];
-        esttimeLbl.textColor=Singlecolor(lightGrayColor);
-        esttimeLbl.font=RalewayRegular(appDelegate.font-4);
-        [statusScroll addSubview:esttimeLbl];
-        
-        scrollheight=CGRectGetMaxY(esttimeLbl.frame);
-    //}
-    //else if ([appDelegate.bookingstatusStr isEqualToString:@"3"])
-    //{
-    startView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(startImg.frame), 1, prepareView.frame.size.height)];
-        startView.backgroundColor=RGB(0, 90, 45);
-        [statusScroll addSubview:startView];
-        
-        
-    rchImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(startView.frame), 11, 10)];
-        rchImg.image=image(@"Progress");
-        [statusScroll addSubview:rchImg];
-        
-    rchLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,rchImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
-        rchLbl.text=@"Work In Progress";
-        rchLbl.textColor=Singlecolor(blackColor);
-        rchLbl.font=RalewayRegular(appDelegate.font-2);
-        [statusScroll addSubview:rchLbl];
-        
-    rchtimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(rchLbl.frame), prepareLbl.frame.size.width, 21)];
-        NSDate * rchdate=[NSDate date];
-        [dateFormat setDateFormat:@"hh:mm a"];
-        rchtimeLbl.text=[dateFormat stringFromDate:rchdate];
-        rchtimeLbl.textColor=Singlecolor(lightGrayColor);
-        rchtimeLbl.font=RalewayRegular(appDelegate.font-4);
-        [statusScroll addSubview:rchtimeLbl];
-        
-        scrollheight=CGRectGetMaxY(rchtimeLbl.frame);
-    //}
-    //else if ([appDelegate.bookingstatusStr isEqualToString:@"4"])
-    //{
-    rchView=[[UIView alloc]initWithFrame:CGRectMake(prepareView.frame.origin.x, CGRectGetMaxY(rchImg.frame), 1, prepareView.frame.size.height)];
-        rchView.backgroundColor=RGB(0, 90, 45);
-        [statusScroll addSubview:rchView];
-        
-        
-    doneImg=[[UIImageView alloc]initWithFrame:CGRectMake(prepareImg.frame.origin.x, CGRectGetMaxY(rchView.frame), 11, 10)];
-        doneImg.image=image(@"Progress");
-        [statusScroll addSubview:doneImg];
-        
-    doneLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x,doneImg.frame.origin.y-5,prepareLbl.frame.size.width, 21)];
-        doneLbl.text=@"Work Done";
-        doneLbl.textColor=Singlecolor(blackColor);
-        doneLbl.font=RalewayRegular(self->appDelegate.font-2);
-        [self->statusScroll addSubview:doneLbl];
-        
-    donetimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(prepareLbl.frame.origin.x, CGRectGetMaxY(doneLbl.frame), prepareLbl.frame.size.width, 21)];
-        NSDate * donedate=[NSDate date];
-        [dateFormat setDateFormat:@"hh:mm a"];
-        donetimeLbl.text=[dateFormat stringFromDate:donedate];
-        donetimeLbl.textColor=Singlecolor(lightGrayColor);
-        donetimeLbl.font=RalewayRegular(appDelegate.font-4);
-        [statusScroll addSubview:donetimeLbl];
-        
-        
-    doneBtn=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.0-50, CGRectGetMaxY(doneLbl.frame)+40, 100, 30)];
-        [doneBtn setBackgroundColor:Singlecolor(clearColor)];
-        [doneBtn setTitle:@"Done" forState:UIControlStateNormal];
-        doneBtn.titleLabel.font=RalewayRegular(self->appDelegate.font-2);
-        [doneBtn setTitleColor:RGB(0, 90, 45) forState:UIControlStateNormal];
-        doneBtn.layer.cornerRadius = 5;
-        doneBtn.layer.borderWidth = 0.5;
-        doneBtn.layer.masksToBounds = true;
-        doneBtn.layer.borderColor = [Singlecolor(lightGrayColor) CGColor];
-        [doneBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
-        [statusScroll addSubview:doneBtn];
-        
-        scrollheight=CGRectGetMaxY(doneBtn.frame);
-    //}
-    estdidtLbl.text=@": 2.5 Km";
-     [estdidtLbl autowidth:0];
-    esttimeLbl.text=@": 10 Mins";
-    [esttimeLbl autowidth:0];
-    statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
-    
     if ([appDelegate.bookingstatusStr isEqualToString:@"2"]) {
      
         prepareView.hidden=NO;
@@ -374,6 +638,8 @@
         doneLbl.hidden=YES;
         donetimeLbl.hidden=YES;
         doneBtn.hidden=YES;
+        
+        scrollheight=CGRectGetMaxY(esttimeLbl.frame);
     }
     else if ([appDelegate.bookingstatusStr isEqualToString:@"3"])
     {
@@ -397,6 +663,8 @@
         doneLbl.hidden=YES;
         donetimeLbl.hidden=YES;
         doneBtn.hidden=YES;
+        
+        scrollheight=CGRectGetMaxY(rchtimeLbl.frame);
     }
     else if ([appDelegate.bookingstatusStr isEqualToString:@"4"])
     {
@@ -420,8 +688,12 @@
         doneLbl.hidden=NO;
         donetimeLbl.hidden=NO;
         doneBtn.hidden=NO;
+        
+        scrollheight=CGRectGetMaxY(doneBtn.frame);
     }
-    }
+  }
+    CGPoint bottomOffset = CGPointMake(0, (statusScroll.contentSize.height - statusScroll.bounds.size.height)+20);
+    [statusScroll setContentOffset:bottomOffset animated:YES];
 }
 - (void)doneAction
 {
@@ -498,5 +770,10 @@
         
     }
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TryagainViewController * tryagain=[[TryagainViewController alloc]init];
+    [self.navigationController pushViewController:tryagain animated:YES];
 }
 @end

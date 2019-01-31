@@ -129,6 +129,7 @@
                                              selector:@selector(updatebill)
                                                  name:@"updatebill"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"changetype" object:nil];
     
     //appDelegate.bookingstatusStr=@"2";
 //    [NSTimer scheduledTimerWithTimeInterval:10.0

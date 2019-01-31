@@ -95,6 +95,7 @@
 		25C43810217E189A00089162 /* GJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C4380A217E189A00089162 /* GJColor.m */; };
 		25C43811217E189A00089162 /* GRColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C4380C217E189A00089162 /* GRColor.m */; };
 		25C43812217E189A00089162 /* UIColor+HexRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C4380E217E189A00089162 /* UIColor+HexRGB.m */; };
+		25CDC7242203367B0053814F /* 5starsgray.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CDC7232203367B0053814F /* 5starsgray.png */; };
 		25D9253221706AF000249C87 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9253121706AF000249C87 /* HomeViewController.m */; };
 		25D92536217099CB00249C87 /* LCBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D92535217099CA00249C87 /* LCBannerView.m */; };
 		25D9255A21709D5A00249C87 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D9253C21709D5A00249C87 /* NSData+ImageContentType.m */; };
@@ -312,6 +313,7 @@
 		25C4380C217E189A00089162 /* GRColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRColor.m; sourceTree = "<group>"; };
 		25C4380D217E189A00089162 /* UIColor+HexRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexRGB.h"; sourceTree = "<group>"; };
 		25C4380E217E189A00089162 /* UIColor+HexRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexRGB.m"; sourceTree = "<group>"; };
+		25CDC7232203367B0053814F /* 5starsgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5starsgray.png; sourceTree = "<group>"; };
 		25D9253021706AF000249C87 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		25D9253121706AF000249C87 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		25D92534217099CA00249C87 /* LCBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCBannerView.h; sourceTree = "<group>"; };
@@ -1068,6 +1070,7 @@
 		5283A49C2163476E00DA69CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				25CDC7232203367B0053814F /* 5starsgray.png */,
 				250889C521E6289800887ACD /* Razorpay.framework */,
 				25EED81021E4AACD0009FA4F /* bill.gif */,
 				2578C55A21B7DBE000E3C174 /* service1.jpg */,
@@ -1298,6 +1301,7 @@
 				25343ACB21649F39000C6B6C /* Raleway-ThinItalic.ttf in Resources */,
 				25343ABE21649F39000C6B6C /* Raleway-ExtraBold.ttf in Resources */,
 				25343ACC21649F39000C6B6C /* SIL Open Font License.txt in Resources */,
+				25CDC7242203367B0053814F /* 5starsgray.png in Resources */,
 				2578C55B21B7DBE000E3C174 /* service1.jpg in Resources */,
 				25343AC721649F39000C6B6C /* Raleway-Regular.ttf in Resources */,
 				F01C556A21B1704800F15091 /* coordinates.json in Resources */,

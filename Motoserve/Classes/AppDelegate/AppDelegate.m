@@ -132,7 +132,8 @@
     {
         firstVC=[[MapViewController alloc]init];
     }
-    _serviceon=@"O";
+    _fromschedule=YES;
+    _serviceon=@"o";
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:firstVC];

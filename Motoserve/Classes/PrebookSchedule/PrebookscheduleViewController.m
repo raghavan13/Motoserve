@@ -299,7 +299,7 @@
 }
 - (void)submitAction
 {
-    TryagainViewController * tryagain=[[TryagainViewController alloc]init];
+    MapViewController * tryagain=[[MapViewController alloc]init];
     appDelegate.fromschedule=YES;
     [self.navigationController pushViewController:tryagain animated:YES];
 }
