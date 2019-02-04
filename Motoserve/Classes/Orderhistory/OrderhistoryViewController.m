@@ -124,7 +124,8 @@
 }
 - (void)backAction
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    constraintViewController *foodType=[[constraintViewController alloc]init];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:foodType] animated:YES];
 }
 
 
