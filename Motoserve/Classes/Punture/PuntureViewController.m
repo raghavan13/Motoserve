@@ -312,9 +312,32 @@
     NSMutableDictionary * locationDic=[[NSMutableDictionary alloc]init];
     [locationDic setObject:@"Point" forKey:@"type"];
     [locationDic setObject:latArray forKey:@"coordinates"];
-        NSDictionary * parameters = @{
-                                      @"userId":[login valueForKey:@"_id"],@"vehicleId":vehicleidStr,@"location":locationDic,@"serviceType":@"P",@"serviceOn":@"o"
-                                      };
+//        NSDictionary * parameters = @{
+//                                      @"userId":[login valueForKey:@"_id"],@"vehicleId":vehicleidStr,@"location":locationDic,@"serviceType":@"P",@"serviceOn":@"o"
+//                                      };
+    NSString * typeservice=@"P";
+    if ([appDelegate.servicetype isEqualToString:@"R"]) {
+        typeservice=@"S";
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd/MM/yy";
+    NSString *currentdate = [formatter stringFromDate:[NSDate date]];
+    formatter.dateFormat = @"dd";
+    NSString *currenttime = [formatter stringFromDate:[NSDate date]];
+    formatter.dateFormat = @"EE";
+    NSString *currentday = [formatter stringFromDate:[NSDate date]];
+    NSDictionary * parameters =@{@"userId":[login valueForKey:@"_id"],
+                                 @"vehicleId":vehicleidStr,
+                                 @"location":locationDic,
+                                 @"serviceType":typeservice,
+                                 @"subServiceType":appDelegate.servicetype,
+                                 @"serviceMode":appDelegate.serviceon,
+                                 @"day":currentday,
+                                 @"startTime":currenttime,
+                                 @"endTime":currenttime,
+                                 @"serviceRequiredDate":currentdate,
+                                 };
+    
         [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
              NSLog(@"response data %@",responseObject);

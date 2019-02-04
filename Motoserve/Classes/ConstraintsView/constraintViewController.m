@@ -341,7 +341,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         }
         else
         {
-            appDelegate.servicetype=@"";
+            appDelegate.servicetype=@"R";
         }
         ConstraintspuntureViewController * punture=[[ConstraintspuntureViewController alloc]init];
         [self.navigationController pushViewController:punture animated:YES];

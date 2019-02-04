@@ -43,7 +43,7 @@ NSString * const Post_ForgotPass = @"forgotUserPassword";
 
 NSString * const Post_ResetPass = @"resetUserPassword";
 
-NSString * const Post_Requestmap = @"requestService";
+NSString * const Post_Requestmap = @"requestOnRoadService";
 
 NSString * const Post_Booking = @"getBooking";
 

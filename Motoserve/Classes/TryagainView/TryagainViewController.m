@@ -219,7 +219,7 @@
                      
                  }
              }
-             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"1"])
+             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"2"])
              {
                  self->appDelegate.bookingstatusStr=@"1";
                  if (self->currentsecond<=180) {
