@@ -46,8 +46,8 @@
     FLAnimatedImage *animatedImage1 = [FLAnimatedImage animatedImageWithGIFData:data1];
     sandclockmainImg.animatedImage= animatedImage1;
     sandclockmainImg.contentMode = UIViewContentModeScaleAspectFit;
-    sandclockmainImg.hidden=YES;
     [sandclockmainImg startAnimating];
+    [self getbooking];
     self->bookingtimer= [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     paytypeselected=NO;
     cod=NO;
@@ -91,6 +91,7 @@
          else
          {
              NSLog(@"1");
+             self->sandclockmainImg.hidden=YES;
              [self createDesign];
              self->price=[[[[responseObject valueForKey:@"data"]valueForKey:@"payment"]objectAtIndex:0]valueForKey:@"amount"];
          }
@@ -109,7 +110,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSDictionary * parameters = @{
-                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":@"7"
+                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":self->appDelegate.bookingstatusStr
                                   };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
@@ -125,26 +126,29 @@
              NSLog(@"1");
              if(self->cod)
              {
-                 SuccessViewController * success=[[SuccessViewController alloc]init];
-                 [self.navigationController pushViewController:success animated:YES];
+                 //SuccessViewController * success=[[SuccessViewController alloc]init];
+                 //[self.navigationController pushViewController:success animated:YES];
              }
              else
              {
-                 NSDictionary *options = @{
-                                           @"amount": @"1000", // mandatory, in paise
-                                           // all optional other than amount.
-                                           @"image": @"https://url-to-image.png",
-                                           @"name": @"business or product name",
-                                           @"description": @"purchase description",
-                                           @"prefill" : @{
-                                                   @"email": @"pranav@razorpay.com",
-                                                   @"contact": @"8879524924"
-                                                   },
-                                           @"theme": @{
-                                                   @"color": @"#F37254"
-                                                   }
-                                           };
-                 [self->razor open:options];
+                 if (![self->appDelegate.bookingstatusStr isEqualToString:@"24"]) {
+                     NSDictionary *options = @{
+                                               @"amount": @"1000", // mandatory, in paise
+                                               // all optional other than amount.
+                                               @"image": @"https://url-to-image.png",
+                                               @"name": @"business or product name",
+                                               @"description": @"purchase description",
+                                               @"prefill" : @{
+                                                       @"email": @"pranav@razorpay.com",
+                                                       @"contact": @"8879524924"
+                                                       },
+                                               @"theme": @{
+                                                       @"color": @"#F37254"
+                                                       }
+                                               };
+                     [self->razor open:options];
+                 }
+                 
              }
              
          }
@@ -157,8 +161,10 @@
 - (void)onPaymentSuccess:(nonnull NSString*)payment_id {
 //    [[[UIAlertView alloc] initWithTitle:@"Payment Successful" message:payment_id delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     [Utils showErrorAlert:@"Payment Success" delegate:nil];
-    SuccessViewController * success=[[SuccessViewController alloc]init];
-    [self.navigationController pushViewController:success animated:YES];
+    self->appDelegate.bookingstatusStr=@"24";
+    [self updatelocation];
+    //SuccessViewController * success=[[SuccessViewController alloc]init];
+    //[self.navigationController pushViewController:success animated:YES];
 }
 
 - (void)onPaymentError:(int)code description:(nonnull NSString *)str {
@@ -187,12 +193,11 @@
          else
          {
              NSLog(@"1");
-             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"] isEqualToString:@"6"])
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"] isEqualToString:@"17"])
              {
-                 self->sandclockmainImg.hidden=YES;
                  [self payment];
              }
-             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"8"]) {
+             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"25"]) {
                  [self->bookingtimer invalidate];
                  self->bookingtimer=nil;
                  [Utils showErrorAlert:@"Thank You" delegate:self];
@@ -679,13 +684,16 @@
         cardImg.image=image(@"radiocheck");
         cashImg.image=image(@"radiouncheck");
         cod=NO;
+        self->appDelegate.bookingstatusStr=@"23";
     }
     else
     {
         cardImg.image=image(@"radiouncheck");
         cashImg.image=image(@"radiocheck");
         cod=YES;
+        self->appDelegate.bookingstatusStr=@"25";
     }
+    
     paytypeselected=YES;
 }
 @end

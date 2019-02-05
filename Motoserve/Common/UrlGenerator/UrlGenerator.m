@@ -87,4 +87,10 @@
 {
     return [NSString stringWithFormat: @"%@",[self appendBaseUrl:Post_Bookinglist]];
 }
+
++(NSString *)PostCancelBooking
+{
+    return [NSString stringWithFormat: @"%@",[self appendBaseUrl:Post_Bookinglist]];
+}
+
 @end

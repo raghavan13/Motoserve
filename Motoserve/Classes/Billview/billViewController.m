@@ -128,7 +128,7 @@
          else
          {
              NSLog(@"1");
-             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"8"]) {
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"8"]) {
                  [self->bookingtimer invalidate];
                  self->bookingtimer=nil;
                 // [Utils showErrorAlert:@"Thank You" delegate:self];

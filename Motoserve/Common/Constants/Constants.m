@@ -49,10 +49,12 @@ NSString * const Post_Booking = @"getBooking";
 
 NSString * const Post_Partnerlocation = @"getPartnerLocation";
 
-NSString * const Post_UpdateStatus = @"updateBookingStatus";
+NSString * const Post_UpdateStatus = @"updateUserBookingStatus";
 
 NSString * const Post_Payment = @"getPayment";
 
 NSString * const Post_Bookinglist = @"getUserBookingList";
+
+NSString * const Post_CancelBooking = @"userReject";
 
 @end

@@ -67,10 +67,10 @@
          else
          {
              NSLog(@"1");
-             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"0"]) {
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"0"]) {
                  
              }
-             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"1"])
+             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"1"])
              {
                  
              }

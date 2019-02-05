@@ -131,9 +131,43 @@
     bookingtimer = nil;
     currentsecond=181;
     [self->appDelegate stopProgressView];
-    [Utils showErrorAlert:@"Sorry for inconvience" delegate:nil];
-    constraintViewController * home=[[constraintViewController alloc]init];
-    [self.navigationController pushViewController:home animated:YES];
+    {
+        [appDelegate startProgressView:self.view];
+        NSString *url =[UrlGenerator Postupdatestatus];
+        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"dd/MM/yy";
+        NSString *currentdate = [formatter stringFromDate:[NSDate date]];
+        NSMutableDictionary * statusDic=[[NSMutableDictionary alloc]init];
+        [statusDic setObject:@"3" forKey:@"status"];
+        [statusDic setObject:currentdate forKey:@"updatedDate"];
+        NSDictionary * parameters = @{
+                                      @"_id":self->appDelegate.bookingidStr,@"bookingStatus":statusDic
+                                      };
+        [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+         {
+             NSLog(@"response data %@",responseObject);
+             
+             if ([[responseObject objectForKey:@"status"]integerValue]==0) {
+                 NSLog(@"0");
+                 [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
+                 [self->appDelegate stopProgressView];
+             }
+             else
+             {
+                 NSLog(@"1");
+                 [Utils showErrorAlert:@"Sorry for inconvience" delegate:nil];
+                 constraintViewController * home=[[constraintViewController alloc]init];
+                 [self.navigationController pushViewController:home animated:YES];
+             }
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"Error: %@", error);
+             [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
+             [self->appDelegate stopProgressView];
+         }];
+    }
 }
 - (void)handleTimer
 {
@@ -169,7 +203,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSDictionary * parameters = @{
-                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":@"16"
+                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":@"3"
                                   };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
@@ -212,14 +246,14 @@
          else
          {
              NSLog(@"1");
-             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"0"]) {
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"0"]) {
                  self->appDelegate.bookingstatusStr=@"0";
                  if (self->currentsecond>181) {
                      [self->appDelegate stopProgressView];
                      
                  }
              }
-             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"]isEqualToString:@"2"])
+             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"2"])
              {
                  self->appDelegate.bookingstatusStr=@"1";
                  if (self->currentsecond<=180) {

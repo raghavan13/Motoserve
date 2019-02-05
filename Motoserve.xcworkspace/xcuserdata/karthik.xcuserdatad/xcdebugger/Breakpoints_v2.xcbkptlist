@@ -51,29 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Motoserve/Classes/Constraintspunture/ConstraintspuntureViewController.m"
-            timestampString = "570957509.022903"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "-submitAction"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Motoserve/Classes/TryagainView/TryagainViewController.m"
-            timestampString = "570957615.986994"
+            timestampString = "571042527.92137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "-getbooking"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-handleTimer"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,6 +74,22 @@
             startingLineNumber = "169"
             endingLineNumber = "169"
             landmarkName = "-GetBookinglist"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Motoserve/Classes/TryagainView/TryagainViewController.m"
+            timestampString = "571042558.346018"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "-updatelocation"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

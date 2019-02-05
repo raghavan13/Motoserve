@@ -616,7 +616,7 @@
     }
     else
     {
-    if ([appDelegate.bookingstatusStr isEqualToString:@"2"]) {
+    if ([appDelegate.bookingstatusStr isEqualToString:@"5"]) {
      
         prepareView.hidden=NO;
         startImg.hidden=NO;
@@ -641,7 +641,7 @@
         
         scrollheight=CGRectGetMaxY(esttimeLbl.frame);
     }
-    else if ([appDelegate.bookingstatusStr isEqualToString:@"3"])
+    else if ([appDelegate.bookingstatusStr isEqualToString:@"6"])
     {
         prepareView.hidden=NO;
         startImg.hidden=NO;
@@ -666,7 +666,7 @@
         
         scrollheight=CGRectGetMaxY(rchtimeLbl.frame);
     }
-    else if ([appDelegate.bookingstatusStr isEqualToString:@"4"])
+    else if ([appDelegate.bookingstatusStr isEqualToString:@"15"])
     {
         prepareView.hidden=NO;
         startImg.hidden=NO;
@@ -708,7 +708,7 @@
     NSString *string = [alertView buttonTitleAtIndex:buttonIndex];
     if ([string isEqualToString:@"Yes"])
     {
-        appDelegate.bookingstatusStr=@"5";
+        appDelegate.bookingstatusStr=@"16";
         [self updatelocation];
     }
 }
@@ -734,7 +734,7 @@
          else
          {
              NSLog(@"1");
-             self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"bookingStatus"];
+             self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"];
              [self gestureHandlerMethod];
              [[NSNotificationCenter defaultCenter]
               postNotificationName:@"updatebill"
