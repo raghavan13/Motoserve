@@ -193,11 +193,11 @@
          else
          {
              NSLog(@"1");
-             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"] isEqualToString:@"17"])
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"] intValue]==17)
              {
                  [self payment];
              }
-             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"25"]) {
+             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]intValue]==25) {
                  [self->bookingtimer invalidate];
                  self->bookingtimer=nil;
                  [Utils showErrorAlert:@"Thank You" delegate:self];

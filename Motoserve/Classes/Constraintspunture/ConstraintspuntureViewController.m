@@ -183,8 +183,8 @@
         typeservice=@"S";
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"dd/MM/yy";
-    NSString *currentdate = [formatter stringFromDate:[NSDate date]];
+    formatter.dateFormat = @"dd-MM-yy";
+    NSString *currentdate = [NSString stringWithFormat:@"%@",[NSDate date]];
     formatter.dateFormat = @"dd";
     NSString *currenttime = [formatter stringFromDate:[NSDate date]];
     formatter.dateFormat = @"EEEE";
@@ -198,7 +198,7 @@
                                  @"day":currentday,
                                  @"startTime":currenttime,
                                  @"endTime":currenttime,
-                                 @"serviceRequiredDate":currentdate,
+                                 @"serviceDate":currentdate,
                                  };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {

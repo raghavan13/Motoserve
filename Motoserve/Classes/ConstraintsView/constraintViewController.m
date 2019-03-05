@@ -294,7 +294,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         [prebkBtn setTitleColor:Singlecolor(blackColor) forState:UIControlStateNormal];
         selected=0;
         [bookCollection reloadData];
-        appDelegate.serviceon=@"o";
+        appDelegate.serviceon=@"O";
     }
     else
     {
@@ -304,7 +304,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         [prebkBtn setTitleColor:Singlecolor(whiteColor) forState:UIControlStateNormal];
         selected=1;
         [bookCollection reloadData];
-        appDelegate.serviceon=@"p";
+        appDelegate.serviceon=@"P";
     }
 }
 - (void)trackAction
@@ -337,7 +337,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
 - (void)servicetypeAction:(id)sender {
     if (selected==0) {
         if ([sender tag]==0) {
-            appDelegate.servicetype=@"p";
+            appDelegate.servicetype=@"P";
         }
         else
         {

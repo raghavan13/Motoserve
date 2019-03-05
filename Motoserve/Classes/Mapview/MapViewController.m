@@ -214,7 +214,7 @@
                  return ;
              }
              
-             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"2"]) {
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]intValue]==2) {
                  self->appDelegate.bookingstatusStr=@"2";
                 
                  self->patnerlocationtimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(getpartnerlocation) userInfo:nil repeats:true];

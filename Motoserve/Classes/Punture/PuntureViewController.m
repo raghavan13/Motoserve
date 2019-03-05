@@ -387,7 +387,7 @@
          else
          {
              NSLog(@"1");
-             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"0"]) {
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]intValue]==0) {
                  self->appDelegate.bookingstatusStr=@"0";
                  if (self->currentsecond==181) {
                       [self->appDelegate stopProgressView];
@@ -395,7 +395,7 @@
                      [self.navigationController pushViewController:try animated:YES];
                  }
              }
-             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]isEqualToString:@"1"])
+             else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]intValue]==1)
              {
                  self->appDelegate.bookingstatusStr=@"1";
                  if (self->currentsecond<=180) {
