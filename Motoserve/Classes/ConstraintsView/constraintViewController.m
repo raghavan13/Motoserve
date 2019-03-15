@@ -349,22 +349,22 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     else
     {
         if ([sender tag]==0) {
-            NewbillViewController * bill=[[NewbillViewController alloc]init];
+            PrebookscheduleViewController * bill=[[PrebookscheduleViewController alloc]init];
             [self.navigationController pushViewController:bill animated:YES];
         }
         else if ([sender tag]==1)
         {
-            MapViewController * map=[[MapViewController alloc]init];
+            PrebookscheduleViewController * map=[[PrebookscheduleViewController alloc]init];
             [self.navigationController pushViewController:map animated:YES];
         }
         else if ([sender tag]==2)
         {
-            SuccessViewController * success=[[SuccessViewController alloc]init];
+            PrebookscheduleViewController * success=[[PrebookscheduleViewController alloc]init];
             [self.navigationController pushViewController:success animated:YES];
         }
         else if ([sender tag]==3)
         {
-            TryagainViewController * try=[[TryagainViewController alloc]init];
+            PrebookscheduleViewController * try=[[PrebookscheduleViewController alloc]init];
             [self.navigationController pushViewController:try animated:YES];
         }
         else if ([sender tag]==4)
@@ -374,7 +374,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         }
         else
         {
-            OrderhistoryViewController * histroy=[[OrderhistoryViewController alloc]init];
+            PrebookscheduleViewController * histroy=[[PrebookscheduleViewController alloc]init];
             [self.navigationController pushViewController:histroy animated:YES];
         }
         

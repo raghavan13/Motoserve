@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderViewCell : UITableViewCell
-
+- (void)settext:(NSArray*)values;
 @end
 
 NS_ASSUME_NONNULL_END

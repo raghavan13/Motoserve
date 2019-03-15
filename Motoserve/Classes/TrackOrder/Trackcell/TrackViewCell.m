@@ -13,6 +13,8 @@
 {
     AppDelegate *appDelegate;
     UIView  * MainView;
+    UIImageView * carImg;
+    UILabel * dateLbl,*orderidLbl,*noLbl,* typeLbl,* servicecenterLbl,*serviceLbl;
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -62,7 +64,7 @@
     
     
     
-    UILabel * dateLbl=[[UILabel alloc]init];
+    dateLbl=[[UILabel alloc]init];
     [MainView addSubview:dateLbl];
     dateLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [dateLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:5].active=YES;
@@ -70,7 +72,7 @@
     [dateLbl.widthAnchor constraintEqualToConstant:SCREEN_WIDTH/4.5].active=YES;
     [dateLbl.heightAnchor constraintEqualToConstant:21].active=YES;
     //dateLbl.backgroundColor=Singlecolor(redColor);
-    dateLbl.text=@"Wed, 12.12.2018";
+    
     dateLbl.font=RalewayRegular(appDelegate.font-7);
     dateLbl.textColor=Singlecolor(grayColor);
     
@@ -85,19 +87,18 @@
     headerImg.image=image(@"service_header");
     
     
-    UILabel * serviceLbl=[[UILabel alloc]init];
+    serviceLbl=[[UILabel alloc]init];
     [headerImg addSubview:serviceLbl];
     serviceLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [serviceLbl.topAnchor constraintEqualToAnchor:headerImg.topAnchor constant:0].active=YES;
     [serviceLbl.leftAnchor constraintEqualToAnchor:headerImg.leftAnchor constant:0].active=YES;
     [serviceLbl.widthAnchor constraintEqualToAnchor:headerImg.widthAnchor constant:0].active=YES;
     [serviceLbl.heightAnchor constraintEqualToAnchor:headerImg.heightAnchor constant:0].active=YES;
-    serviceLbl.text=@"General Service";
     serviceLbl.textColor=Singlecolor(whiteColor);
     serviceLbl.textAlignment=NSTextAlignmentCenter;
     serviceLbl.font=RalewayRegular(appDelegate.font-6);
     
-    UILabel * orderidLbl=[[UILabel alloc]init];
+    orderidLbl=[[UILabel alloc]init];
     [MainView addSubview:orderidLbl];
     orderidLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [orderidLbl.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:10].active=YES;
@@ -105,7 +106,6 @@
     [orderidLbl.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:-20].active=YES;
     //[orderidLbl.heightAnchor constraintEqualToConstant:40].active=YES;
     // orderidLbl.backgroundColor=Singlecolor(redColor);
-    orderidLbl.text=@"Last Updated : 12pm";
     orderidLbl.font=RalewayRegular(appDelegate.font-7);
     orderidLbl.textColor=Singlecolor(grayColor);
     orderidLbl.textAlignment=NSTextAlignmentRight;
@@ -141,52 +141,49 @@
     namedivView.backgroundColor=RGB(169, 197, 184);
     
     
-    UILabel * noLbl=[[UILabel alloc]init];
+    noLbl=[[UILabel alloc]init];
     [MainView addSubview:noLbl];
     noLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [noLbl.topAnchor constraintEqualToAnchor:headerImg.bottomAnchor constant:5].active=YES;
     [noLbl.leftAnchor constraintEqualToAnchor:namedivView.leftAnchor constant:0].active=YES;
     [noLbl.rightAnchor constraintEqualToAnchor:namedivView.rightAnchor constant:0].active=YES;
     [noLbl.heightAnchor constraintEqualToConstant:21].active=YES;
-    noLbl.text=@"TN 22 1458";
     noLbl.textAlignment=NSTextAlignmentCenter;
     noLbl.font=RalewayRegular(appDelegate.font-4);
     
     
-    UILabel * typeLbl=[[UILabel alloc]init];
+    typeLbl=[[UILabel alloc]init];
     [MainView addSubview:typeLbl];
     typeLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [typeLbl.topAnchor constraintEqualToAnchor:noLbl.bottomAnchor constant:0].active=YES;
     [typeLbl.leftAnchor constraintEqualToAnchor:namedivView.leftAnchor constant:0].active=YES;
     [typeLbl.rightAnchor constraintEqualToAnchor:namedivView.rightAnchor constant:0].active=YES;
     [typeLbl.heightAnchor constraintEqualToAnchor:noLbl.heightAnchor constant:0].active=YES;
-    typeLbl.text=@"Maruthi Alto";
     typeLbl.textAlignment=NSTextAlignmentCenter;
     typeLbl.textColor=Singlecolor(grayColor);
     typeLbl.font=RalewayRegular(appDelegate.font-5);
     
     
-    UILabel * servicecenterLbl=[[UILabel alloc]init];
+     servicecenterLbl=[[UILabel alloc]init];
     [MainView addSubview:servicecenterLbl];
     servicecenterLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [servicecenterLbl.topAnchor constraintEqualToAnchor:namedivView.bottomAnchor constant:0].active=YES;
     [servicecenterLbl.leftAnchor constraintEqualToAnchor:namedivView.leftAnchor constant:0].active=YES;
     [servicecenterLbl.rightAnchor constraintEqualToAnchor:namedivView.rightAnchor constant:0].active=YES;
     [servicecenterLbl.heightAnchor constraintEqualToAnchor:noLbl.heightAnchor constant:0].active=YES;
-    servicecenterLbl.text=@"Rasi Motors, Tambaram";
     servicecenterLbl.textAlignment=NSTextAlignmentCenter;
     servicecenterLbl.textColor=Singlecolor(grayColor);
     servicecenterLbl.font=RalewayRegular(appDelegate.font-5);
     
     
-    UIImageView * carImg=[[UIImageView alloc]init];
+    carImg=[[UIImageView alloc]init];
     [MainView addSubview:carImg];
     carImg.translatesAutoresizingMaskIntoConstraints = NO;
     [carImg.centerYAnchor constraintEqualToAnchor:MainView.centerYAnchor constant:5].active=YES;
     [carImg.leftAnchor constraintEqualToAnchor:MainView.leftAnchor constant:20].active=YES;
     [carImg.widthAnchor constraintEqualToConstant:60].active=YES;
     [carImg.heightAnchor constraintEqualToConstant:30].active=YES;
-    carImg.image=image(@"order_car");
+
     
     
     UILabel * rsLbl=[[UILabel alloc]init];
@@ -202,4 +199,47 @@
     
 }
 
+
+- (void)settext:(NSArray*)values
+{
+    if ([Utils isCheckNotNULL:[[values valueForKey:@"vehicleId"]valueForKey:@"vehicleType"]]) {
+        if ([[[values valueForKey:@"vehicleId"]valueForKey:@"vehicleType"]isEqualToString:@"C"]) {
+            carImg.image=image(@"order_car");
+        }
+        else
+        {
+            carImg.image=image(@"order_bike");
+        }
+    }
+    if ([Utils isCheckNotNULL:[values valueForKey:@"serviceDate"]]) {
+        NSLog(@"date %@",[values valueForKey:@"serviceDate"]);
+        dateLbl.text=[NSString stringWithFormat:@"%@", [Utils GlobalDateConvert:[values valueForKey:@"serviceDate"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" outputFormat:@"EEE,dd.MM.yyyy"]];
+    }
+    if ([Utils isCheckNotNULL:[values valueForKey:@"lastUpdated"]]) {
+        NSLog(@"time %@",[values valueForKey:@"lastUpdated"]);
+        orderidLbl.text=[NSString stringWithFormat:@"Last Updated : %@",[Utils GlobalDateConvert:[values valueForKey:@"lastUpdated"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" outputFormat:@"hh:mm a"]];
+    }
+    if ([Utils isCheckNotNULL:[[values valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"]]) {
+        noLbl.text=[[values valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"];
+    }
+    if ([Utils isCheckNotNULL:[[values valueForKey:@"vehicleId"]valueForKey:@"model"]]) {
+        typeLbl.text=[[values valueForKey:@"vehicleId"]valueForKey:@"model"];
+    }
+    if ([Utils isCheckNotNULL:[[values valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+        servicecenterLbl.text=[[values valueForKey:@"partnerId"]valueForKey:@"shopName"];
+    }
+     if ([[values valueForKey:@"serviceMode"]isEqualToString:@"o"]||[[values valueForKey:@"serviceMode"]isEqualToString:@"O"]) {
+         if ([[values valueForKey:@"serviceType"]isEqualToString:@"P"]) {
+             serviceLbl.text=@"Punture";
+         }
+         else
+         {
+             serviceLbl.text=@"Repair Mechanic";
+         }
+     }
+    else
+    {
+         serviceLbl.text=@"General Service";
+    }
+}
 @end

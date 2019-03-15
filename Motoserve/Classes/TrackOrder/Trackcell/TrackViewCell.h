@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TrackViewCell : UITableViewCell
-
+- (void)settext:(NSArray*)values;
 @end

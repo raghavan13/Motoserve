@@ -15,6 +15,10 @@
     UIView *navHeader,* div1View,* div2View;
     AppDelegate * appDelegate;
     UIButton * prebkBtn,* onrdBtn;
+    NSMutableArray * onrdtracklistArray,*prebooktracklistArray;
+    UITableView * orderTbl;
+    UILabel * noDataLabel;
+    BOOL onrdcheck;
 }
 @end
 
@@ -26,6 +30,7 @@
     self.view.backgroundColor =Singlecolor(whiteColor);
     self.navigationController.navigationBarHidden = YES;
     navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Track Order" IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
+    onrdcheck=YES;
     [self GetBookinglist];
     [self createDesign];
 }
@@ -92,7 +97,7 @@
     div2View.backgroundColor=RGB(0, 89, 42);
     div2View.hidden=YES;
     
-    UITableView * orderTbl=[[UITableView alloc]init];
+    orderTbl=[[UITableView alloc]init];
     [self.view addSubview:orderTbl];
     orderTbl.translatesAutoresizingMaskIntoConstraints = NO;
     [orderTbl.topAnchor constraintEqualToAnchor:divView.bottomAnchor constant:10].active=YES;
@@ -102,15 +107,37 @@
     //orderTbl.backgroundColor=Singlecolor(redColor);
     orderTbl.delegate=self;
     orderTbl.dataSource=self;
+    orderTbl.hidden=YES;
+    
+    noDataLabel         = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, orderTbl.bounds.size.width, orderTbl.bounds.size.height)];
+    noDataLabel.text             = @"No Orders Found";
+    noDataLabel.textColor        = [UIColor blackColor];
+    noDataLabel.textAlignment    = NSTextAlignmentCenter;
+    noDataLabel.textColor=[UIColor grayColor];
+    noDataLabel.font=RalewayRegular(appDelegate.font-4);
+    noDataLabel.textAlignment = NSTextAlignmentCenter;
+    noDataLabel.backgroundColor=[UIColor clearColor];
+    orderTbl.backgroundView = noDataLabel;
+    orderTbl.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [noDataLabel setHidden:YES];
 }
 - (void)orderAction:(id)sender
 {
     if ([sender tag]==1) {
+        onrdcheck=YES;
         [onrdBtn setTitleColor:RGB(0, 89, 42) forState:UIControlStateNormal];
         [prebkBtn setTitleColor:Singlecolor(lightGrayColor) forState:UIControlStateNormal];
         div1View.hidden=NO;
         div2View.hidden=YES;
-        
+        if ([Utils isCheckNotNULL:self->onrdtracklistArray]) {
+            self->noDataLabel.hidden=YES;
+            self->orderTbl.hidden=NO;
+        }
+        else
+        {
+            self->orderTbl.hidden=YES;
+            self->noDataLabel.hidden=NO;
+        }
     }
     else
     {
@@ -118,7 +145,18 @@
         [onrdBtn setTitleColor:Singlecolor(lightGrayColor)forState:UIControlStateNormal];
         div1View.hidden=YES;
         div2View.hidden=NO;
+        onrdcheck=NO;
+        if ([Utils isCheckNotNULL:self->prebooktracklistArray]) {
+            self->noDataLabel.hidden=YES;
+            self->orderTbl.hidden=NO;
+        }
+        else
+        {
+            self->orderTbl.hidden=YES;
+            self->noDataLabel.hidden=NO;
+        }
     }
+    [orderTbl reloadData];
 }
 - (void)backAction
 {
@@ -132,8 +170,13 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 10;
-    
+    if (onrdcheck) {
+        return [onrdtracklistArray count];
+    }
+    else
+    {
+       return [prebooktracklistArray count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -146,7 +189,13 @@
         cell =[[TrackViewCell alloc] init];
         [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+    }
+    if (onrdcheck) {
+        [cell settext:[onrdtracklistArray objectAtIndex:indexPath.row]];
+    }
+    else
+    {
+        [cell settext:[prebooktracklistArray objectAtIndex:indexPath.row]];
     }
     return cell;
 }
@@ -174,6 +223,40 @@
          else
          {
              NSLog(@"1");
+            // NSArray * trackArray=[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"];
+             //NSLog(@"cc %@",trackArray);
+             self->onrdtracklistArray=[[NSMutableArray alloc]init];
+             self->prebooktracklistArray=[[NSMutableArray alloc]init];
+             for (int i=0; i<[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] count]; i++) {
+                 int trackno=[[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"lastBookingStatus"]intValue];
+                 NSLog(@"track no %d",trackno);
+                 if (trackno!=25) {
+                     if ([[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"serviceMode"]isEqualToString:@"o"]||[[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"serviceMode"]isEqualToString:@"O"]) {
+                         [self->onrdtracklistArray addObject:[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]];
+                         [self->orderTbl reloadData];
+                         if ([Utils isCheckNotNULL:self->onrdtracklistArray]) {
+                             self->noDataLabel.hidden=YES;
+                             self->orderTbl.hidden=NO;
+                         }
+                         else
+                         {
+                             self->orderTbl.hidden=YES;
+                             self->noDataLabel.hidden=NO;
+                         }
+                     }
+                     else
+                     {
+                         [self->prebooktracklistArray addObject:[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]];
+                         [self->orderTbl reloadData];
+                         self->orderTbl.hidden=YES;
+                     }
+                 }
+                 else
+                 {
+                     self->noDataLabel.hidden=NO;
+                     self->orderTbl.hidden=YES;
+                 }
+             }
              
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
