@@ -78,7 +78,7 @@
     
     //set car coordinate
     
-    self.oldCoordinate = CLLocationCoordinate2DMake([self.latStr doubleValue],[self.lonStr doubleValue]);
+    
     
     CLLocation *LocationAtual1=[[CLLocation alloc] initWithLatitude:[self.latStr doubleValue]  longitude:[self.lonStr doubleValue]];
     
@@ -108,22 +108,37 @@
     
     // Creates a marker in the center of the map.
     //
-    driverMarker = [[GMSMarker alloc] init];
-    driverMarker.position = self.oldCoordinate;
-    driverMarker.icon = [UIImage imageNamed:@"carIcon"];
-    if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
-        driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
+    
+    for (int i=0; i<10; i++) {
+        self.oldCoordinate = CLLocationCoordinate2DMake([self.latStr doubleValue],[self.lonStr doubleValue]);
+        driverMarker = [[GMSMarker alloc] init];
+        driverMarker.position = self.oldCoordinate;
+        driverMarker.icon = [UIImage imageNamed:@"carIcon"];
+        if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+            driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
+        }
+        
+        driverMarker.map = self.mapView;
+        [mapView setSelectedMarker:driverMarker];
     }
     
-    driverMarker.map = self.mapView;
-    [mapView setSelectedMarker:driverMarker];
+    
+    
     //set counter value 0
     //
     self.counter = 0;
     
     //start the timer, change the interval based on your requirement
     //
-    //getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+    if(appDelegate.fromschedule==YES)
+    {
+        
+    }
+    else
+    {
+         getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+    }
+   
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updatebill)

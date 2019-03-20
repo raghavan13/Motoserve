@@ -611,7 +611,7 @@
 
 - (void)receivesegmentNotification
 {
-    if ([appDelegate.serviceon isEqualToString:@"o"]) {
+    if ([appDelegate.serviceon isEqualToString:@"O"]) {
         
     }
     else
