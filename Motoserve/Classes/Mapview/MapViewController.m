@@ -117,13 +117,9 @@
         if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
             driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
         }
-        
         driverMarker.map = self.mapView;
         [mapView setSelectedMarker:driverMarker];
     }
-    
-    
-    
     //set counter value 0
     //
     self.counter = 0;
