@@ -41,6 +41,8 @@
 +(NSString *)PostBookinglist;
 
 +(NSString *)PostCancelBooking;
+
++(NSString *)Post_Partnerbylocation;
 @end
 
 

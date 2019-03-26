@@ -348,35 +348,29 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     }
     else
     {
-//        if ([sender tag]==0) {
-//            PrebookscheduleViewController * bill=[[PrebookscheduleViewController alloc]init];
-//            [self.navigationController pushViewController:bill animated:YES];
-//        }
-//        else if ([sender tag]==1)
-//        {
-//            PrebookscheduleViewController * map=[[PrebookscheduleViewController alloc]init];
-//            [self.navigationController pushViewController:map animated:YES];
-//        }
-//        else if ([sender tag]==2)
-//        {
-//            PrebookscheduleViewController * success=[[PrebookscheduleViewController alloc]init];
-//            [self.navigationController pushViewController:success animated:YES];
-//        }
-//        else if ([sender tag]==3)
-//        {
-//            PrebookscheduleViewController * try=[[PrebookscheduleViewController alloc]init];
-//            [self.navigationController pushViewController:try animated:YES];
-//        }
-//        else if ([sender tag]==4)
-//        {
-//            PrebookscheduleViewController * prebook=[[PrebookscheduleViewController alloc]init];
-//            [self.navigationController pushViewController:prebook animated:YES];
-//        }
-//        else
-//        {
-//            PrebookscheduleViewController * histroy=[[PrebookscheduleViewController alloc]init];
-//            [self.navigationController pushViewController:histroy animated:YES];
-//        }
+        if ([sender tag]==0) {
+            appDelegate.servicetype=@"R";
+        }
+        else if ([sender tag]==1)
+        {
+           appDelegate.servicetype=@"O";
+        }
+        else if ([sender tag]==2)
+        {
+            appDelegate.servicetype=@"W";
+        }
+        else if ([sender tag]==3)
+        {
+            appDelegate.servicetype=@"S";
+        }
+        else if ([sender tag]==4)
+        {
+            appDelegate.servicetype=@"T";
+        }
+        else
+        {
+            appDelegate.servicetype=@"A";
+        }
         ConstraintspuntureViewController * punture=[[ConstraintspuntureViewController alloc]init];
         [self.navigationController pushViewController:punture animated:YES];
         

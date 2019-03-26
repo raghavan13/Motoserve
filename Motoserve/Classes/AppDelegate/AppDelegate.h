@@ -20,6 +20,7 @@
 @property(nonatomic,readwrite)float hVal,wVal,font;
 @property (strong,nonatomic)NSArray * servicedetails;
 @property (nonatomic)BOOL isedit,islogin,fromschedule;
+@property (nonatomic,retain)NSMutableArray * latArray;
 -(void)startProgressView:(UIView *)ContentView;
 -(void)startProgressViewFadingCircle:(UIView *)ContentView;
 -(void)stopProgressView;

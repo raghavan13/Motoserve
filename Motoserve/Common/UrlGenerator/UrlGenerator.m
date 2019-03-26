@@ -93,4 +93,9 @@
     return [NSString stringWithFormat: @"%@",[self appendBaseUrl:Post_Bookinglist]];
 }
 
++(NSString *)Post_Partnerbylocation
+{
+    return [NSString stringWithFormat: @"%@",[self appendBaseUrl:Post_Partnerbylocation]];
+}
+
 @end

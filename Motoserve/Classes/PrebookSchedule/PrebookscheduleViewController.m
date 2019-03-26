@@ -18,6 +18,7 @@
     UIDatePicker *myPicker;
     UILabel * dateLbl,*timeinsideLbl;
     SSPopup* selection;
+    NSArray * timeseperateArray;
     NSMutableArray * timeArray;
 }
 @end
@@ -81,7 +82,29 @@
     [serviceLbl.leftAnchor constraintEqualToAnchor:headerImg.leftAnchor constant:0].active=YES;
     [serviceLbl.widthAnchor constraintEqualToAnchor:headerImg.widthAnchor constant:0].active=YES;
     [serviceLbl.heightAnchor constraintEqualToAnchor:headerImg.heightAnchor constant:0].active=YES;
-    serviceLbl.text=@"General Service";
+    if ( [appDelegate.servicetype isEqualToString:@"R"]) {
+       serviceLbl.text=@"Repair Service";
+    }
+    else if ([appDelegate.servicetype isEqualToString:@"O"])
+    {
+       serviceLbl.text=@"Oil Change";
+    }
+    else if ([appDelegate.servicetype isEqualToString:@"W"])
+    {
+        serviceLbl.text=@"Wheel Alignment";
+    }
+    else if ([appDelegate.servicetype isEqualToString:@"S"])
+    {
+        serviceLbl.text=@"Spa";
+    }
+    else if ([appDelegate.servicetype isEqualToString:@"T"])
+    {
+        serviceLbl.text=@"Painting";
+    }
+    else
+    {
+        serviceLbl.text=@"AC Repair";
+    }
     serviceLbl.textColor=Singlecolor(whiteColor);
     serviceLbl.textAlignment=NSTextAlignmentCenter;
     serviceLbl.font=RalewayRegular(appDelegate.font-6);
@@ -93,7 +116,13 @@
     [carImg.leftAnchor constraintEqualToAnchor:MainView.leftAnchor constant:20].active=YES;
     [carImg.widthAnchor constraintEqualToConstant:60].active=YES;
     [carImg.heightAnchor constraintEqualToConstant:30].active=YES;
-    carImg.image=image(@"order_car");
+    if ([[_vehicledetailDic valueForKey:@"vehicleType"]isEqualToString:@"C"]) {
+        carImg.image=image(@"order_car");
+    }
+    else
+    {
+        carImg.image=image(@"order_bike");
+    }
     
     
     UIView * imgdiv=[[UIView alloc]init];
@@ -113,7 +142,7 @@
     [noLbl.leftAnchor constraintEqualToAnchor:imgdiv.leftAnchor constant:10].active=YES;
     [noLbl.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:-10].active=YES;
     [noLbl.heightAnchor constraintEqualToConstant:21].active=YES;
-    noLbl.text=@"TN 22 1458";
+    noLbl.text=[NSString stringWithFormat:@"%@",[_vehicledetailDic valueForKey:@"vehicleNumber"]];
     noLbl.textColor=Singlecolor(grayColor);
     noLbl.textAlignment=NSTextAlignmentLeft;
     noLbl.font=RalewayRegular(appDelegate.font-5);
@@ -126,7 +155,7 @@
     [typeLbl.leftAnchor constraintEqualToAnchor:noLbl.leftAnchor constant:0].active=YES;
     [typeLbl.rightAnchor constraintEqualToAnchor:noLbl.rightAnchor constant:0].active=YES;
     [typeLbl.heightAnchor constraintEqualToAnchor:noLbl.heightAnchor constant:0].active=YES;
-    typeLbl.text=@"Maruthi Alto";
+    typeLbl.text=[NSString stringWithFormat:@"%@",[_vehicledetailDic valueForKey:@"model"]];
     typeLbl.textAlignment=NSTextAlignmentLeft;
     typeLbl.textColor=Singlecolor(grayColor);
     typeLbl.font=RalewayRegular(appDelegate.font-5);
@@ -299,10 +328,63 @@
 }
 - (void)submitAction
 {
-    MapViewController * tryagain=[[MapViewController alloc]init];
-    appDelegate.fromschedule=YES;
-    [self.navigationController pushViewController:tryagain animated:YES];
+    if ([Utils isCheckNotNULL:appDelegate.latArray]) {
+        
+        [appDelegate startProgressView:self.view];
+        NSString *url =[UrlGenerator Post_Partnerbylocation];
+        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
+        NSMutableDictionary * locationDic=[[NSMutableDictionary alloc]init];
+        [locationDic setObject:@"Point" forKey:@"type"];
+        [locationDic setObject:appDelegate.latArray forKey:@"coordinates"];
+        NSString * typeservice=@"P";
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"dd-MM-yy";
+        NSString *currentdate = [NSString stringWithFormat:@"%@",[NSDate date]];
+        formatter.dateFormat = @"EEEE";
+        NSString *currentday = [formatter stringFromDate:[NSDate date]];
+        NSArray * startArray = [[timeseperateArray objectAtIndex:0] componentsSeparatedByString:@":"];
+        NSArray * endArray =[[timeseperateArray objectAtIndex:1] componentsSeparatedByString:@":"];
+        
+        
+        NSDictionary * parameters =@{@"userId":[login valueForKey:@"_id"],
+                                     @"vehicleType":[_vehicledetailDic valueForKey:@"vehicleType"],
+                                     @"location":locationDic,
+                                     @"serviceType":typeservice,
+                                     @"subServiceType":typeservice,
+                                     @"serviceMode":typeservice,
+                                     @"day":currentday,
+                                     @"startTime":[startArray objectAtIndex:0],
+                                     @"endTime":[endArray objectAtIndex:0],
+                                     @"serviceDate":currentdate,
+                                     };
+        [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+         {
+             NSLog(@"response data %@",responseObject);
+             if ([[responseObject objectForKey:@"status"]integerValue]==0) {
+                 NSLog(@"0");
+                 [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
+                 [self->appDelegate stopProgressView];
+             }
+             else
+             {
+                 NSLog(@"1");
+                 MapViewController * tryagain=[[MapViewController alloc]init];
+                 self->appDelegate.fromschedule=YES;
+                 [self.navigationController pushViewController:tryagain animated:YES];
+                 [self->appDelegate stopProgressView];
+             }
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"Error: %@", error);
+             [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
+             [self->appDelegate stopProgressView];
+         }];
+    }
+    
 }
+
 
 - (void)timeAction
 {
@@ -317,6 +399,8 @@
         [selection CreateTableview:timeArray withSender:nil  withTitle:@"Please select Time" setCompletionBlock:^(int tag){
             self->timeinsideLbl.text=[self->timeArray objectAtIndex:tag];
             self->timeinsideLbl.textColor=Singlecolor(blackColor);
+            
+            self->timeseperateArray = [self->timeinsideLbl.text componentsSeparatedByString:@" - "];
         }];
 }
 -(void)CreateDatePicker

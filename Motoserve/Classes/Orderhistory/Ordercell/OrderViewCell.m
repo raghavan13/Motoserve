@@ -207,8 +207,8 @@
         }
     }
     if ([Utils isCheckNotNULL:[values valueForKey:@"serviceDate"]]) {
-        NSLog(@"date %@",[values valueForKey:@"serviceDate"]);
-        dateLbl.text=[NSString stringWithFormat:@"%@", [Utils GlobalDateConvert:[values valueForKey:@"serviceDate"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" outputFormat:@"EEE,dd.MM.yyyy"]];
+        NSLog(@"date %@",[values valueForKey:@"serviceDate"]);//'Z'
+        dateLbl.text=[NSString stringWithFormat:@"%@", [Utils GlobalDateConvert:[values valueForKey:@"serviceDate"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS" outputFormat:@"EEE,dd.MM.yyyy"]];
     }
     if ([Utils isCheckNotNULL:[values valueForKey:@"_id"]]) {
        NSString * mystr=[[values valueForKey:@"_id"] substringToIndex:10];

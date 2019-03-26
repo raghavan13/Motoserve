@@ -21,7 +21,6 @@
     UIView * detailView;
     CLLocationManager *LocationManager;
     CLLocation *Source;
-    NSMutableArray * latArray;
     NSString * vehicleidStr;
     NSTimer * checkemptyresponseTimer,*bookingtimer;
     NSInteger currentsecond;
@@ -151,9 +150,9 @@
          }
      }];
     NSLog(@"OldLocation %f %f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
-    latArray=[[NSMutableArray alloc]init];
-    [latArray addObject:[NSNumber numberWithDouble:currentLocation.coordinate.longitude]];
-    [latArray addObject:[NSNumber numberWithDouble:currentLocation.coordinate.latitude]];
+   appDelegate.latArray=[[NSMutableArray alloc]init];
+    [appDelegate.latArray addObject:[NSNumber numberWithDouble:currentLocation.coordinate.longitude]];
+    [appDelegate.latArray addObject:[NSNumber numberWithDouble:currentLocation.coordinate.latitude]];
     Source = [[CLLocation alloc]init];
     Source = currentLocation;
 }
@@ -162,74 +161,75 @@
     if([appDelegate.serviceon isEqualToString:@"P"])
     {
         PrebookscheduleViewController * bill=[[PrebookscheduleViewController alloc]init];
+        bill.vehicledetailDic=[vehicleDic objectAtIndex:selecedvehicle];
         [self.navigationController pushViewController:bill animated:YES];
     }
     else
     {
-        [appDelegate startProgressView:self.view];
-        NSString *url =[UrlGenerator PostRequestmap];
-        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
-        NSMutableDictionary * locationDic=[[NSMutableDictionary alloc]init];
-        [locationDic setObject:@"Point" forKey:@"type"];
-        [locationDic setObject:latArray forKey:@"coordinates"];
-        NSString * typeservice=@"P";
-        if ([appDelegate.servicetype isEqualToString:@"R"]) {
-            typeservice=@"S";
-        }
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"dd-MM-yy";
-        NSString *currentdate = [NSString stringWithFormat:@"%@",[NSDate date]];
-        formatter.dateFormat = @"dd";
-        NSString *currenttime = [formatter stringFromDate:[NSDate date]];
-        formatter.dateFormat = @"EEEE";
-        NSString *currentday = [formatter stringFromDate:[NSDate date]];
-        NSDictionary * parameters =@{@"userId":[login valueForKey:@"_id"],
-                                     @"vehicleId":vehicleidStr,
-                                     @"location":locationDic,
-                                     @"serviceType":typeservice,
-                                     @"subServiceType":appDelegate.servicetype,
-                                     @"serviceMode":appDelegate.serviceon,
-                                     @"day":currentday,
-                                     @"startTime":currenttime,
-                                     @"endTime":currenttime,
-                                     @"serviceDate":currentdate,
-                                     };
-        [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-         {
-             NSLog(@"response data %@",responseObject);
-             if ([[responseObject objectForKey:@"status"]integerValue]==0) {
-                 NSLog(@"0");
-                 [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
-                 [self->appDelegate stopProgressView];
-             }
-             else
+        if ([Utils isCheckNotNULL:appDelegate.latArray]) {
+            [appDelegate startProgressView:self.view];
+            NSString *url =[UrlGenerator PostRequestmap];
+            AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
+            NSMutableDictionary * locationDic=[[NSMutableDictionary alloc]init];
+            [locationDic setObject:@"Point" forKey:@"type"];
+            [locationDic setObject:appDelegate.latArray forKey:@"coordinates"];
+            NSString * typeservice=@"P";
+            if ([appDelegate.servicetype isEqualToString:@"R"]) {
+                typeservice=@"S";
+            }
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"dd-MM-yy";
+            NSString *currentdate = [NSString stringWithFormat:@"%@",[NSDate date]];
+            formatter.dateFormat = @"dd";
+            NSString *currenttime = [formatter stringFromDate:[NSDate date]];
+            formatter.dateFormat = @"EEEE";
+            NSString *currentday = [formatter stringFromDate:[NSDate date]];
+            NSDictionary * parameters =@{@"userId":[login valueForKey:@"_id"],
+                                         @"vehicleId":vehicleidStr,
+                                         @"location":locationDic,
+                                         @"serviceType":typeservice,
+                                         @"subServiceType":appDelegate.servicetype,
+                                         @"serviceMode":appDelegate.serviceon,
+                                         @"day":currentday,
+                                         @"startTime":currenttime,
+                                         @"endTime":currenttime,
+                                         @"serviceDate":currentdate,
+                                         };
+            [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
              {
-                 NSLog(@"1");
-                 self->currentsecond=0;
-                 self->appDelegate.bookingidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
-                 TryagainViewController * tryagain=[[TryagainViewController alloc]init];
-                 self->appDelegate.fromschedule=NO;
-                 [self.navigationController pushViewController:tryagain animated:YES];
-                 //             self->checkemptyresponseTimer=[NSTimer scheduledTimerWithTimeInterval: 1.0
-                 //                                                                            target:self
-                 //                                                                          selector:@selector(handleTimer)
-                 //                                                                          userInfo:nil
-                 //                                                                           repeats:YES];
-                 
-                 //             self->bookingtimer= [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
-                 //[self getbooking];
-             }
-         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             NSLog(@"Error: %@", error);
-             [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
-             [self->appDelegate stopProgressView];
-         }];
-    }
-    
-    
+                 NSLog(@"response data %@",responseObject);
+                 if ([[responseObject objectForKey:@"status"]integerValue]==0) {
+                     NSLog(@"0");
+                     [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
+                     [self->appDelegate stopProgressView];
+                 }
+                 else
+                 {
+                     NSLog(@"1");
+                     self->currentsecond=0;
+                     self->appDelegate.bookingidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
+                     TryagainViewController * tryagain=[[TryagainViewController alloc]init];
+                     self->appDelegate.fromschedule=NO;
+                     [self.navigationController pushViewController:tryagain animated:YES];
+                     //             self->checkemptyresponseTimer=[NSTimer scheduledTimerWithTimeInterval: 1.0
+                     //                                                                            target:self
+                     //                                                                          selector:@selector(handleTimer)
+                     //                                                                          userInfo:nil
+                     //                                                                           repeats:YES];
+                     
+                     //             self->bookingtimer= [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+                     //[self getbooking];
+                 }
+             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                 NSLog(@"Error: %@", error);
+                 [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
+                 [self->appDelegate stopProgressView];
+             }];
+        }
+        }
 }
 //- (void)getbooking
 //{
@@ -318,6 +318,7 @@
         [selection CreateTableview:vehicleArray withSender:sender  withTitle:@"Please select Vehicle" setCompletionBlock:^(int tag){
             [self->vehiclenoBtn setTitle:[self->vehicleArray objectAtIndex:tag] forState:UIControlStateNormal];
             self->selecedvehicle=tag;
+            
             self->vehicleidStr=[[self->vehicleDic objectAtIndex:tag]valueForKey:@"_id"];
              [self createDesign];
         }];
