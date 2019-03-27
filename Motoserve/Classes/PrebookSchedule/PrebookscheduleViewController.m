@@ -350,10 +350,10 @@
         
         
         NSDictionary * parameters =@{@"userId":[login valueForKey:@"_id"],
-                                     @"vehicleType":[_vehicledetailDic valueForKey:@"vehicleType"],
+                                     @"vehicleId":_vehicleidStr,
                                      @"location":locationDic,
-                                     @"serviceType":typeservice,
-                                     @"subServiceType":typeservice,
+                                     @"serviceType":@"S",
+                                     @"subServiceType":appDelegate.servicetype,
                                      @"serviceMode":typeservice,
                                      @"day":currentday,
                                      @"startTime":[startArray objectAtIndex:0],
@@ -463,14 +463,14 @@
     myPicker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
     myPicker.backgroundColor = Singlecolor(whiteColor);
     myPicker.datePickerMode = UIDatePickerModeDate;
-   // NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-   // NSDate *currentDate = [NSDate date];
-   // NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
     //[comps setDay:maxdate];
-    //NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-    //[comps setDay:mindate];
-   // NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-   // myPicker.minimumDate=minDate;
+   // NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    [comps setDay:0];
+    NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    myPicker.minimumDate=minDate;
     //myPicker.maximumDate=maxDate;
     [DatePickerView addSubview:myPicker];
     

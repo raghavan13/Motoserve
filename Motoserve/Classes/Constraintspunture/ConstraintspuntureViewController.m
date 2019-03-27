@@ -162,6 +162,7 @@
     {
         PrebookscheduleViewController * bill=[[PrebookscheduleViewController alloc]init];
         bill.vehicledetailDic=[vehicleDic objectAtIndex:selecedvehicle];
+        bill.vehicleidStr=vehicleidStr;
         [self.navigationController pushViewController:bill animated:YES];
     }
     else
@@ -177,9 +178,6 @@
             [locationDic setObject:@"Point" forKey:@"type"];
             [locationDic setObject:appDelegate.latArray forKey:@"coordinates"];
             NSString * typeservice=@"P";
-            if ([appDelegate.servicetype isEqualToString:@"R"]) {
-                typeservice=@"S";
-            }
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"dd-MM-yy";
             NSString *currentdate = [NSString stringWithFormat:@"%@",[NSDate date]];
@@ -211,17 +209,18 @@
                      NSLog(@"1");
                      self->currentsecond=0;
                      self->appDelegate.bookingidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
-                     TryagainViewController * tryagain=[[TryagainViewController alloc]init];
-                     self->appDelegate.fromschedule=NO;
-                     [self.navigationController pushViewController:tryagain animated:YES];
-                     //             self->checkemptyresponseTimer=[NSTimer scheduledTimerWithTimeInterval: 1.0
-                     //                                                                            target:self
-                     //                                                                          selector:@selector(handleTimer)
-                     //                                                                          userInfo:nil
-                     //                                                                           repeats:YES];
-                     
-                     //             self->bookingtimer= [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
-                     //[self getbooking];
+                     int trackno=[[[responseObject valueForKey:@"data"] valueForKey:@"lastBookingStatus"]intValue];
+                     if (trackno==1) {
+                         [Utils showErrorAlert:@"No Partners Available at this Location Sorry For Inconivence." delegate:nil];
+                         [self->appDelegate stopProgressView];
+                         [self.navigationController popViewControllerAnimated:YES];
+                     }
+                     else
+                     {
+                         TryagainViewController * tryagain=[[TryagainViewController alloc]init];
+                         self->appDelegate.fromschedule=NO;
+                         [self.navigationController pushViewController:tryagain animated:YES];
+                     }
                  }
              } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                  NSLog(@"Error: %@", error);

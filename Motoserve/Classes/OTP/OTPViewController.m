@@ -100,8 +100,8 @@
          else
          {
              NSLog(@"1");
-             LoginViewController * home=[[LoginViewController alloc]init];
-             [self.navigationController pushViewController:home animated:YES];
+             //LoginViewController * home=[[LoginViewController alloc]init];
+             //[self.navigationController pushViewController:home animated:YES];
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          NSLog(@"Error: %@", error);
