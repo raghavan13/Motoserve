@@ -618,7 +618,7 @@
 }
 
 +(UIView *)CreateHeaderBarWithSearch:(UIView *)InView HeaderTitle:(NSString *)HeaderTitle  IsText:(BOOL)IsTitle Menu:(BOOL)IsMenu IsCart:(BOOL)IsCart LeftClass:(id)LeftClass LeftSelector:(SEL)LeftSelector  RightClass:(id)RightClass RightSelector:(SEL)RightSelector WithCartCount:(NSString *)CartCount  SearchClass:(id)SearchClass SearchSelector:(SEL)SearchSelector ShowSearch:(BOOL)ShowSearch HeaderTap:(id)HeaderTap TapAction:(SEL)TapAction{
-    UIView * navHeader=[[UIView alloc]init];//WithFrame:CGRectMake(0,0, InView.frame.size.width, IS_IPHONEX?90:70)];
+    UIView * navHeader=[[UIView alloc]init];
     navHeader.backgroundColor=RGB(0, 89, 42);
     navHeader.userInteractionEnabled=YES;
     [InView addSubview:navHeader];

@@ -41,10 +41,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -55,40 +51,61 @@
     
     bookstatusStr=@"2";
     
-    //    // Current Location
-    //
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;   //100 m
     [locationManager requestAlwaysAuthorization];
     [locationManager startUpdatingLocation];
-    //
-    
-    
-    //alloc
     
     self.moveMent = [[ARCarMovement alloc]init];
     self.moveMent.delegate = self;
+
     
+    ordernw = [[DraggableViewController alloc]init];
     
-    //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"coordinates" ofType:@"json"];
-    //    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
-    //
-    //    self.CoordinateArr = [[NSMutableArray alloc]initWithArray:[NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:nil]];
-    
-    //set car coordinate
-    
-    
-    
-    CLLocation *LocationAtual1=[[CLLocation alloc] initWithLatitude:[self.latStr doubleValue]  longitude:[self.lonStr doubleValue]];
-    
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:LocationAtual1.coordinate.latitude longitude:LocationAtual1.coordinate.longitude zoom:14];
-    
-    // GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude zoom:20];
-    mapView = [GMSMapView mapWithFrame:CGRectMake(0, IS_IPHONEX?90:70, SCREEN_WIDTH,SCREEN_HEIGHT) camera:camera];
+    if(appDelegate.fromschedule==YES)
+    {
+        for (int i=0; i<[appDelegate.PartnerlistArray count]; i++) {
+            NSArray * locaArray=[[[appDelegate.PartnerlistArray objectAtIndex:i]valueForKey:@"location"]valueForKey:@"coordinates"];
+            self.lonStr=[locaArray objectAtIndex:0];
+            self.latStr=[locaArray objectAtIndex:1];
+            
+            CLLocation *LocationAtual1=[[CLLocation alloc] initWithLatitude:[self.latStr doubleValue]  longitude:[self.lonStr doubleValue]];
+            
+            GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:LocationAtual1.coordinate.latitude longitude:LocationAtual1.coordinate.longitude zoom:14];
+            
+            mapView = [GMSMapView mapWithFrame:CGRectMake(0, IS_IPHONEX?90:70, SCREEN_WIDTH,SCREEN_HEIGHT) camera:camera];
+            self.oldCoordinate = CLLocationCoordinate2DMake([self.latStr doubleValue],[self.lonStr doubleValue]);
+            driverMarker = [[GMSMarker alloc] init];
+            driverMarker.position = self.oldCoordinate;
+            driverMarker.icon = [UIImage imageNamed:@"pin"];
+            if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+                driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
+            }
+            driverMarker.map = self.mapView;
+            [mapView setSelectedMarker:driverMarker];
+        }
+    }
+    else
+    {
+        CLLocation *LocationAtual1=[[CLLocation alloc] initWithLatitude:[self.latStr doubleValue]  longitude:[self.lonStr doubleValue]];
+        
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:LocationAtual1.coordinate.latitude longitude:LocationAtual1.coordinate.longitude zoom:14];
+        mapView = [GMSMapView mapWithFrame:CGRectMake(0, IS_IPHONEX?90:70, SCREEN_WIDTH,SCREEN_HEIGHT) camera:camera];
+        
+        self.oldCoordinate = CLLocationCoordinate2DMake([self.latStr doubleValue],[self.lonStr doubleValue]);
+        driverMarker = [[GMSMarker alloc] init];
+        driverMarker.position = self.oldCoordinate;
+        driverMarker.icon = [UIImage imageNamed:@"carIcon"];
+        if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+            driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
+        }
+        driverMarker.map = self.mapView;
+        [mapView setSelectedMarker:driverMarker];
+        
+    }
     mapView.myLocationEnabled=YES;
     [self.view addSubview:mapView];
-    
     
     UIButton * dragBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, SCREEN_WIDTH, 40)];
     dragBtn.backgroundColor=Singlecolor(whiteColor);
@@ -101,27 +118,6 @@
     sliderImg.image=image(@"seperator");
     [dragBtn addSubview:sliderImg];
     
-    
-    ordernw = [[DraggableViewController alloc]init];
-    
-    //=======
-    
-    // Creates a marker in the center of the map.
-    //
-    
-    for (int i=0; i<10; i++) {
-        self.oldCoordinate = CLLocationCoordinate2DMake([self.latStr doubleValue],[self.lonStr doubleValue]);
-        driverMarker = [[GMSMarker alloc] init];
-        driverMarker.position = self.oldCoordinate;
-        driverMarker.icon = [UIImage imageNamed:@"carIcon"];
-        if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
-            driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
-        }
-        driverMarker.map = self.mapView;
-        [mapView setSelectedMarker:driverMarker];
-    }
-    //set counter value 0
-    //
     self.counter = 0;
     
     //start the timer, change the interval based on your requirement
@@ -132,7 +128,7 @@
     }
     else
     {
-         getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+        getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     }
    
     
@@ -140,6 +136,11 @@
                                              selector:@selector(updatebill)
                                                  name:@"updatebill"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(initializeview)
+                                                 name:@"Confirmbook"
+                                               object:nil];
+    
     [[NSNotificationCenter defaultCenter]postNotificationName:@"changetype" object:nil];
     
     //appDelegate.bookingstatusStr=@"2";
@@ -332,5 +333,76 @@
     [self.moveMent ARCarMovementWithMarker:driverMarker oldCoordinate:self.oldCoordinate newCoordinate:newCoordinate mapView:self.mapView bearing:0];  //instead value 0, pass latest bearing value from backend
     
     self.oldCoordinate = newCoordinate;
+}
+
+- (void)initializeview
+{
+    NSArray * locaArray=[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"];
+    self.latStr=[[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"] objectAtIndex:1];
+    self.lonStr=[[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"] objectAtIndex:0];
+    [self confirmbooking];
+}
+- (void)confirmbooking
+{
+    if ([Utils isCheckNotNULL:appDelegate.latArray]) {
+        [appDelegate startProgressView:self.view];
+        NSString *url =[UrlGenerator Post_PrebookRequest];
+        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
+        NSMutableDictionary * locationDic=[[NSMutableDictionary alloc]init];
+        [locationDic setObject:@"Point" forKey:@"type"];
+        [locationDic setObject:appDelegate.latArray forKey:@"coordinates"];
+        NSString * typeservice=@"P";
+        NSString *currentdate;
+        currentdate = [Utils GlobalDateConvert:[appDelegate.selectionvalue valueForKey:@"date"] inputFormat:@"dd-MM-yy" outputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+        NSString *currentday;
+        currentday=[Utils GlobalDateConvert:[appDelegate.selectionvalue valueForKey:@"date"] inputFormat:@"dd-MM-yy" outputFormat:@"EEEE"];
+        
+        
+        NSDictionary * parameters =@{@"userId":[login valueForKey:@"_id"],
+                                     @"vehicleId":appDelegate.vehicleid,
+                                     @"location":locationDic,
+                                     @"serviceType":typeservice,
+                                     @"subServiceType":appDelegate.servicetype,
+                                     @"serviceMode":appDelegate.serviceon,
+                                     @"day":currentday,
+                                     @"startTime":[appDelegate.selectionvalue valueForKey:@"starttime"],
+                                     @"endTime":[appDelegate.selectionvalue valueForKey:@"endtime"],
+                                     @"serviceDate":currentdate,
+                                     @"partnerId":appDelegate.partnerId,
+                                     };
+        [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+         {
+             NSLog(@"response data %@",responseObject);
+             if ([[responseObject objectForKey:@"status"]integerValue]==0) {
+                 NSLog(@"0");
+                 [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
+                 [self->appDelegate stopProgressView];
+                 if ([[responseObject objectForKey:@"message"]isEqualToString:@"Already Requested"]) {
+                     NSArray *viewControllers = [[self navigationController] viewControllers];
+                     for( int i=0;i<[viewControllers count];i++){
+                         id obj=[viewControllers objectAtIndex:i];
+                         if([obj isKindOfClass:[ConstraintspuntureViewController class]]){
+                             [[self navigationController] popToViewController:obj animated:YES];
+                             return;
+                         }
+                     }
+                 }
+             }
+             else
+             {
+                 NSLog(@"1");
+                 self->appDelegate.bookingidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
+                 //int trackno=[[[responseObject valueForKey:@"data"] valueForKey:@"lastBookingStatus"]intValue];
+                 [self viewDidLoad];
+             }
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"Error: %@", error);
+             [Utils showErrorAlert:@"Check Your Inertnet Connection" delegate:nil];
+             [self->appDelegate stopProgressView];
+         }];
+    }
 }
 @end

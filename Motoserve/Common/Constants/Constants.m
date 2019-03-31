@@ -58,5 +58,6 @@ NSString * const Post_Bookinglist = @"getUserBookingList";
 NSString * const Post_CancelBooking = @"userReject";
 
 NSString * const Post_Partnerbylocation = @"getPartnerByLocation";
-
+//
+NSString * const Post_PrebookRequest =@"requestPreBookingService";
 @end

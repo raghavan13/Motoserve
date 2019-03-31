@@ -16,9 +16,10 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property(nonatomic,retain)NSString *deviceType,*bookingidStr,*bookingstatusStr,*servicetype,*serviceon;
+@property(nonatomic,retain)NSString *deviceType,*bookingidStr,*bookingstatusStr,*servicetype,*serviceon,*vehicleid,*partnerId;
+@property(nonatomic,retain)NSMutableDictionary * selectionvalue;
 @property(nonatomic,readwrite)float hVal,wVal,font;
-@property (strong,nonatomic)NSArray * servicedetails;
+@property (strong,nonatomic)NSArray * servicedetails,*PartnerlistArray,*selecteddic;
 @property (nonatomic)BOOL isedit,islogin,fromschedule;
 @property (nonatomic,retain)NSMutableArray * latArray;
 -(void)startProgressView:(UIView *)ContentView;

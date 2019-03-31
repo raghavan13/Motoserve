@@ -109,8 +109,9 @@
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
     NSDictionary * parameters = @{
-                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":self->appDelegate.bookingstatusStr
+                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":self->appDelegate.bookingstatusStr,@"userId":[login valueForKey:@"_id"]
                                   };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {

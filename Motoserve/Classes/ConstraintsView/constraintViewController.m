@@ -28,6 +28,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     UIButton *  prebkBtn,* onrdBtn;
     UICollectionView * bookCollection;
     NSInteger selected;
+    Confirmview * PickupSelection;
 }
 @end
 
@@ -44,6 +45,7 @@ static CGFloat ZOProductCellSpacing         = 20.0;
     prebkImgArray=[[NSMutableArray alloc]initWithObjects:@"11",@"12",@"13",@"14",@"15",@"16",nil];
     prebktextArray=[[NSMutableArray alloc]initWithObjects:@"Repair Service",@"Oil Change",@"Wheel Alignment",@"Spa",@"Painting",@"AC Repair",nil];
     [self createDesign];
+    //[self openpop];
 }
 - (void)createDesign
 {
@@ -376,4 +378,27 @@ static CGFloat ZOProductCellSpacing         = 20.0;
         
     }
 }
+
+
+//- (void)openpop
+//{
+//    UIViewController *parentVC = (UIViewController *)[NSObject viewControllerForSubView:self.view];
+//    {
+//
+//        PickupSelection=[[Confirmview alloc]init];
+//        PickupSelection.backgroundColor=[UIColor colorWithWhite:0.00 alpha:0.4];
+//        PickupSelection.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//
+//
+//        PickupSelection.OutletDelegate= parentVC;
+//
+//        [PickupSelection setPickupBlock:^(int tag){
+//
+//
+//
+//        }];
+//        [parentVC.view addSubview:PickupSelection];
+//        [PickupSelection CreateOutletView];
+//    }
+//}
 @end

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShopviewCell : UITableViewCell
-
+- (void)value:(NSArray*)values;
 @end
 
 NS_ASSUME_NONNULL_END

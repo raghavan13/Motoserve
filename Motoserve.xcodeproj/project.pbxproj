@@ -148,6 +148,8 @@
 		5283A4AF21634A9C00DA69CB /* JTProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5283A4AE21634A9C00DA69CB /* JTProgressHUD.m */; };
 		5283A4B621634AD400DA69CB /* UrlGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5283A4B221634AD400DA69CB /* UrlGenerator.m */; };
 		5283A4B721634AD400DA69CB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5283A4B521634AD400DA69CB /* Utils.m */; };
+		528855D82250D32000C49783 /* Confirmview.m in Sources */ = {isa = PBXBuildFile; fileRef = 528855D72250D32000C49783 /* Confirmview.m */; };
+		528855DC2250E0E900C49783 /* NSObject+FL.m in Sources */ = {isa = PBXBuildFile; fileRef = 528855DB2250E0E900C49783 /* NSObject+FL.m */; };
 		528C139F21E3B89800688FF2 /* TrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528C139E21E3B89800688FF2 /* TrackViewController.m */; };
 		528C13A321E3B91900688FF2 /* TrackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 528C13A221E3B91900688FF2 /* TrackViewCell.m */; };
 		F01C556A21B1704800F15091 /* coordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = F01C556921B1704800F15091 /* coordinates.json */; };
@@ -418,6 +420,10 @@
 		5283A4B221634AD400DA69CB /* UrlGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlGenerator.m; sourceTree = "<group>"; };
 		5283A4B421634AD400DA69CB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		5283A4B521634AD400DA69CB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		528855D62250D32000C49783 /* Confirmview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Confirmview.h; sourceTree = "<group>"; };
+		528855D72250D32000C49783 /* Confirmview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Confirmview.m; sourceTree = "<group>"; };
+		528855DA2250E0E900C49783 /* NSObject+FL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FL.h"; sourceTree = "<group>"; };
+		528855DB2250E0E900C49783 /* NSObject+FL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FL.m"; sourceTree = "<group>"; };
 		528C139D21E3B89800688FF2 /* TrackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackViewController.h; sourceTree = "<group>"; };
 		528C139E21E3B89800688FF2 /* TrackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackViewController.m; sourceTree = "<group>"; };
 		528C13A121E3B91900688FF2 /* TrackViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackViewCell.h; sourceTree = "<group>"; };
@@ -740,6 +746,7 @@
 		25AB838F21D3915100A9C233 /* DraggableView */ = {
 			isa = PBXGroup;
 			children = (
+				528855D52250D30F00C49783 /* Confirmbook */,
 				25DCACDF21FB36D000F00ED8 /* shoplistcell */,
 				25AB839021D3918200A9C233 /* DraggableViewController.h */,
 				25AB839121D3918200A9C233 /* DraggableViewController.m */,
@@ -1128,6 +1135,7 @@
 		5283A4A22163476F00DA69CB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				528855D92250E0E900C49783 /* NSObject */,
 				25EED80921E4A8F70009FA4F /* FLAnimatedImage */,
 				25AB838721D3783700A9C233 /* GlobalApiCall */,
 				253A47A121BFE31F0057E60D /* UILabel */,
@@ -1184,6 +1192,24 @@
 				5283A4B521634AD400DA69CB /* Utils.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		528855D52250D30F00C49783 /* Confirmbook */ = {
+			isa = PBXGroup;
+			children = (
+				528855D62250D32000C49783 /* Confirmview.h */,
+				528855D72250D32000C49783 /* Confirmview.m */,
+			);
+			path = Confirmbook;
+			sourceTree = "<group>";
+		};
+		528855D92250E0E900C49783 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				528855DA2250E0E900C49783 /* NSObject+FL.h */,
+				528855DB2250E0E900C49783 /* NSObject+FL.m */,
+			);
+			path = NSObject;
 			sourceTree = "<group>";
 		};
 		528C139C21E3B88800688FF2 /* TrackOrder */ = {
@@ -1376,6 +1402,7 @@
 				25D9256421709D5A00249C87 /* UIImage+MultiFormat.m in Sources */,
 				25D9255E21709D5A00249C87 /* SDWebImageDownloader.m in Sources */,
 				25343B1E2164C4C8000C6B6C /* SBJsonWriter.m in Sources */,
+				528855D82250D32000C49783 /* Confirmview.m in Sources */,
 				25D92536217099CB00249C87 /* LCBannerView.m in Sources */,
 				2507165E21E3231300A1E35A /* OrderhistoryViewController.m in Sources */,
 				25343B122164C4C8000C6B6C /* ASIDataDecompressor.m in Sources */,
@@ -1391,6 +1418,7 @@
 				25D9255D21709D5A00249C87 /* SDWebImageDecoder.m in Sources */,
 				25DCACDE21FB06F500F00ED8 /* PrebookscheduleViewController.m in Sources */,
 				25AB838A21D3787B00A9C233 /* CommonApiCall.m in Sources */,
+				528855DC2250E0E900C49783 /* NSObject+FL.m in Sources */,
 				25343B192164C4C8000C6B6C /* NSObject+SBJSON.m in Sources */,
 				522D7B9B21639F9400A7385B /* IQToolbar.m in Sources */,
 				254A2C28217EFAF9006DA3E9 /* AFSecurityPolicy.m in Sources */,

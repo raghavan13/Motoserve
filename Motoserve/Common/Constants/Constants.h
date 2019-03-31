@@ -151,4 +151,6 @@ FOUNDATION_EXPORT NSString * const Post_Bookinglist;
 FOUNDATION_EXPORT NSString * const Post_CancelBooking;
 
 FOUNDATION_EXPORT NSString * const Post_Partnerbylocation;
+
+FOUNDATION_EXPORT NSString * const Post_PrebookRequest;
 @end

@@ -180,7 +180,7 @@
             NSString * typeservice=@"P";
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"dd-MM-yy";
-            NSString *currentdate = [NSString stringWithFormat:@"%@",[NSDate date]];
+            NSString *currentdate = [Utils GlobalDateConvert:[NSString stringWithFormat:@"%@",[NSDate date]] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS" outputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
             formatter.dateFormat = @"dd";
             NSString *currenttime = [formatter stringFromDate:[NSDate date]];
             formatter.dateFormat = @"EEEE";

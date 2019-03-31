@@ -43,6 +43,8 @@
 +(NSString *)PostCancelBooking;
 
 +(NSString *)Post_Partnerbylocation;
+
++(NSString *)Post_PrebookRequest;
 @end
 
 

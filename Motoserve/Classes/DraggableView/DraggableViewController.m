@@ -19,6 +19,7 @@
     UILabel *  prepareLbl,* startLbl,* starttimeLbl,* rchLbl,* rchtimeLbl,* doneLbl,* donetimeLbl,* estdidtLbl,* esttimeLbl,* drivernameLbl,* drivernoLbl,* Amtlbl,* amtpriceLbl,* delivdatelbl,* delivdatevalLbl,* paylbl,* payvalLbl,*  deliverbl,* delivertimeLbl,* delivernameLbl,* delivernoLbl;
     UIButton *  doneBtn,* driverBtn,* drivercallBtn,* viewreceiptBtn,* deliverBtn,* delivercallBtn;
     int scrollheight;
+    Confirmview * PickupSelection;
 }
 @end
 
@@ -34,13 +35,13 @@
 - (void)createDesign
 {
     UIView * swipeView=[[UIView alloc]init];
-    if (appDelegate.fromschedule==YES) {
-     swipeView.frame=CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40);
-    }
-    else
-    {
+    //if (appDelegate.fromschedule==YES) {
+//     swipeView.frame=CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40);
+//    }
+//    else
+//    {
         swipeView.frame=CGRectMake(0, SCREEN_HEIGHT/3.0, SCREEN_WIDTH, SCREEN_HEIGHT-SCREEN_HEIGHT/3.0);
-    }
+   // }
     swipeView.backgroundColor=Singlecolor(whiteColor);
     [self.view addSubview:swipeView];
     
@@ -208,7 +209,7 @@
         
         
         scrollheight=y;
-        if ([appDelegate.serviceon isEqualToString:@"o"]) {
+        if ([appDelegate.serviceon isEqualToString:@"P"]) {
             prepareLbl.text=@"Accepted on";
             preparetimeLbl.text=[dateFormat stringFromDate:date];
             
@@ -719,8 +720,9 @@
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
     NSDictionary * parameters = @{
-                                  @"_id":appDelegate.bookingidStr,@"bookingStatus":appDelegate.bookingstatusStr
+                                  @"_id":appDelegate.bookingidStr,@"bookingStatus":appDelegate.bookingstatusStr,@"userId":[login valueForKey:@"_id"]
                                   };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
@@ -753,7 +755,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 10;
+    return appDelegate.PartnerlistArray.count;
     
 }
 
@@ -769,11 +771,36 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
+    [cell value:[appDelegate.PartnerlistArray objectAtIndex:indexPath.row]];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TryagainViewController * tryagain=[[TryagainViewController alloc]init];
-    [self.navigationController pushViewController:tryagain animated:YES];
+    UIViewController *parentVC = (UIViewController *)[NSObject viewControllerForSubView:self.view];
+    {
+        
+        PickupSelection=[[Confirmview alloc]init];
+        PickupSelection.backgroundColor=[UIColor colorWithWhite:0.00 alpha:0.4];
+        PickupSelection.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        
+        
+        PickupSelection.OutletDelegate= parentVC;
+        
+        [PickupSelection setPickupBlock:^(int tag){
+            
+            
+            
+        }];
+        [parentVC.view addSubview:PickupSelection];
+        [PickupSelection CreateOutletView:[appDelegate.PartnerlistArray objectAtIndex:indexPath.row]];
+        appDelegate.partnerId=[[appDelegate.PartnerlistArray objectAtIndex:indexPath.row]valueForKey:@"_id"];
+    }
+}
+- (void)afterconfirm
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"Confirmbook"
+     object:nil];
 }
 @end

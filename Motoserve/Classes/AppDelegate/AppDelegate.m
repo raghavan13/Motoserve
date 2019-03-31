@@ -133,7 +133,7 @@
         firstVC=[[constraintViewController alloc]init];
     }
     _fromschedule=YES;
-    _serviceon=@"o";
+    _serviceon=@"O";
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:firstVC];

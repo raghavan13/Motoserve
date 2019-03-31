@@ -19,6 +19,8 @@
 {
     AppDelegate *appDelegate;
     UIView  * MainView;
+    UIImageView * carImg;
+    UILabel * noLbl,* servicecenterLbl;
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -58,35 +60,12 @@
     [bgBtn setBackgroundImage:image(@"list_bg") forState:UIControlStateNormal];
     bgBtn.userInteractionEnabled=NO;
     
-    
-//    UIImageView * headerImg=[[UIImageView alloc]init];
-//    [MainView addSubview:headerImg];
-//    headerImg.translatesAutoresizingMaskIntoConstraints = NO;
-//    [headerImg.topAnchor constraintEqualToAnchor:MainView.topAnchor constant:5].active=YES;
-//    [headerImg.centerXAnchor constraintEqualToAnchor:MainView.centerXAnchor constant:5].active=YES;
-//    [headerImg.widthAnchor constraintEqualToConstant:SCREEN_WIDTH/2.5].active=YES;
-//    [headerImg.heightAnchor constraintEqualToConstant:21].active=YES;
-//    headerImg.image=image(@"service_header");
-//
-//
-//    UILabel * serviceLbl=[[UILabel alloc]init];
-//    [headerImg addSubview:serviceLbl];
-//    serviceLbl.translatesAutoresizingMaskIntoConstraints = NO;
-//    [serviceLbl.topAnchor constraintEqualToAnchor:headerImg.topAnchor constant:0].active=YES;
-//    [serviceLbl.leftAnchor constraintEqualToAnchor:headerImg.leftAnchor constant:0].active=YES;
-//    [serviceLbl.widthAnchor constraintEqualToAnchor:headerImg.widthAnchor constant:0].active=YES;
-//    [serviceLbl.heightAnchor constraintEqualToAnchor:headerImg.heightAnchor constant:0].active=YES;
-//    serviceLbl.text=@"General Service";
-//    serviceLbl.textColor=Singlecolor(whiteColor);
-//    serviceLbl.textAlignment=NSTextAlignmentCenter;
-//    serviceLbl.font=RalewayRegular(appDelegate.font-6);
-    
-    UIImageView * carImg=[[UIImageView alloc]init];
+    carImg=[[UIImageView alloc]init];
     [MainView addSubview:carImg];
     carImg.translatesAutoresizingMaskIntoConstraints = NO;
     [carImg.centerYAnchor constraintEqualToAnchor:MainView.centerYAnchor constant:5].active=YES;
     [carImg.leftAnchor constraintEqualToAnchor:MainView.leftAnchor constant:20].active=YES;
-    [carImg.widthAnchor constraintEqualToConstant:80].active=YES;
+    [carImg.widthAnchor constraintEqualToConstant:60].active=YES;
     [carImg.heightAnchor constraintEqualToConstant:30].active=YES;
     carImg.image=image(@"order_car");
     
@@ -101,14 +80,13 @@
     imgdiv.backgroundColor=Singlecolor(lightGrayColor);
     
     
-    UILabel * noLbl=[[UILabel alloc]init];
+    noLbl=[[UILabel alloc]init];
     [MainView addSubview:noLbl];
     noLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [noLbl.topAnchor constraintEqualToAnchor:imgdiv.topAnchor constant:5].active=YES;
     [noLbl.leftAnchor constraintEqualToAnchor:imgdiv.leftAnchor constant:10].active=YES;
     [noLbl.rightAnchor constraintEqualToAnchor:MainView.rightAnchor constant:-10].active=YES;
     [noLbl.heightAnchor constraintEqualToConstant:21].active=YES;
-    noLbl.text=@"Sathish repair shop";
     noLbl.textColor=Singlecolor(blackColor);
     noLbl.textAlignment=NSTextAlignmentLeft;
     noLbl.font=RalewayBold(appDelegate.font-5);
@@ -138,7 +116,7 @@
     UIImageView *  estdistImg=[[UIImageView alloc]init];
     [MainView addSubview:estdistImg];
     estdistImg.translatesAutoresizingMaskIntoConstraints = NO;
-    [estdistImg.topAnchor constraintEqualToAnchor:typeLbl.bottomAnchor constant:5].active=YES;
+    [estdistImg.topAnchor constraintEqualToAnchor:typeLbl.bottomAnchor constant:10].active=YES;
     [estdistImg.leftAnchor constraintEqualToAnchor:noLbl.leftAnchor constant:0].active=YES;
     [estdistImg.widthAnchor constraintEqualToConstant:15].active=YES;
     [estdistImg.heightAnchor constraintEqualToConstant:13].active=YES;
@@ -147,16 +125,51 @@
     
    
     
-    UILabel * servicecenterLbl=[[UILabel alloc]init];
+    servicecenterLbl=[[UILabel alloc]init];
     [MainView addSubview:servicecenterLbl];
     servicecenterLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [servicecenterLbl.topAnchor constraintEqualToAnchor:typeLbl.bottomAnchor constant:5].active=YES;
     [servicecenterLbl.leftAnchor constraintEqualToAnchor:estdistImg.rightAnchor constant:5].active=YES;
     [servicecenterLbl.rightAnchor constraintEqualToAnchor:noLbl.rightAnchor constant:0].active=YES;
     [servicecenterLbl.heightAnchor constraintEqualToAnchor:noLbl.heightAnchor constant:0].active=YES;
-    servicecenterLbl.text=@"1.5 Km";
     servicecenterLbl.textAlignment=NSTextAlignmentLeft;
     servicecenterLbl.textColor=Singlecolor(grayColor);
     servicecenterLbl.font=RalewayRegular(appDelegate.font-5);
+}
+
+
+
+- (void)value:(NSArray*)values
+{
+    if ([Utils isCheckNotNULL:[values valueForKey:@"vehicleType"]]) {
+        if ([[values valueForKey:@"vehicleType"]isEqualToString:@"T"]) {
+            carImg.image=image(@"order_bike");
+        }
+    }
+    if ([Utils isCheckNotNULL:[values valueForKey:@"shopName"]]) {
+        noLbl.text=[values valueForKey:@"shopName"];
+    }
+    if ([Utils isCheckNotNULL:[[values valueForKey:@"location"]valueForKey:@"coordinates"]]) {
+        
+        NSString * startlon=[appDelegate.latArray objectAtIndex:0];
+        NSString * startlat=[appDelegate.latArray objectAtIndex:1];
+        
+        NSArray * locaArray=[[values valueForKey:@"location"]valueForKey:@"coordinates"];
+        NSString * endlonStr=[locaArray objectAtIndex:0];
+        NSString * endlatStr=[locaArray objectAtIndex:1];
+        
+        CLLocation *loc1 = [[CLLocation alloc] initWithLatitude:[startlat doubleValue] longitude:[startlon doubleValue]];
+        
+        CLLocation *loc2 = [[CLLocation alloc] initWithLatitude:[endlatStr doubleValue]  longitude:[endlonStr doubleValue]];
+        
+        CLLocationDistance distance = [loc1 distanceFromLocation:loc2];
+
+        float totalDistance =0.0;
+        totalDistance = totalDistance + (distance / 1000);
+
+        NSLog(@"totalDistance: %@",[NSString stringWithFormat:@"%.2f KM", totalDistance]);
+        servicecenterLbl.text=[NSString stringWithFormat:@"%.2f KM", totalDistance];
+    }
+    
 }
 @end

@@ -98,4 +98,8 @@
     return [NSString stringWithFormat: @"%@",[self appendBaseUrl:Post_Partnerbylocation]];
 }
 
++(NSString *)Post_PrebookRequest
+{
+    return [NSString stringWithFormat: @"%@",[self appendBaseUrl:Post_PrebookRequest]];
+}
 @end

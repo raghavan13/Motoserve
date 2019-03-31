@@ -140,11 +140,12 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"dd/MM/yy";
         NSString *currentdate = [formatter stringFromDate:[NSDate date]];
-        NSMutableDictionary * statusDic=[[NSMutableDictionary alloc]init];
-        [statusDic setObject:@"3" forKey:@"status"];
-        [statusDic setObject:currentdate forKey:@"updatedDate"];
+//        NSMutableDictionary * statusDic=[[NSMutableDictionary alloc]init];
+//        [statusDic setObject:@"3" forKey:@"status"];
+//        [statusDic setObject:currentdate forKey:@"updatedDate"];
+        NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
         NSDictionary * parameters = @{
-                                      @"_id":self->appDelegate.bookingidStr,@"bookingStatus":statusDic
+                                     @"_id":self->appDelegate.bookingidStr,@"bookingStatus":@"3",@"userId":[login valueForKey:@"_id"]
                                       };
         [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
@@ -202,8 +203,9 @@
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary * login= [Utils NSKeyedUnarchiver:@"logindetails"];
     NSDictionary * parameters = @{
-                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":@"3"
+                                  @"_id":self->appDelegate.bookingidStr,@"bookingStatus":@"3",@"userId":[login valueForKey:@"_id"]
                                   };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {

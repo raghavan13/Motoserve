@@ -266,5 +266,31 @@
      }];
     
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (onrdcheck) {
+        if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==1)
+        {
+            [Utils showErrorAlert:@"No Partners Available at this Location Sorry For Inconivence." delegate:nil];
+        }
+        else if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==2||[[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]>=5)
+        {
+            MapViewController * map=[[MapViewController alloc]init];
+            NSLog(@"check----%@",[[[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"data"]valueForKey:@"bookingList"]valueForKey:@"location"]valueForKey:@"coordinates"]);
+            
+            NSArray * cordArray=[[[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"data"]valueForKey:@"bookingList"]valueForKey:@"location"]valueForKey:@"coordinates"];
+            
+            map.latStr=[cordArray objectAtIndex:1];
+            map.lonStr=[cordArray objectAtIndex:0];
+            //map.serviceprovidername=[[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"partnerId"]valueForKey:@"shopName"];
+            self->appDelegate.fromschedule=NO;
+            //[self.navigationController pushViewController:map animated:YES];
+        }
+    }
+    else
+    {
+        
+    }
+    
+}
 @end

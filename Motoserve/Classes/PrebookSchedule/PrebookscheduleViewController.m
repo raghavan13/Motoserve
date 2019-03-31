@@ -330,6 +330,7 @@
 {
     if ([Utils isCheckNotNULL:appDelegate.latArray]) {
         
+
         [appDelegate startProgressView:self.view];
         NSString *url =[UrlGenerator Post_Partnerbylocation];
         AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -340,13 +341,18 @@
         [locationDic setObject:@"Point" forKey:@"type"];
         [locationDic setObject:appDelegate.latArray forKey:@"coordinates"];
         NSString * typeservice=@"P";
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"dd-MM-yy";
-        NSString *currentdate = [NSString stringWithFormat:@"%@",[NSDate date]];
-        formatter.dateFormat = @"EEEE";
-        NSString *currentday = [formatter stringFromDate:[NSDate date]];
+        NSString *currentdate;
+        currentdate = [Utils GlobalDateConvert:dateLbl.text inputFormat:@"dd-MM-yy" outputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+        NSString *currentday;
+        currentday=[Utils GlobalDateConvert:dateLbl.text inputFormat:@"dd-MM-yy" outputFormat:@"EEEE"];
         NSArray * startArray = [[timeseperateArray objectAtIndex:0] componentsSeparatedByString:@":"];
         NSArray * endArray =[[timeseperateArray objectAtIndex:1] componentsSeparatedByString:@":"];
+        
+        appDelegate.selectionvalue=[[NSMutableDictionary alloc]init];
+        [appDelegate.selectionvalue setValue:[startArray objectAtIndex:0] forKey:@"starttime"];
+        [appDelegate.selectionvalue setValue:[endArray objectAtIndex:0] forKey:@"endtime"];
+        [appDelegate.selectionvalue setValue:timeinsideLbl.text forKey:@"time"];
+        [appDelegate.selectionvalue setValue:dateLbl.text forKey:@"date"];
         
         
         NSDictionary * parameters =@{@"userId":[login valueForKey:@"_id"],
@@ -360,6 +366,7 @@
                                      @"endTime":[endArray objectAtIndex:0],
                                      @"serviceDate":currentdate,
                                      };
+        appDelegate.vehicleid=_vehicleidStr;
         [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
              NSLog(@"response data %@",responseObject);
@@ -372,6 +379,8 @@
              {
                  NSLog(@"1");
                  MapViewController * tryagain=[[MapViewController alloc]init];
+                 NSLog(@"res %@",[[responseObject valueForKey:@"data"]valueForKey:@"partnerList"]);
+                 self->appDelegate.PartnerlistArray=[[responseObject valueForKey:@"data"]valueForKey:@"partnerList"];
                  self->appDelegate.fromschedule=YES;
                  [self.navigationController pushViewController:tryagain animated:YES];
                  [self->appDelegate stopProgressView];

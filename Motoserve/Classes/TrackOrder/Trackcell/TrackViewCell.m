@@ -193,7 +193,7 @@
     [rsLbl.leftAnchor constraintEqualToAnchor:orderidLbl.leftAnchor constant:20].active=YES;
     [rsLbl.rightAnchor constraintEqualToAnchor:orderidLbl.rightAnchor constant:0].active=YES;
     [rsLbl.heightAnchor constraintEqualToConstant:30].active=YES;
-    rsLbl.text=@"300 .Rs";
+    //rsLbl.text=@"300 .Rs";
     rsLbl.textAlignment=NSTextAlignmentRight;
     rsLbl.font=RalewayRegular(appDelegate.font);
     
@@ -213,11 +213,11 @@
     }
     if ([Utils isCheckNotNULL:[values valueForKey:@"serviceDate"]]) {
         NSLog(@"date %@",[values valueForKey:@"serviceDate"]);//'Z'
-        dateLbl.text=[NSString stringWithFormat:@"%@", [Utils GlobalDateConvert:[values valueForKey:@"serviceDate"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS" outputFormat:@"EEE,dd.MM.yyyy"]];
+        dateLbl.text=[NSString stringWithFormat:@"%@", [Utils GlobalDateConvert:[values valueForKey:@"serviceDate"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" outputFormat:@"EEE,dd.MM.yyyy"]];
     }
     if ([Utils isCheckNotNULL:[values valueForKey:@"lastUpdated"]]) {
-        NSLog(@"time %@",[values valueForKey:@"lastUpdated"]);//'Z'
-        orderidLbl.text=[NSString stringWithFormat:@"Last Updated : %@",[Utils GlobalDateConvert:[values valueForKey:@"lastUpdated"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS" outputFormat:@"hh:mm a"]];
+        NSLog(@"time %@",[values valueForKey:@"lastUpdated"]);//
+        orderidLbl.text=[NSString stringWithFormat:@"Last Updated : %@",[Utils GlobalDateConvert:[values valueForKey:@"lastUpdated"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" outputFormat:@"hh:mm a"]];
     }
     if ([Utils isCheckNotNULL:[[values valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"]]) {
         noLbl.text=[[values valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"];

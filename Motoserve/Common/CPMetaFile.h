@@ -41,6 +41,7 @@
 #import "SSPopup.h"
 #import "RESideMenu.h"
 #import "FLAnimatedImage.h"
+#import "NSObject+FL.h"
 ////Left Menu
 //#import "DEMONavigationController.h"
 //#import "REFrostedViewController.h"
@@ -77,6 +78,7 @@
 #import "SuccessViewController.h"
 #import "PrebookscheduleViewController.h"
 #import "ShopviewCell.h"
+#import "Confirmview.h"
 //#import "UILabel+UserClass.h"
 //#import "DetailViewController.h"
 //#import "OredrsListTableViewCell.h"
