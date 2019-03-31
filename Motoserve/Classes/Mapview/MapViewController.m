@@ -27,6 +27,7 @@
     NSTimer * getbookingtimer,*patnerlocationtimer;
     CLLocationManager * locationManager;
     DraggableViewController * ordernw;
+    BOOL runapi;
 }
 
 @property (strong, nonatomic) ARCarMovement *moveMent;
@@ -38,7 +39,15 @@
 
 - (void)backAction
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    getbookingtimer=nil;
+    NSArray *viewControllers = [[self navigationController] viewControllers];
+    for( int i=0;i<[viewControllers count];i++){
+        id obj=[viewControllers objectAtIndex:i];
+        if([obj isKindOfClass:[constraintViewController class]]){
+            [[self navigationController] popToViewController:obj animated:YES];
+            return;
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -128,7 +137,7 @@
     }
     else
     {
-        getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+        //getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     }
    
     
@@ -223,6 +232,15 @@
              }
              
              if ([self->appDelegate.bookingstatusStr isEqualToString:@"2"]) {
+                 if (self->runapi==YES) {
+                     [[NSNotificationCenter defaultCenter]
+                      postNotificationName:@"changetype"
+                      object:nil];
+                     self->appDelegate.servicedetails=[responseObject valueForKey:@"data"];
+                     self->getbookingtimer=nil;
+                     [self viewDidLoad];
+                     self->runapi=NO;
+                 }
                  return ;
              }
              
@@ -340,6 +358,7 @@
     NSArray * locaArray=[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"];
     self.latStr=[[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"] objectAtIndex:1];
     self.lonStr=[[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"] objectAtIndex:0];
+    runapi=YES;
     [self confirmbooking];
 }
 - (void)confirmbooking
@@ -354,7 +373,7 @@
         NSMutableDictionary * locationDic=[[NSMutableDictionary alloc]init];
         [locationDic setObject:@"Point" forKey:@"type"];
         [locationDic setObject:appDelegate.latArray forKey:@"coordinates"];
-        NSString * typeservice=@"P";
+        NSString * typeservice=@"S";
         NSString *currentdate;
         currentdate = [Utils GlobalDateConvert:[appDelegate.selectionvalue valueForKey:@"date"] inputFormat:@"dd-MM-yy" outputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
         NSString *currentday;
@@ -395,8 +414,10 @@
              {
                  NSLog(@"1");
                  self->appDelegate.bookingidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
-                 //int trackno=[[[responseObject valueForKey:@"data"] valueForKey:@"lastBookingStatus"]intValue];
-                 [self viewDidLoad];
+                 int trackno=[[[responseObject valueForKey:@"data"] valueForKey:@"lastBookingStatus"]intValue];
+                 if (trackno==0) {
+                     self->getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+                 }
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"Error: %@", error);

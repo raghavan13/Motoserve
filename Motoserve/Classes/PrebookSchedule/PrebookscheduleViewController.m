@@ -328,6 +328,39 @@
 }
 - (void)submitAction
 {
+    NSMutableArray *txtFieldArray=[[NSMutableArray alloc]init];
+    NSMutableArray *txtaddArray=[[NSMutableArray alloc]init];
+    
+    NSArray * keysArray = @[ @"Service Time",
+                             @"Service Date",
+                             ];
+    
+    
+    
+    [txtaddArray addObject:timeinsideLbl.text];
+    [txtaddArray addObject:dateLbl.text];
+    for (int i=0; i < keysArray.count; i++)
+    {
+        
+        if (![Utils isCheckNotNULL:[txtaddArray objectAtIndex:i]]) {
+            
+            UIAlertController * alertControllerlogin = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"Please Select %@",keysArray[i]] preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertControllerlogin addAction:ok];
+            
+            
+            [self presentViewController:alertControllerlogin animated:YES completion:nil];
+            
+            return;
+            
+        }
+        
+        [txtFieldArray addObject:[txtaddArray objectAtIndex:i]];
+        
+    }
+    
+    
     if ([Utils isCheckNotNULL:appDelegate.latArray]) {
         
 
@@ -378,11 +411,27 @@
              else
              {
                  NSLog(@"1");
-                 MapViewController * tryagain=[[MapViewController alloc]init];
-                 NSLog(@"res %@",[[responseObject valueForKey:@"data"]valueForKey:@"partnerList"]);
                  self->appDelegate.PartnerlistArray=[[responseObject valueForKey:@"data"]valueForKey:@"partnerList"];
-                 self->appDelegate.fromschedule=YES;
-                 [self.navigationController pushViewController:tryagain animated:YES];
+                 if (self->appDelegate.PartnerlistArray == nil || [self->appDelegate.PartnerlistArray count] == 0) {
+                     [Utils showErrorAlert:@"No Patner found" delegate:nil];
+                     NSArray *viewControllers = [[self navigationController] viewControllers];
+                     for( int i=0;i<[viewControllers count];i++){
+                         id obj=[viewControllers objectAtIndex:i];
+                         if([obj isKindOfClass:[ConstraintspuntureViewController class]]){
+                             [[self navigationController] popToViewController:obj animated:YES];
+                             return;
+                         }
+                     }
+             }
+                 else
+                 {
+                     MapViewController * tryagain=[[MapViewController alloc]init];
+                     NSLog(@"res %@",[[responseObject valueForKey:@"data"]valueForKey:@"partnerList"]);
+                     
+                     self->appDelegate.fromschedule=YES;
+                     
+                     [self.navigationController pushViewController:tryagain animated:YES];
+                 }
                  [self->appDelegate stopProgressView];
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

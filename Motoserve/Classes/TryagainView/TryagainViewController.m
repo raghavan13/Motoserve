@@ -272,8 +272,10 @@
                      map.latStr=[cordArray objectAtIndex:1];
                      map.lonStr=[cordArray objectAtIndex:0];
                      map.serviceprovidername=[[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"partnerId"]valueForKey:@"shopName"];
+                     self->appDelegate.servicedetails=[responseObject valueForKey:@"data"];
                      self->appDelegate.fromschedule=NO;
                      [self.navigationController pushViewController:map animated:YES];
+                     [self->appDelegate stopProgressView];
                      
                  }
              }

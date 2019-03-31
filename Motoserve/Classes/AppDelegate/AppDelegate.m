@@ -130,9 +130,9 @@
     }
     else
     {
-        firstVC=[[constraintViewController alloc]init];
+        firstVC=[[MapViewController alloc]init];
     }
-    _fromschedule=YES;
+    _fromschedule=NO;
     _serviceon=@"O";
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

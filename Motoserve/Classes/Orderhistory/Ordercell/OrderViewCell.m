@@ -86,7 +86,6 @@
     [serviceLbl.leftAnchor constraintEqualToAnchor:headerImg.leftAnchor constant:0].active=YES;
     [serviceLbl.widthAnchor constraintEqualToAnchor:headerImg.widthAnchor constant:0].active=YES;
     [serviceLbl.heightAnchor constraintEqualToAnchor:headerImg.heightAnchor constant:0].active=YES;
-    serviceLbl.text=@"General Service";
     serviceLbl.textColor=Singlecolor(whiteColor);
     serviceLbl.textAlignment=NSTextAlignmentCenter;
     serviceLbl.font=RalewayRegular(appDelegate.font-6);
@@ -208,7 +207,7 @@
     }
     if ([Utils isCheckNotNULL:[values valueForKey:@"serviceDate"]]) {
         NSLog(@"date %@",[values valueForKey:@"serviceDate"]);//'Z'
-        dateLbl.text=[NSString stringWithFormat:@"%@", [Utils GlobalDateConvert:[values valueForKey:@"serviceDate"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS" outputFormat:@"EEE,dd.MM.yyyy"]];
+        dateLbl.text=[NSString stringWithFormat:@"%@", [Utils GlobalDateConvert:[values valueForKey:@"serviceDate"] inputFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" outputFormat:@"EEE,dd.MM.yyyy"]];
     }
     if ([Utils isCheckNotNULL:[values valueForKey:@"_id"]]) {
        NSString * mystr=[[values valueForKey:@"_id"] substringToIndex:10];
@@ -224,7 +223,7 @@
         servicecenterLbl.text=[[values valueForKey:@"partnerId"]valueForKey:@"shopName"];
     }
     if ([[values valueForKey:@"serviceMode"]isEqualToString:@"o"]||[[values valueForKey:@"serviceMode"]isEqualToString:@"O"]) {
-        if ([[values valueForKey:@"serviceType"]isEqualToString:@"P"]) {
+        if ([[values valueForKey:@"subServiceType"]isEqualToString:@"P"]) {
             serviceLbl.text=@"Punture";
         }
         else
@@ -234,7 +233,29 @@
     }
     else
     {
-        serviceLbl.text=@"General Service";
+        if ([[values valueForKey:@"subServiceType"]isEqualToString:@"R"]) {
+            serviceLbl.text=@"Repair Service";
+        }
+        else if ([[values valueForKey:@"subServiceType"]isEqualToString:@"O"])
+        {
+            serviceLbl.text=@"Oil Change";
+        }
+        else if ([[values valueForKey:@"subServiceType"]isEqualToString:@"W"])
+        {
+            serviceLbl.text=@"Wheel Alignment";
+        }
+        else if ([[values valueForKey:@"subServiceType"]isEqualToString:@"S"])
+        {
+            serviceLbl.text=@"Spa";
+        }
+        else if ([[values valueForKey:@"subServiceType"]isEqualToString:@"T"])
+        {
+           serviceLbl.text=@"Painting";
+        }
+        else
+        {
+            serviceLbl.text=@"AC Repair";
+        }
     }
 }
 @end
