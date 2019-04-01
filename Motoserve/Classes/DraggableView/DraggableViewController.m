@@ -745,7 +745,7 @@
             esttimeLbl.text=@": 10 Mins";
             [esttimeLbl autowidth:0];
             
-            scrollheight=CGRectGetMaxY(esttimeLbl.frame);
+            scrollheight=CGRectGetMaxY(doneBtn.frame);
             scr1.contentSize=CGSizeMake(320, scrollheight+20);
         }
         
