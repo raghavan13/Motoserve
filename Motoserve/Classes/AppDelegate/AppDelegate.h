@@ -22,7 +22,6 @@
 @property (strong,nonatomic)NSArray * servicedetails,*PartnerlistArray,*selecteddic;
 @property (nonatomic)BOOL isedit,islogin,fromschedule;
 @property (nonatomic,retain)NSMutableArray * latArray;
-@property(nonatomic) BOOL firsttime;
 -(void)startProgressView:(UIView *)ContentView;
 -(void)startProgressViewFadingCircle:(UIView *)ContentView;
 -(void)stopProgressView;

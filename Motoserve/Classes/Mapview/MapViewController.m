@@ -123,7 +123,6 @@
     [dragBtn addTarget:self action:@selector(gestureHandlerMethod) forControlEvents:UIControlEventTouchUpInside];
     dragBtn.layer.borderColor = [UIColor blackColor].CGColor;
     [self.view addSubview:dragBtn];
-    dragBtn.userInteractionEnabled=NO;
     
     UIImageView * sliderImg=[[UIImageView alloc]initWithFrame:CGRectMake(dragBtn.frame.size.width/2-22, dragBtn.frame.size.height/2-4.5, 44, 9)];
     sliderImg.image=image(@"seperator");
@@ -132,8 +131,7 @@
     self.counter = 0;
     
     //start the timer, change the interval based on your requirement
-    //
-    appDelegate.firsttime=NO;
+
     [[NSNotificationCenter defaultCenter]postNotificationName:@"changetype" object:nil];
     
     if(appDelegate.fromschedule==YES)
@@ -142,7 +140,6 @@
     }
     else
     {
-         appDelegate.firsttime=YES;
         [self getbooking];
         getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     }
@@ -229,7 +226,6 @@
                                   };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
-         self->dragBtn.userInteractionEnabled=YES;
          if ([[responseObject objectForKey:@"status"]integerValue]==0) {
              NSLog(@"0");
              [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
@@ -411,16 +407,16 @@
                  NSLog(@"0");
                  [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
                  [self->appDelegate stopProgressView];
-//                 if ([[responseObject objectForKey:@"message"]isEqualToString:@"Already Requested"]) {
-//                     NSArray *viewControllers = [[self navigationController] viewControllers];
-//                     for( int i=0;i<[viewControllers count];i++){
-//                         id obj=[viewControllers objectAtIndex:i];
-//                         if([obj isKindOfClass:[ConstraintspuntureViewController class]]){
-//                             [[self navigationController] popToViewController:obj animated:YES];
-//                             return;
-//                         }
-//                     }
-//                 }
+                 if ([[responseObject objectForKey:@"message"]isEqualToString:@"Already Requested"]) {
+                     NSArray *viewControllers = [[self navigationController] viewControllers];
+                     for( int i=0;i<[viewControllers count];i++){
+                         id obj=[viewControllers objectAtIndex:i];
+                         if([obj isKindOfClass:[ConstraintspuntureViewController class]]){
+                             [[self navigationController] popToViewController:obj animated:YES];
+                             return;
+                         }
+                     }
+                 }
              }
              else
              {
@@ -428,8 +424,9 @@
                  self->appDelegate.bookingidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
                  int trackno=[[[responseObject valueForKey:@"data"] valueForKey:@"lastBookingStatus"]intValue];
                  if (trackno==0) {
+                     [self getbooking];
                      self->getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
-                     [appDelegate startProgressView:self.view];
+                     [self->appDelegate startProgressView:self.view];
                  }
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
