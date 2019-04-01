@@ -130,7 +130,7 @@
     }
     else
     {
-        firstVC=[[MapViewController alloc]init];
+        firstVC=[[constraintViewController alloc]init];
     }
     _fromschedule=NO;
     _serviceon=@"O";
