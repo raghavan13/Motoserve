@@ -28,6 +28,7 @@
     CLLocationManager * locationManager;
     DraggableViewController * ordernw;
     BOOL runapi;
+    UIButton * dragBtn;
 }
 
 @property (strong, nonatomic) ARCarMovement *moveMent;
@@ -59,7 +60,7 @@
     navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Booking Status" IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
     
     bookstatusStr=@"2";
-    
+   
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;   //100 m
@@ -116,12 +117,13 @@
     mapView.myLocationEnabled=YES;
     [self.view addSubview:mapView];
     
-    UIButton * dragBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, SCREEN_WIDTH, 40)];
+     dragBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, SCREEN_WIDTH, 40)];
     dragBtn.backgroundColor=Singlecolor(whiteColor);
     dragBtn.layer.borderWidth = 1.0f;
     [dragBtn addTarget:self action:@selector(gestureHandlerMethod) forControlEvents:UIControlEventTouchUpInside];
     dragBtn.layer.borderColor = [UIColor blackColor].CGColor;
     [self.view addSubview:dragBtn];
+    dragBtn.userInteractionEnabled=NO;
     
     UIImageView * sliderImg=[[UIImageView alloc]initWithFrame:CGRectMake(dragBtn.frame.size.width/2-22, dragBtn.frame.size.height/2-4.5, 44, 9)];
     sliderImg.image=image(@"seperator");
@@ -131,12 +133,17 @@
     
     //start the timer, change the interval based on your requirement
     //
+    appDelegate.firsttime=NO;
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"changetype" object:nil];
+    
     if(appDelegate.fromschedule==YES)
     {
         
     }
     else
     {
+         appDelegate.firsttime=YES;
+        [self getbooking];
         getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     }
    
@@ -150,7 +157,13 @@
                                                  name:@"Confirmbook"
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"changetype" object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gestureHandlerMethod)
+                                                 name:@"openpop"
+                                               object:nil];
+    
     
     //appDelegate.bookingstatusStr=@"2";
 //    [NSTimer scheduledTimerWithTimeInterval:10.0
@@ -161,6 +174,9 @@
     [self targetMethod];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+     [self gestureHandlerMethod];
+}
 - (void)updatebill
 {
     [self->getbookingtimer invalidate];
@@ -213,8 +229,7 @@
                                   };
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
-        // NSLog(@"response data %@",responseObject);
-         
+         self->dragBtn.userInteractionEnabled=YES;
          if ([[responseObject objectForKey:@"status"]integerValue]==0) {
              NSLog(@"0");
              [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
@@ -240,6 +255,7 @@
                      self->getbookingtimer=nil;
                      [self viewDidLoad];
                      self->runapi=NO;
+                     [self->appDelegate stopProgressView];
                  }
                  return ;
              }
@@ -303,10 +319,6 @@
      }];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [self gestureHandlerMethod];
-}
 #pragma mark - scheduledTimerWithTimeInterval Action
 -(void)timerTriggered {
     
@@ -399,16 +411,16 @@
                  NSLog(@"0");
                  [Utils showErrorAlert:[responseObject objectForKey:@"message"] delegate:nil];
                  [self->appDelegate stopProgressView];
-                 if ([[responseObject objectForKey:@"message"]isEqualToString:@"Already Requested"]) {
-                     NSArray *viewControllers = [[self navigationController] viewControllers];
-                     for( int i=0;i<[viewControllers count];i++){
-                         id obj=[viewControllers objectAtIndex:i];
-                         if([obj isKindOfClass:[ConstraintspuntureViewController class]]){
-                             [[self navigationController] popToViewController:obj animated:YES];
-                             return;
-                         }
-                     }
-                 }
+//                 if ([[responseObject objectForKey:@"message"]isEqualToString:@"Already Requested"]) {
+//                     NSArray *viewControllers = [[self navigationController] viewControllers];
+//                     for( int i=0;i<[viewControllers count];i++){
+//                         id obj=[viewControllers objectAtIndex:i];
+//                         if([obj isKindOfClass:[ConstraintspuntureViewController class]]){
+//                             [[self navigationController] popToViewController:obj animated:YES];
+//                             return;
+//                         }
+//                     }
+//                 }
              }
              else
              {
@@ -417,6 +429,7 @@
                  int trackno=[[[responseObject valueForKey:@"data"] valueForKey:@"lastBookingStatus"]intValue];
                  if (trackno==0) {
                      self->getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+                     [appDelegate startProgressView:self.view];
                  }
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

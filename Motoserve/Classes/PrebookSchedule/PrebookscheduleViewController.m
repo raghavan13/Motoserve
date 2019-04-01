@@ -328,6 +328,13 @@
 }
 - (void)submitAction
 {
+    if ([timeinsideLbl.text isEqualToString:@"Choose Time"]) {
+        timeinsideLbl.text=@"";
+    }
+    if ([dateLbl.text isEqualToString:@"Choose Date"]) {
+        dateLbl.text=@"";
+    }
+    
     NSMutableArray *txtFieldArray=[[NSMutableArray alloc]init];
     NSMutableArray *txtaddArray=[[NSMutableArray alloc]init];
     

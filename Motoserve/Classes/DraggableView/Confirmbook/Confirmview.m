@@ -96,10 +96,10 @@
     [pickupView addSubview:typeLbl];
     typeLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [typeLbl.topAnchor constraintEqualToAnchor:pickpLbl.bottomAnchor constant:20].active=YES;
-    [typeLbl.leftAnchor constraintEqualToAnchor:pickupView.leftAnchor constant:40].active=YES;
+    [typeLbl.leftAnchor constraintEqualToAnchor:pickupView.leftAnchor constant:20].active=YES;
     [typeLbl.widthAnchor constraintEqualToAnchor:pickupView.widthAnchor multiplier:0.5].active=YES;
     typeLbl.text=@"Shop Name";
-    typeLbl.font=RalewayRegular(appDelegate.font-2);
+    typeLbl.font=RalewayRegular(appDelegate.font-4);
     typeLbl.textColor=Singlecolor(blackColor);
     typeLbl.numberOfLines=2;
     
@@ -110,13 +110,13 @@
     typevalLbl.translatesAutoresizingMaskIntoConstraints = NO;
     [typevalLbl.topAnchor constraintEqualToAnchor:typeLbl.topAnchor constant:0].active=YES;
     [typevalLbl.leftAnchor constraintEqualToAnchor:typeLbl.rightAnchor constant:5].active=YES;
-    [typevalLbl.rightAnchor constraintEqualToAnchor:pickupView.rightAnchor constant:-40].active=YES;
+    [typevalLbl.rightAnchor constraintEqualToAnchor:pickupView.rightAnchor constant:-20].active=YES;
     [typevalLbl.heightAnchor constraintEqualToConstant:21].active=YES;
     if ([Utils isCheckNotNULL:[selectedPatner valueForKey:@"shopName"]]) {
         typevalLbl.text=[selectedPatner valueForKey:@"shopName"];
     }
     
-    typevalLbl.font=RalewayRegular(appDelegate.font-2);
+    typevalLbl.font=RalewayRegular(appDelegate.font-4);
     typevalLbl.numberOfLines=0;
     [typevalLbl autoHeight:10];
     typevalLbl.textColor=Singlecolor(blackColor);
@@ -129,7 +129,7 @@
     [contactLbl.leftAnchor constraintEqualToAnchor:typeLbl.leftAnchor constant:0].active=YES;
     [contactLbl.widthAnchor constraintEqualToAnchor:typeLbl.widthAnchor constant:0].active=YES;
     contactLbl.text=@"Shop Address";
-    contactLbl.font=RalewayRegular(appDelegate.font-2);
+    contactLbl.font=RalewayRegular(appDelegate.font-4);
     contactLbl.textColor=Singlecolor(blackColor);
     
     
@@ -145,7 +145,7 @@
     }
     contactvalLbl.numberOfLines=0;
     [contactvalLbl autoHeight:10];
-    contactvalLbl.font=RalewayRegular(appDelegate.font-2);
+    contactvalLbl.font=RalewayRegular(appDelegate.font-4);
     contactvalLbl.textColor=Singlecolor(blackColor);
     
     
@@ -156,7 +156,7 @@
     [bookdtLbl.leftAnchor constraintEqualToAnchor:typeLbl.leftAnchor constant:0].active=YES;
     [bookdtLbl.widthAnchor constraintEqualToAnchor:typeLbl.widthAnchor constant:0].active=YES;
     bookdtLbl.text=@"Booking Date";
-    bookdtLbl.font=RalewayRegular(appDelegate.font-2);
+    bookdtLbl.font=RalewayRegular(appDelegate.font-4);
     bookdtLbl.textColor=Singlecolor(blackColor);
     
     
@@ -171,7 +171,7 @@
         bookdtvalLbl.text=[appDelegate.selectionvalue valueForKey:@"date"];
     }
     
-    bookdtvalLbl.font=RalewayRegular(appDelegate.font-2);
+    bookdtvalLbl.font=RalewayRegular(appDelegate.font-4);
     bookdtvalLbl.textColor=Singlecolor(blackColor);
     
     
@@ -182,7 +182,7 @@
     [booktimeLbl.leftAnchor constraintEqualToAnchor:typeLbl.leftAnchor constant:0].active=YES;
    [booktimeLbl.widthAnchor constraintEqualToAnchor:typeLbl.widthAnchor constant:0].active=YES;
     booktimeLbl.text=@"Booking Time";
-    booktimeLbl.font=RalewayRegular(appDelegate.font-2);
+    booktimeLbl.font=RalewayRegular(appDelegate.font-4);
     booktimeLbl.textColor=Singlecolor(blackColor);
     booktimeLbl.numberOfLines=2;
     
@@ -199,7 +199,7 @@
     }
     booktimevalLbl.numberOfLines=0;
     [booktimevalLbl autoHeight:10];
-    booktimevalLbl.font=RalewayRegular(appDelegate.font-2);
+    booktimevalLbl.font=RalewayRegular(appDelegate.font-4);
     booktimevalLbl.textColor=Singlecolor(blackColor);
     
     UIButton *  submitBtn=[[UIButton alloc]init];

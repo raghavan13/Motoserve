@@ -45,7 +45,7 @@
 //    {
         swipeView.frame=CGRectMake(0, SCREEN_HEIGHT/3.0, SCREEN_WIDTH, SCREEN_HEIGHT-SCREEN_HEIGHT/3.0);
     //}
-    swipeView.backgroundColor=Singlecolor(greenColor);
+    swipeView.backgroundColor=Singlecolor(whiteColor);
     [self.view addSubview:swipeView];
     
     
@@ -164,7 +164,7 @@
             div2View.backgroundColor=RGB(0, 89, 42);
             [waitingView addSubview:div2View];
             
-            callImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(div2View.frame)+10, CGRectGetMaxY(divView.frame)+12, waitingView.frame.size.width/10, waitingView.frame.size.width/10)];
+            callImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(div2View.frame)+25, CGRectGetMaxY(divView.frame)+12, waitingView.frame.size.width/10, waitingView.frame.size.width/10)];
             callImg.layer.cornerRadius = callImg.frame.size.width/2;
             callImg.layer.masksToBounds = YES;
             callImg.image=image(@"phone");
@@ -211,7 +211,7 @@
             
             statusScroll.showsHorizontalScrollIndicator=NO;
             statusScroll.showsVerticalScrollIndicator=NO;
-            statusScroll.backgroundColor=Singlecolor(greenColor);
+            statusScroll.backgroundColor=Singlecolor(whiteColor);
             [swipeView addSubview:statusScroll];
             
             
@@ -223,7 +223,7 @@
             scr1.frame=CGRectMake(0, CGRectGetMaxY(dragBtn.frame), swipeView.frame.size.width, swipeView.frame.size.height-50);
             scr1.showsHorizontalScrollIndicator=NO;
             scr1.showsVerticalScrollIndicator=NO;
-            scr1.backgroundColor=Singlecolor(yellowColor);
+            scr1.backgroundColor=Singlecolor(whiteColor);
             [swipeView addSubview:scr1];
             
             UILabel * vehiclenoLbl=[[UILabel alloc]initWithFrame:CGRectMake(0,10, scr1.frame.size.width, 21)];
@@ -316,7 +316,7 @@
             div2View.backgroundColor=RGB(0, 89, 42);
             [waitingView addSubview:div2View];
             
-            callImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(div2View.frame)+10, CGRectGetMaxY(divView.frame)+12, waitingView.frame.size.width/10, waitingView.frame.size.width/10)];
+            callImg=[[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(div2View.frame)+25, CGRectGetMaxY(divView.frame)+12, waitingView.frame.size.width/10, waitingView.frame.size.width/10)];
             callImg.layer.cornerRadius = callImg.frame.size.width/2;
             callImg.layer.masksToBounds = YES;
             callImg.image=image(@"phone");
@@ -618,7 +618,7 @@
             scrollheight=CGRectGetMaxY(doneBtn.frame);
             
             
-            statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
+            //statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
         }
         else
         {
@@ -745,12 +745,12 @@
             esttimeLbl.text=@": 10 Mins";
             [esttimeLbl autowidth:0];
             
-            scrollheight=CGRectGetMaxY(doneBtn.frame);
-            scr1.contentSize=CGSizeMake(320, scrollheight+20);
+            //scrollheight=CGRectGetMaxY(doneBtn.frame);
+            //scr1.contentSize=CGSizeMake(320, scrollheight+20);
         }
         
-        CGPoint bottomOffset = CGPointMake(0, (scr1.contentSize.height - scr1.bounds.size.height)+20);
-        [scr1 setContentOffset:bottomOffset animated:YES];
+//        CGPoint bottomOffset = CGPointMake(0, (scr1.contentSize.height - scr1.bounds.size.height)+20);
+//        [scr1 setContentOffset:bottomOffset animated:YES];
         
         [self receivesegmentNotification];
         
@@ -768,6 +768,7 @@
         [[UIApplication sharedApplication] openURL:phoneURL];
     }
 }
+
 - (void)gestureHandlerMethod
 {
    [self dismissViewControllerAnimated:YES completion:nil];
@@ -817,9 +818,9 @@
             delivercallImg.hidden=YES;
             delivercallBtn.hidden=YES;
             doneBtn.hidden=YES;
-           // scrollheight=CGRectGetMaxY(prepareLbl.frame);
+            scrollheight=CGRectGetMaxY(prepareLbl.frame);
         }
-        else if ([appDelegate.bookingstatusStr isEqualToString:@"7"])
+        else if ([appDelegate.bookingstatusStr isEqualToString:@"7"]||[appDelegate.bookingstatusStr isEqualToString:@"8"])
         {
             prepareLbl.hidden=NO;
             
@@ -864,9 +865,9 @@
             delivercallImg.hidden=YES;
             delivercallBtn.hidden=YES;
             doneBtn.hidden=YES;
-           // scrollheight=CGRectGetMaxY(drivercallBtn.frame);
+            scrollheight=CGRectGetMaxY(drivercallBtn.frame);
         }
-        else if ([appDelegate.bookingstatusStr isEqualToString:@"8"])
+        else if ([appDelegate.bookingstatusStr isEqualToString:@"9"])
         {
             prepareLbl.hidden=NO;
             
@@ -911,13 +912,36 @@
             delivercallImg.hidden=YES;
             delivercallBtn.hidden=YES;
             doneBtn.hidden=YES;
-           // scrollheight=CGRectGetMaxY(drivercallBtn.frame);
+            scrollheight=CGRectGetMaxY(drivercallBtn.frame);
         }
-        CGPoint bottomOffset = CGPointMake(0, (scr1.contentSize.height - scr1.bounds.size.height)+20);
-        [scr1 setContentOffset:bottomOffset animated:YES];
+        statusScroll.contentSize=CGSizeMake(320, scrollheight+20);
     }
     else
     {
+        if ([appDelegate.bookingstatusStr isEqualToString:@"2"]) {
+            prepareView.hidden=YES;
+            startImg.hidden=YES;
+            startLbl.hidden=YES;
+            starttimeLbl.hidden=YES;
+            estdistImg.hidden=YES;
+            estdidtLbl.hidden=YES;
+            distdiv.hidden=YES;
+            esttimeImg.hidden=YES;
+            esttimeLbl.hidden=YES;
+            
+            startView.hidden=YES;
+            rchImg.hidden=YES;
+            rchLbl.hidden=YES;
+            rchtimeLbl.hidden=YES;
+            
+            rchView.hidden=YES;
+            doneImg.hidden=YES;
+            doneLbl.hidden=YES;
+            donetimeLbl.hidden=YES;
+            doneBtn.hidden=YES;
+            
+        }
+        
     if ([appDelegate.bookingstatusStr isEqualToString:@"5"]) {
 
         prepareView.hidden=NO;
@@ -993,10 +1017,17 @@
 
         scrollheight=CGRectGetMaxY(doneBtn.frame);
     }
-        CGPoint bottomOffset = CGPointMake(0, (scr1.contentSize.height - scr1.bounds.size.height)+20);
-        [scr1 setContentOffset:bottomOffset animated:YES];
+        scr1.contentSize=CGSizeMake(320, scrollheight+20);
+//        CGPoint bottomOffset = CGPointMake(0, (scr1.contentSize.height - scr1.bounds.size.height)+20);
+//        [scr1 setContentOffset:bottomOffset animated:YES];
   }
-    
+}
+
+- (void)targetMethod
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"openpop"
+     object:nil];
 }
 - (void)doneAction
 {
