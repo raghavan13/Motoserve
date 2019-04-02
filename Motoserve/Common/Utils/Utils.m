@@ -79,16 +79,39 @@
 
 + (BOOL)isCheckNotNULL:(id)parameter
 {
-    if (![parameter isKindOfClass:[NSNull class]] && parameter != NULL && parameter != nil) {
-        if ([parameter isKindOfClass:[NSString class]]) {
-            if (![parameter isEqualToString:@""] && ![parameter isEqualToString:@"(null)"]) {
+    if (![parameter isKindOfClass:[NSNull class]] && parameter != nil && parameter != NULL)
+    {
+        if ([parameter isKindOfClass:[NSString class]])
+        {
+            if (![parameter isEqualToString:@""] && ![parameter isEqualToString:@"(null)"] && ![parameter isEqualToString:@"<null>"]&& ![parameter isEqualToString:@"null"])
+            {
                 return YES;
+            }
+            else
+            {
+                return NO;
+            }
+        }
+        else if ([parameter isKindOfClass:[NSArray class]] || [parameter isKindOfClass:[NSDictionary class]])
+        {
+            if ([parameter count])
+            {
+                return YES;
+            }
+            else
+            {
+                return NO;
             }
         }
         else
+        {
             return YES;
+        }
     }
-    return NO;
+    else
+    {
+        return NO;
+    }
 }
 
 #pragma mark - Get Current Device Info

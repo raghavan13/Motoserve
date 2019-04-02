@@ -34,7 +34,11 @@
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.view.backgroundColor =Singlecolor(whiteColor);
     self.navigationController.navigationBarHidden = YES;
-    navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:@"Punture Request" IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
+    NSString * title=@"Prebooking service";
+     if([appDelegate.serviceon isEqualToString:@"O"]) {
+         title=@"Onroad service";
+    }
+    navHeader=[Utils CreateHeaderBarWithSearch:self.view HeaderTitle:title IsText:YES Menu:NO IsCart:NO LeftClass:self LeftSelector:@selector(backAction) RightClass:self RightSelector:nil WithCartCount:@"1" SearchClass:self SearchSelector:nil ShowSearch:NO HeaderTap:nil TapAction:nil];
     
     vehiclenoBtn=[[UIButton alloc]init];
     [self.view addSubview:vehiclenoBtn];

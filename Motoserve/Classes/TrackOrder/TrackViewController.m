@@ -131,11 +131,9 @@
         div2View.hidden=YES;
         if ([Utils isCheckNotNULL:self->onrdtracklistArray]) {
             self->noDataLabel.hidden=YES;
-            self->orderTbl.hidden=NO;
         }
         else
         {
-            self->orderTbl.hidden=YES;
             self->noDataLabel.hidden=NO;
         }
     }
@@ -148,11 +146,9 @@
         onrdcheck=NO;
         if ([Utils isCheckNotNULL:self->prebooktracklistArray]) {
             self->noDataLabel.hidden=YES;
-            self->orderTbl.hidden=NO;
         }
         else
         {
-            self->orderTbl.hidden=YES;
             self->noDataLabel.hidden=NO;
         }
     }
@@ -223,41 +219,31 @@
          else
          {
              NSLog(@"1");
-            // NSArray * trackArray=[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"];
-             //NSLog(@"cc %@",trackArray);
              self->onrdtracklistArray=[[NSMutableArray alloc]init];
              self->prebooktracklistArray=[[NSMutableArray alloc]init];
              for (int i=0; i<[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] count]; i++) {
                  int trackno=[[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"lastBookingStatus"]intValue];
-                 NSLog(@"track no %d",trackno);
-                 if (trackno!=25) {
+                 NSLog(@"track no %d",trackno);//)
+                 if (!(trackno ==25 || trackno ==1 || trackno ==3 || trackno ==4)) {
                      if ([[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"serviceMode"]isEqualToString:@"o"]||[[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"serviceMode"]isEqualToString:@"O"]) {
                          [self->onrdtracklistArray addObject:[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]];
                          [self->orderTbl reloadData];
-                         if ([Utils isCheckNotNULL:self->onrdtracklistArray]) {
-                             self->noDataLabel.hidden=YES;
-                             self->orderTbl.hidden=NO;
-                         }
-                         else
-                         {
-                             self->orderTbl.hidden=YES;
-                             self->noDataLabel.hidden=NO;
-                         }
                      }
                      else
                      {
                          [self->prebooktracklistArray addObject:[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]];
                          [self->orderTbl reloadData];
-                         self->orderTbl.hidden=YES;
                      }
                  }
-                 else
-                 {
-                     self->noDataLabel.hidden=NO;
-                     self->orderTbl.hidden=YES;
-                 }
              }
-             
+             if ([Utils isCheckNotNULL:self->onrdtracklistArray]) {
+                 self->noDataLabel.hidden=YES;
+             }
+             else
+             {
+                 self->noDataLabel.hidden=NO;
+             }
+             self->orderTbl.hidden=NO;
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          NSLog(@"Error: %@", error);
@@ -269,11 +255,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (onrdcheck) {
-        if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==1)
+           appDelegate.serviceon=@"O";
+        NSLog(@"vfdv %@",[onrdtracklistArray objectAtIndex:indexPath.row]);
+        if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==0)
         {
-            [Utils showErrorAlert:@"No Partners Available at this Location Sorry For Inconivence." delegate:nil];
+            TryagainViewController * tryagain=[[TryagainViewController alloc]init];
+            appDelegate.bookingidStr=[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"_id"];
+            [self .navigationController pushViewController:tryagain animated:YES];
         }
-        else if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==2||[[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]>=5)
+        if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==16)
+        {
+            NewbillViewController * bill=[[NewbillViewController alloc]init];
+            appDelegate.bookingidStr=[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"_id"];
+            [self.navigationController pushViewController:bill animated:YES];
+        }
+        else
         {
             MapViewController * map=[[MapViewController alloc]init];
             NSLog(@"check----%@",[[[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"data"]valueForKey:@"bookingList"]valueForKey:@"location"]valueForKey:@"coordinates"]);
@@ -284,13 +280,29 @@
             map.lonStr=[cordArray objectAtIndex:0];
             //map.serviceprovidername=[[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"partnerId"]valueForKey:@"shopName"];
             self->appDelegate.fromschedule=NO;
-            //[self.navigationController pushViewController:map animated:YES];
+            appDelegate.bookingidStr=[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"_id"];
+            [self.navigationController pushViewController:map animated:YES];
         }
     }
     else
     {
-        
+        appDelegate.serviceon=@"P";
+        if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==0)
+        {
+            MapViewController * map=[[MapViewController alloc]init];
+            NSLog(@"check----%@",[[[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"data"]valueForKey:@"bookingList"]valueForKey:@"location"]valueForKey:@"coordinates"]);
+            
+            NSArray * cordArray=[[[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"data"]valueForKey:@"bookingList"]valueForKey:@"location"]valueForKey:@"coordinates"];
+            
+            map.latStr=[cordArray objectAtIndex:1];
+            map.lonStr=[cordArray objectAtIndex:0];
+            //map.serviceprovidername=[[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"partnerId"]valueForKey:@"shopName"];
+            self->appDelegate.fromschedule=NO;
+            appDelegate.bookingidStr=[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"_id"];
+            [self.navigationController pushViewController:map animated:YES];
+        }
     }
     
 }
+
 @end

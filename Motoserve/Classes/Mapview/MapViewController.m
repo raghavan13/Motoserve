@@ -262,6 +262,12 @@
                  self->patnerlocationtimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(getpartnerlocation) userInfo:nil repeats:true];
                 
              }
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]intValue]==4) {
+                 
+                 [Utils showErrorAlert:@"Patner Not appcepted Sorry for inconvience" delegate:nil];
+                 constraintViewController * home=[[constraintViewController alloc]init];
+                 [self.navigationController pushViewController:home animated:YES];
+             }
              else
              {
                  self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"];

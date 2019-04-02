@@ -255,6 +255,11 @@
                      
                  }
              }
+             if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]intValue]==4) {
+                 [Utils showErrorAlert:@"Patner Not appcepted Sorry for inconvience" delegate:nil];
+                 constraintViewController * home=[[constraintViewController alloc]init];
+                 [self.navigationController pushViewController:home animated:YES];
+             }
              else if ([[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]intValue]==2)
              {
                  self->appDelegate.bookingstatusStr=@"1";

@@ -131,11 +131,9 @@
         div2View.hidden=YES;
         if ([Utils isCheckNotNULL:self->onrdtracklistArray]) {
             self->noDataLabel.hidden=YES;
-            self->orderTbl.hidden=NO;
         }
         else
         {
-            self->orderTbl.hidden=YES;
             self->noDataLabel.hidden=NO;
         }
     }
@@ -148,11 +146,9 @@
         onrdcheck=NO;
         if ([Utils isCheckNotNULL:self->prebooktracklistArray]) {
             self->noDataLabel.hidden=YES;
-            self->orderTbl.hidden=NO;
         }
         else
         {
-            self->orderTbl.hidden=YES;
             self->noDataLabel.hidden=NO;
         }
     }
@@ -232,34 +228,26 @@
              for (int i=0; i<[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] count]; i++) {
                  int trackno=[[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"lastBookingStatus"]intValue];
                  NSLog(@"track no %d",trackno);
-                 if (trackno==25) {
+                 if (trackno ==25 || trackno ==1 || trackno ==3 || trackno ==4) {
                      if ([[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"serviceMode"]isEqualToString:@"o"]||[[[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]valueForKey:@"serviceMode"]isEqualToString:@"O"]) {
                          [self->onrdtracklistArray addObject:[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]];
                          [self->orderTbl reloadData];
-                         if ([Utils isCheckNotNULL:self->onrdtracklistArray]) {
-                             self->noDataLabel.hidden=YES;
-                             self->orderTbl.hidden=NO;
-                         }
-                         else
-                         {
-                             self->orderTbl.hidden=YES;
-                             self->noDataLabel.hidden=NO;
-                         }
                      }
                      else
                      {
                          [self->prebooktracklistArray addObject:[[[responseObject valueForKey:@"data"]valueForKey:@"bookingList"] objectAtIndex:i]];
                          [self->orderTbl reloadData];
-                         self->orderTbl.hidden=YES;
                      }
                  }
-                 else
-                 {
-                     self->noDataLabel.hidden=NO;
-                     self->orderTbl.hidden=YES;
-                 }
+                 
              }
-             
+             if ([Utils isCheckNotNULL:self->onrdtracklistArray]) {
+                 self->noDataLabel.hidden=YES;
+             }
+             else
+             {
+                 self->noDataLabel.hidden=NO;
+             }
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          NSLog(@"Error: %@", error);
