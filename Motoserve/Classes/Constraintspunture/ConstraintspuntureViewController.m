@@ -504,94 +504,101 @@
     tyrevalLbl.font=RalewayRegular(appDelegate.font-2);
     tyrevalLbl.textColor=Singlecolor(blackColor);
     tyrevalLbl.numberOfLines=2;
-    //tyrevalLbl.text=[NSString stringWithFormat:@":     yamaha"];
     
-    UILabel * engineLbl=[[UILabel alloc]init];
-    [detailView addSubview:engineLbl];
-    engineLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [engineLbl.topAnchor constraintEqualToAnchor:tyreLbl.bottomAnchor constant:30].active=YES;
-    [engineLbl.leftAnchor constraintEqualToAnchor:vehiclenoBtn.leftAnchor constant:20].active=YES;
-    [engineLbl.widthAnchor constraintEqualToAnchor:typeLbl.widthAnchor constant:0].active=YES;
-    engineLbl.text=@"Engine Type";
-    engineLbl.font=RalewayRegular(appDelegate.font-2);
-    engineLbl.textColor=Singlecolor(blackColor);
-    engineLbl.numberOfLines=2;
+    NSLayoutAnchor *  commonbottom = tyrevalLbl.bottomAnchor;
     
-    
-    UILabel * enginedivLbl=[[UILabel alloc]init];
-    [detailView addSubview:enginedivLbl];
-    enginedivLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [enginedivLbl.topAnchor constraintEqualToAnchor:tyreLbl.bottomAnchor constant:30].active=YES;
-    [enginedivLbl.leftAnchor constraintEqualToAnchor:engineLbl.rightAnchor constant:5].active=YES;
-    [enginedivLbl.widthAnchor constraintEqualToConstant:1];
-    enginedivLbl.text=@":   ";
-    
-    UILabel * enginevalLbl=[[UILabel alloc]init];
-    [detailView addSubview:enginevalLbl];
-    enginevalLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [enginevalLbl.topAnchor constraintEqualToAnchor:tyreLbl.bottomAnchor constant:30].active=YES;
-    [enginevalLbl.leftAnchor constraintEqualToAnchor:enginedivLbl.rightAnchor constant:5].active=YES;
-    [enginevalLbl.widthAnchor constraintEqualToAnchor:typevalLbl.widthAnchor constant:0].active=YES;
-    if ([Utils isCheckNotNULL:[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"engineType"]]) {
-        if ([[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"engineType"]isEqualToString:@"P"]) {
-            enginevalLbl.text=[NSString stringWithFormat:@"Petrol"];
-        }
-        else
-        {
-            enginevalLbl.text=[NSString stringWithFormat:@"Diesel"];
+    if ([Utils isCheckNotNULL:[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"vehicleType"]]) {
+        if (![[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"vehicleType"]isEqualToString:@"T"]) {
+            
+            UILabel * engineLbl=[[UILabel alloc]init];
+            [detailView addSubview:engineLbl];
+            engineLbl.translatesAutoresizingMaskIntoConstraints = NO;
+            [engineLbl.topAnchor constraintEqualToAnchor:tyreLbl.bottomAnchor constant:30].active=YES;
+            [engineLbl.leftAnchor constraintEqualToAnchor:vehiclenoBtn.leftAnchor constant:20].active=YES;
+            [engineLbl.widthAnchor constraintEqualToAnchor:typeLbl.widthAnchor constant:0].active=YES;
+            engineLbl.text=@"Engine Type";
+            engineLbl.font=RalewayRegular(appDelegate.font-2);
+            engineLbl.textColor=Singlecolor(blackColor);
+            engineLbl.numberOfLines=2;
+            
+            
+            UILabel * enginedivLbl=[[UILabel alloc]init];
+            [detailView addSubview:enginedivLbl];
+            enginedivLbl.translatesAutoresizingMaskIntoConstraints = NO;
+            [enginedivLbl.topAnchor constraintEqualToAnchor:tyreLbl.bottomAnchor constant:30].active=YES;
+            [enginedivLbl.leftAnchor constraintEqualToAnchor:engineLbl.rightAnchor constant:5].active=YES;
+            [enginedivLbl.widthAnchor constraintEqualToConstant:1];
+            enginedivLbl.text=@":   ";
+            
+            UILabel * enginevalLbl=[[UILabel alloc]init];
+            [detailView addSubview:enginevalLbl];
+            enginevalLbl.translatesAutoresizingMaskIntoConstraints = NO;
+            [enginevalLbl.topAnchor constraintEqualToAnchor:tyreLbl.bottomAnchor constant:30].active=YES;
+            [enginevalLbl.leftAnchor constraintEqualToAnchor:enginedivLbl.rightAnchor constant:5].active=YES;
+            [enginevalLbl.widthAnchor constraintEqualToAnchor:typevalLbl.widthAnchor constant:0].active=YES;
+            if ([Utils isCheckNotNULL:[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"engineType"]]) {
+                if ([[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"engineType"]isEqualToString:@"P"]) {
+                    enginevalLbl.text=[NSString stringWithFormat:@"Petrol"];
+                }
+                else
+                {
+                    enginevalLbl.text=[NSString stringWithFormat:@"Diesel"];
+                }
+            }
+            enginevalLbl.font=RalewayRegular(appDelegate.font-2);
+            enginevalLbl.textColor=Singlecolor(blackColor);
+            //enginevalLbl.text=[NSString stringWithFormat:@":     yamaha"];
+            enginevalLbl.numberOfLines=2;
+            
+            
+            UILabel * jockeyLbl=[[UILabel alloc]init];
+            [detailView addSubview:jockeyLbl];
+            jockeyLbl.translatesAutoresizingMaskIntoConstraints = NO;
+            [jockeyLbl.topAnchor constraintEqualToAnchor:engineLbl.bottomAnchor constant:30].active=YES;
+            [jockeyLbl.leftAnchor constraintEqualToAnchor:vehiclenoBtn.leftAnchor constant:20].active=YES;
+            [jockeyLbl.widthAnchor constraintEqualToAnchor:typeLbl.widthAnchor constant:0].active=YES;
+            jockeyLbl.text=@"Jockey";
+            jockeyLbl.font=RalewayRegular(appDelegate.font-2);
+            jockeyLbl.textColor=Singlecolor(blackColor);
+            jockeyLbl.numberOfLines=2;
+            
+            
+            UILabel * jockeydivLbl=[[UILabel alloc]init];
+            [detailView addSubview:jockeydivLbl];
+            jockeydivLbl.translatesAutoresizingMaskIntoConstraints = NO;
+            [jockeydivLbl.topAnchor constraintEqualToAnchor:engineLbl.bottomAnchor constant:30].active=YES;
+            [jockeydivLbl.leftAnchor constraintEqualToAnchor:jockeyLbl.rightAnchor constant:5].active=YES;
+            [jockeydivLbl.widthAnchor constraintEqualToConstant:1];
+            jockeydivLbl.text=@":   ";
+            
+            UILabel * jockeyvalLbl=[[UILabel alloc]init];
+            [detailView addSubview:jockeyvalLbl];
+            jockeyvalLbl.translatesAutoresizingMaskIntoConstraints = NO;
+            [jockeyvalLbl.topAnchor constraintEqualToAnchor:engineLbl.bottomAnchor constant:30].active=YES;
+            [jockeyvalLbl.leftAnchor constraintEqualToAnchor:jockeydivLbl.rightAnchor constant:5].active=YES;
+            [jockeyvalLbl.widthAnchor constraintEqualToAnchor:typevalLbl.widthAnchor constant:0].active=YES;
+            if ([Utils isCheckNotNULL:[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"carJockey"]]) {
+                if ([[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"carJockey"]isEqualToString:@"1"]) {
+                    jockeyvalLbl.text=[NSString stringWithFormat:@"Yes"];
+                }
+                else
+                {
+                    jockeyvalLbl.text=[NSString stringWithFormat:@"No"];
+                }
+            }
+            jockeyvalLbl.font=RalewayRegular(appDelegate.font-2);
+            jockeyvalLbl.textColor=Singlecolor(blackColor);
+            jockeyvalLbl.numberOfLines=2;
+            
+            commonbottom = jockeyvalLbl.bottomAnchor;
         }
     }
-    enginevalLbl.font=RalewayRegular(appDelegate.font-2);
-    enginevalLbl.textColor=Singlecolor(blackColor);
-    //enginevalLbl.text=[NSString stringWithFormat:@":     yamaha"];
-    enginevalLbl.numberOfLines=2;
-    
-    
-    UILabel * jockeyLbl=[[UILabel alloc]init];
-    [detailView addSubview:jockeyLbl];
-    jockeyLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [jockeyLbl.topAnchor constraintEqualToAnchor:engineLbl.bottomAnchor constant:30].active=YES;
-    [jockeyLbl.leftAnchor constraintEqualToAnchor:vehiclenoBtn.leftAnchor constant:20].active=YES;
-    [jockeyLbl.widthAnchor constraintEqualToAnchor:typeLbl.widthAnchor constant:0].active=YES;
-    jockeyLbl.text=@"Jockey";
-    jockeyLbl.font=RalewayRegular(appDelegate.font-2);
-    jockeyLbl.textColor=Singlecolor(blackColor);
-    jockeyLbl.numberOfLines=2;
-    
-    
-    UILabel * jockeydivLbl=[[UILabel alloc]init];
-    [detailView addSubview:jockeydivLbl];
-    jockeydivLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [jockeydivLbl.topAnchor constraintEqualToAnchor:engineLbl.bottomAnchor constant:30].active=YES;
-    [jockeydivLbl.leftAnchor constraintEqualToAnchor:jockeyLbl.rightAnchor constant:5].active=YES;
-    [jockeydivLbl.widthAnchor constraintEqualToConstant:1];
-    jockeydivLbl.text=@":   ";
-    
-    UILabel * jockeyvalLbl=[[UILabel alloc]init];
-    [detailView addSubview:jockeyvalLbl];
-    jockeyvalLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [jockeyvalLbl.topAnchor constraintEqualToAnchor:engineLbl.bottomAnchor constant:30].active=YES;
-    [jockeyvalLbl.leftAnchor constraintEqualToAnchor:jockeydivLbl.rightAnchor constant:5].active=YES;
-    [jockeyvalLbl.widthAnchor constraintEqualToAnchor:typevalLbl.widthAnchor constant:0].active=YES;
-    if ([Utils isCheckNotNULL:[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"carJockey"]]) {
-        if ([[[vehicleDic objectAtIndex:selecedvehicle]valueForKey:@"carJockey"]isEqualToString:@"1"]) {
-            jockeyvalLbl.text=[NSString stringWithFormat:@"Yes"];
-        }
-        else
-        {
-            jockeyvalLbl.text=[NSString stringWithFormat:@"No"];
-        }
-    }
-    jockeyvalLbl.font=RalewayRegular(appDelegate.font-2);
-    jockeyvalLbl.textColor=Singlecolor(blackColor);
-    jockeyvalLbl.numberOfLines=2;
-    //jockeyvalLbl.text=[NSString stringWithFormat:@":     yamaha"];
     
     UIButton *  submitBtn=[[UIButton alloc]init];
     [detailView addSubview:submitBtn];
     submitBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [submitBtn.centerXAnchor constraintEqualToAnchor:detailView.centerXAnchor constant:0].active=YES;
-    [submitBtn.topAnchor constraintEqualToAnchor:jockeyLbl.bottomAnchor constant:40].active=YES;
+    [submitBtn.topAnchor constraintEqualToAnchor:commonbottom constant:40].active=YES;
     [submitBtn.widthAnchor constraintEqualToConstant:150].active=YES;
     [submitBtn.heightAnchor constraintEqualToConstant:30].active=YES;
     [submitBtn setBackgroundColor:Singlecolor(clearColor)];

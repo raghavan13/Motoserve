@@ -237,22 +237,28 @@
              
              if (![self->appDelegate.bookingstatusStr isEqualToString:[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"]]) {
                  self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"];
-                 [[NSNotificationCenter defaultCenter]
-                      postNotificationName:@"changetype"
-                      object:nil];
-             }
-             
-             if ([self->appDelegate.bookingstatusStr isEqualToString:@"2"]) {
-                 if (self->runapi==YES) {
+                 if ([self->appDelegate.bookingstatusStr isEqualToString:@"1"]) {
+                     [Utils showErrorAlert:@"Patner rejected Sorry for Inconivence" delegate:self];
+                     constraintViewController * home=[[constraintViewController alloc]init];
+                     [self.navigationController pushViewController:home animated:YES];
+                 }else
+                 {
                      [[NSNotificationCenter defaultCenter]
                       postNotificationName:@"changetype"
                       object:nil];
-                     self->appDelegate.servicedetails=[responseObject valueForKey:@"data"];
-                     self->getbookingtimer=nil;
-                     [self viewDidLoad];
-                     self->runapi=NO;
-                     [self->appDelegate stopProgressView];
                  }
+                 
+             }
+             if (self->runapi==YES) {
+                 [[NSNotificationCenter defaultCenter]
+                  postNotificationName:@"changetype"
+                  object:nil];
+                 self->appDelegate.servicedetails=[responseObject valueForKey:@"data"];
+                 [self viewDidLoad];
+                 self->runapi=NO;
+                 [self->appDelegate stopProgressView];
+             }
+             if ([self->appDelegate.bookingstatusStr isEqualToString:@"2"]) {
                  return ;
              }
              
@@ -369,11 +375,13 @@
 
 - (void)initializeview
 {
-    NSArray * locaArray=[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Confirmbook" object:nil];                                 
+    [appDelegate startProgressView:self.view];
     self.latStr=[[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"] objectAtIndex:1];
     self.lonStr=[[[appDelegate.selecteddic valueForKey:@"location"]valueForKey:@"coordinates"] objectAtIndex:0];
     runapi=YES;
     [self confirmbooking];
+    
 }
 - (void)confirmbooking
 {
@@ -430,8 +438,8 @@
                  self->appDelegate.bookingidStr=[[responseObject valueForKey:@"data"]valueForKey:@"_id"];
                  int trackno=[[[responseObject valueForKey:@"data"] valueForKey:@"lastBookingStatus"]intValue];
                  if (trackno==0) {
-                     [self getbooking];
-                     self->getbookingtimer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
+                     self->appDelegate.bookingstatusStr=[[responseObject valueForKey:@"data"] valueForKey:@"lastBookingStatus"];
+                      [self viewDidLoad];
                      [self->appDelegate startProgressView:self.view];
                  }
              }
