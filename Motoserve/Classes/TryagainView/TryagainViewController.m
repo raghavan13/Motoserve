@@ -83,7 +83,7 @@
     [contentView addSubview:callBtn];
     
     UILabel * noLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, callBtn.frame.size.width/1.4, callBtn.frame.size.height)];
-    noLbl.text=@"8778441334000";
+    noLbl.text=@"8778441334";
     noLbl.textAlignment=NSTextAlignmentCenter;
     [callBtn addSubview:noLbl];
     noLbl.textColor=Singlecolor(blackColor);
