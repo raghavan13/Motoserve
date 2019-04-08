@@ -1086,7 +1086,7 @@
          {
              NSLog(@"1");
              self->appDelegate.bookingstatusStr=[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"lastBookingStatus"];
-             [self gestureHandlerMethod];
+             [self dismissViewControllerAnimated:YES completion:nil];
              [[NSNotificationCenter defaultCenter]
               postNotificationName:@"updatebill"
               object:nil];

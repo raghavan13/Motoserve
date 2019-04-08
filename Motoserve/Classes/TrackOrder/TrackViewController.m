@@ -272,9 +272,9 @@
         else
         {
             MapViewController * map=[[MapViewController alloc]init];
-            NSLog(@"check----%@",[[[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"data"]valueForKey:@"bookingList"]valueForKey:@"location"]valueForKey:@"coordinates"]);
+            NSLog(@"check----%@",[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"location"]valueForKey:@"coordinates"]);
             
-            NSArray * cordArray=[[[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"data"]valueForKey:@"bookingList"]valueForKey:@"location"]valueForKey:@"coordinates"];
+            NSArray * cordArray=[[[onrdtracklistArray objectAtIndex:indexPath.row] valueForKey:@"location"]valueForKey:@"coordinates"];
             
             map.latStr=[cordArray objectAtIndex:1];
             map.lonStr=[cordArray objectAtIndex:0];

@@ -51,22 +51,9 @@
     self->bookingtimer= [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getbooking) userInfo:nil repeats:YES];
     paytypeselected=NO;
     cod=NO;
-    //[self createDesign];
     razor = [Razorpay initWithKey:@"rzp_test_1DP5mmOlF5G5ag" andDelegate:self];
-    //    [NSTimer scheduledTimerWithTimeInterval:10.0
-    //                                     target:self
-    //                                   selector:@selector(targetMethod)
-    //                                   userInfo:nil
-    //                                    repeats:NO];
-    //
 }
 
-//- (void)targetMethod
-//{
-//    
-//    //[self createDesign];
-//    
-//}
 - (void)backAction
 {
     [self.navigationController popViewControllerAnimated:YES];

@@ -179,7 +179,6 @@
     [self->getbookingtimer invalidate];
     self->getbookingtimer = nil;
     NewbillViewController * bill=[[NewbillViewController alloc]init];
-    //bill.bookidStr=self->appDelegate.bookingidStr;
     [self.navigationController pushViewController:bill animated:YES];
 }
 
