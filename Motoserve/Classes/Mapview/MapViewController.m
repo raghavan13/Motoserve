@@ -89,8 +89,8 @@
             driverMarker = [[GMSMarker alloc] init];
             driverMarker.position = self.oldCoordinate;
             driverMarker.icon = [UIImage imageNamed:@"pin"];
-            if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
-                driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
+            if ([Utils isCheckNotNULL:[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+                driverMarker.title=[[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
             }
             driverMarker.map = self.mapView;
             [mapView setSelectedMarker:driverMarker];
@@ -107,8 +107,8 @@
         driverMarker = [[GMSMarker alloc] init];
         driverMarker.position = self.oldCoordinate;
         driverMarker.icon = [UIImage imageNamed:@"carIcon"];
-        if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
-            driverMarker.title=[[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
+        if ([Utils isCheckNotNULL:[[appDelegate.servicedetails valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+            driverMarker.title=[[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"shopName"]capitalizedString];
         }
         driverMarker.map = self.mapView;
         [mapView setSelectedMarker:driverMarker];
@@ -253,7 +253,7 @@
                  [[NSNotificationCenter defaultCenter]
                   postNotificationName:@"changetype"
                   object:nil];
-                 self->appDelegate.servicedetails=[responseObject valueForKey:@"data"];
+                 self->appDelegate.servicedetails=[[responseObject valueForKey:@"data"]valueForKey:@"booking"];
                  [self viewDidLoad];
                  self->runapi=NO;
                  [self->appDelegate stopProgressView];

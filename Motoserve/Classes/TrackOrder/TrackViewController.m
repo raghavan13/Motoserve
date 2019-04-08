@@ -263,7 +263,7 @@
             appDelegate.bookingidStr=[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"_id"];
             [self .navigationController pushViewController:tryagain animated:YES];
         }
-        if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==16)
+        else if ([[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"lastBookingStatus"]intValue]==16)
         {
             NewbillViewController * bill=[[NewbillViewController alloc]init];
             appDelegate.bookingidStr=[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"_id"];
@@ -281,6 +281,7 @@
             //map.serviceprovidername=[[[[responseObject valueForKey:@"data"]valueForKey:@"booking"]valueForKey:@"partnerId"]valueForKey:@"shopName"];
             self->appDelegate.fromschedule=NO;
             appDelegate.bookingidStr=[[onrdtracklistArray objectAtIndex:indexPath.row]valueForKey:@"_id"];
+            self->appDelegate.servicedetails=[onrdtracklistArray objectAtIndex:indexPath.row];
             [self.navigationController pushViewController:map animated:YES];
         }
     }

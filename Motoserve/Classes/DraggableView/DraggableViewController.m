@@ -68,8 +68,8 @@
         
         
         UILabel * vehiclenoLbl=[[UILabel alloc]initWithFrame:CGRectMake(0,10, statusScroll.frame.size.width, 21)];
-        if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"]]||[Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"model"]]) {
-            vehiclenoLbl.text=[[NSString stringWithFormat:@"%@ - %@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"],[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"vehicleId"]valueForKey:@"model"]]capitalizedString];//@"TN 45 1420 - Hero Splendor Pro";
+        if ([Utils isCheckNotNULL:[[appDelegate.servicedetails valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"]]||[Utils isCheckNotNULL:[[appDelegate.servicedetails  valueForKey:@"vehicleId"]valueForKey:@"model"]]) {
+            vehiclenoLbl.text=[[NSString stringWithFormat:@"%@ - %@",[[appDelegate.servicedetails  valueForKey:@"vehicleId"]valueForKey:@"vehicleNumber"],[[appDelegate.servicedetails  valueForKey:@"vehicleId"]valueForKey:@"model"]]capitalizedString];//@"TN 45 1420 - Hero Splendor Pro";
         }
         vehiclenoLbl.font=RalewayBold(appDelegate.font-2);
         vehiclenoLbl.textAlignment=NSTextAlignmentCenter;
@@ -78,8 +78,8 @@
         
         
         UILabel * areaLbl=[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(vehiclenoLbl.frame)+10, statusScroll.frame.size.width, 21)];
-        if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
-            areaLbl.text=[[NSString stringWithFormat:@"%@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"shopName"]]uppercaseString];//@"Adyar Motors";
+        if ([Utils isCheckNotNULL:[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"shopName"]]) {
+            areaLbl.text=[[NSString stringWithFormat:@"%@",[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"shopName"]]uppercaseString];//@"Adyar Motors";
         }
         
         areaLbl.font=RalewayBold(appDelegate.font-2);https://mail.google.com/mail/u/0/#inbox/FMfcgxwBTsjmdrfdWctjPMJfhbCgBKlc?projector=1&messagePartId=0.3
@@ -97,8 +97,8 @@
         
         
         UILabel * dateLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(bookingidLbl.frame), bookingidLbl.frame.origin.y, bookingidLbl.frame.size.width, bookingidLbl.frame.size.height)];
-        if ([Utils isCheckNotNULL:[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"lastUpdated"]]) {
-            NSArray * seperatetransidArray= [[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"lastUpdated"] componentsSeparatedByString:@"T"];
+        if ([Utils isCheckNotNULL:[appDelegate.servicedetails  valueForKey:@"lastUpdated"]]) {
+            NSArray * seperatetransidArray= [[appDelegate.servicedetails  valueForKey:@"lastUpdated"] componentsSeparatedByString:@"T"];
             if ([Utils isCheckNotNULL:seperatetransidArray]) {
                 dateLbl.text=[NSString stringWithFormat:@"Date:%@",[Utils GlobalDateConvert:[seperatetransidArray objectAtIndex:0] inputFormat:@"yyyy-mm-dd" outputFormat:@"dd.mm.yyyy"]];
             }
@@ -127,8 +127,8 @@
         [waitingView addSubview:profImg];
         
         UILabel * nameLbl=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(profImg.frame)-5, 5, waitingView.frame.size.width-(CGRectGetMaxX(profImg.frame)-10), 21)];
-        if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"userName"]]) {
-            nameLbl.text=[NSString stringWithFormat:@"%@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"userName"]];
+        if ([Utils isCheckNotNULL:[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"userName"]]) {
+            nameLbl.text=[NSString stringWithFormat:@"%@",[[appDelegate.servicedetails valueForKey:@"partnerId"]valueForKey:@"userName"]];
         }
         
         //nameLbl.backgroundColor=Singlecolor(grayColor);
@@ -144,8 +144,8 @@
         
         
         UILabel * noLbl=[[UILabel alloc]initWithFrame:CGRectMake(nameLbl.frame.origin.x+10, CGRectGetMaxY(divView.frame)+20, nameLbl.frame.size.width/1.8, 21)];
-        if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"mobile"]]) {
-            noLbl.text=[NSString stringWithFormat:@"%@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"mobile"]];//@"9787430308";
+        if ([Utils isCheckNotNULL:[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"mobile"]]) {
+            noLbl.text=[NSString stringWithFormat:@"%@",[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"mobile"]];//@"9787430308";
         }
         
         noLbl.textAlignment=NSTextAlignmentCenter;
@@ -646,8 +646,8 @@
 }
 - (void)callAction
 {
-    if ([Utils isCheckNotNULL:[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"mobile"]]) {
-        NSString *phoneStr = [[NSString alloc] initWithFormat:@"tel:%@",[[[appDelegate.servicedetails valueForKey:@"booking"] valueForKey:@"partnerId"]valueForKey:@"mobile"]];
+    if ([Utils isCheckNotNULL:[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"mobile"]]) {
+        NSString *phoneStr = [[NSString alloc] initWithFormat:@"tel:%@",[[appDelegate.servicedetails  valueForKey:@"partnerId"]valueForKey:@"mobile"]];
         NSURL *phoneURL = [[NSURL alloc] initWithString:phoneStr];
         [[UIApplication sharedApplication] openURL:phoneURL];
     }
@@ -1090,6 +1090,7 @@
              [[NSNotificationCenter defaultCenter]
               postNotificationName:@"updatebill"
               object:nil];
+             [self->appDelegate stopProgressView];
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          NSLog(@"Error: %@", error);

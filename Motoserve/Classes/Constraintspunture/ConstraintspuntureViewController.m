@@ -182,6 +182,9 @@
             [locationDic setObject:@"Point" forKey:@"type"];
             [locationDic setObject:appDelegate.latArray forKey:@"coordinates"];
             NSString * typeservice=@"P";
+            if ([appDelegate.servicetype isEqualToString:@"R"]) {
+                typeservice=@"S";
+            }
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"dd-MM-yy";
             NSLog(@"cds %@",[NSDate date]);
