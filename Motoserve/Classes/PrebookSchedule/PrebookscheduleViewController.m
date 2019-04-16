@@ -168,7 +168,7 @@
     [servicecenterLbl.leftAnchor constraintEqualToAnchor:noLbl.leftAnchor constant:0].active=YES;
     [servicecenterLbl.rightAnchor constraintEqualToAnchor:noLbl.rightAnchor constant:0].active=YES;
     [servicecenterLbl.heightAnchor constraintEqualToAnchor:noLbl.heightAnchor constant:0].active=YES;
-    servicecenterLbl.text=@"Rasi Motors, Tambaram";
+    //servicecenterLbl.text=@"Rasi Motors, Tambaram";
     servicecenterLbl.textAlignment=NSTextAlignmentLeft;
     servicecenterLbl.textColor=Singlecolor(grayColor);
     servicecenterLbl.font=RalewayRegular(appDelegate.font-5);

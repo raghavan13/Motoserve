@@ -60,9 +60,11 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string></string>
 	<key>S3TransferUtility</key>
 	<dict>
